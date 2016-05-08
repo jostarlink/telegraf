@@ -28,10 +28,13 @@
         </ul>
       </header>
       <section>
-        <p><a href="https://travis-ci.org/telegraf/telegraf"><img src="https://img.shields.io/travis/telegraf/telegraf.svg?branch=master&amp;style=flat-square" alt="Build Status"></a>
+        <h1>
+<a id="telegraf" class="anchor" href="#telegraf" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Telegraf</h1>
+
+<p><a href="https://travis-ci.org/telegraf/telegraf"><img src="https://img.shields.io/travis/telegraf/telegraf.svg?branch=master&amp;style=flat-square" alt="Build Status"></a>
 <a href="https://www.npmjs.com/package/telegraf"><img src="https://img.shields.io/npm/v/telegraf.svg?style=flat-square" alt="NPM Version"></a></p>
 
-<p>Telegram bot framework from node.js</p>
+<p>Modern Telegram bot framework for node.js</p>
 
 <h2>
 <a id="installation" class="anchor" href="#installation" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Installation</h2>
@@ -43,10 +46,10 @@
 
 <div class="highlight highlight-source-js"><pre><span class="pl-k">var</span> Telegraf <span class="pl-k">=</span> <span class="pl-c1">require</span>(<span class="pl-s"><span class="pl-pds">'</span>telegraf<span class="pl-pds">'</span></span>);
 
-<span class="pl-k">var</span> app <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-en">Telegraf</span>(<span class="pl-c1">process</span>.<span class="pl-smi">env</span>.<span class="pl-c1">BOT_TOKEN</span>);
+<span class="pl-k">var</span> telegraf <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-en">Telegraf</span>(<span class="pl-c1">process</span>.<span class="pl-smi">env</span>.<span class="pl-c1">BOT_TOKEN</span>);
 
 <span class="pl-c">// Text messages handling</span>
-<span class="pl-smi">app</span>.<span class="pl-en">hears</span>(<span class="pl-s"><span class="pl-pds">'</span>/answer<span class="pl-pds">'</span></span>, <span class="pl-k">function</span> <span class="pl-k">*</span> () {
+<span class="pl-smi">telegraf</span>.<span class="pl-en">hears</span>(<span class="pl-s"><span class="pl-pds">'</span>/answer<span class="pl-pds">'</span></span>, <span class="pl-k">function</span> <span class="pl-k">*</span> () {
   <span class="pl-v">this</span>.<span class="pl-en">reply</span>(<span class="pl-s"><span class="pl-pds">'</span>*42*<span class="pl-pds">'</span></span>, { parse_mode<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>Markdown<span class="pl-pds">'</span></span> })
 })
 
@@ -57,11 +60,11 @@
 }
 
 <span class="pl-c">// Wow! RegEx</span>
-<span class="pl-smi">app</span>.<span class="pl-en">hears</span>(<span class="pl-sr"><span class="pl-pds">/</span>reverse (<span class="pl-c1">.</span><span class="pl-k">+</span>)<span class="pl-pds">/</span></span>, sayYoMiddleware, <span class="pl-k">function</span> <span class="pl-k">*</span> () {
+<span class="pl-smi">telegraf</span>.<span class="pl-en">hears</span>(<span class="pl-sr"><span class="pl-pds">/</span>reverse (<span class="pl-c1">.</span><span class="pl-k">+</span>)<span class="pl-pds">/</span></span>, sayYoMiddleware, <span class="pl-k">function</span> <span class="pl-k">*</span> () {
   <span class="pl-v">this</span>.<span class="pl-en">reply</span>(<span class="pl-v">this</span>.<span class="pl-smi">match</span>[<span class="pl-c1">1</span>].<span class="pl-c1">split</span>(<span class="pl-s"><span class="pl-pds">'</span><span class="pl-pds">'</span></span>).<span class="pl-c1">reverse</span>().<span class="pl-c1">join</span>(<span class="pl-s"><span class="pl-pds">'</span><span class="pl-pds">'</span></span>))
 })
 
-<span class="pl-smi">app</span>.<span class="pl-en">startPolling</span>()</pre></div>
+<span class="pl-smi">telegraf</span>.<span class="pl-en">startPolling</span>()</pre></div>
 
 <p>There are some other <a href="https://github.com/telegraf/telegraf/tree/master/examples">examples</a>.</p>
 
@@ -79,13 +82,13 @@ middleware layer. This improves interoperability, robustness, and makes writing 
 more enjoyable. </p>
 
 <div class="highlight highlight-source-js"><pre><span class="pl-k">var</span> Telegraf <span class="pl-k">=</span> <span class="pl-c1">require</span>(<span class="pl-s"><span class="pl-pds">'</span>telegraf<span class="pl-pds">'</span></span>)
-<span class="pl-k">var</span> app <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-en">Telegraf</span>(<span class="pl-c1">process</span>.<span class="pl-smi">env</span>.<span class="pl-c1">BOT_TOKEN</span>)
+<span class="pl-k">var</span> telegraf <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-en">Telegraf</span>(<span class="pl-c1">process</span>.<span class="pl-smi">env</span>.<span class="pl-c1">BOT_TOKEN</span>)
 
-<span class="pl-smi">app</span>.<span class="pl-en">on</span>(<span class="pl-s"><span class="pl-pds">'</span>text<span class="pl-pds">'</span></span>, <span class="pl-k">function</span> <span class="pl-k">*</span> (){
+<span class="pl-smi">telegraf</span>.<span class="pl-en">on</span>(<span class="pl-s"><span class="pl-pds">'</span>text<span class="pl-pds">'</span></span>, <span class="pl-k">function</span> <span class="pl-k">*</span> (){
   <span class="pl-v">this</span>.<span class="pl-en">reply</span>(<span class="pl-s"><span class="pl-pds">'</span>Hello World<span class="pl-pds">'</span></span>)
 })
 
-<span class="pl-smi">app</span>.<span class="pl-en">startPolling</span>()</pre></div>
+<span class="pl-smi">telegraf</span>.<span class="pl-en">startPolling</span>()</pre></div>
 
 <h3>
 <a id="cascading" class="anchor" href="#cascading" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Cascading</h3>
@@ -102,10 +105,10 @@ the function suspends and passes control to the next middleware defined. After t
 middleware to execute downstream, the stack will unwind and each middleware is resumed to perform
 its upstream behaviour.</p>
 
-<div class="highlight highlight-source-js"><pre><span class="pl-k">var</span> app <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-en">Telegraf</span>(<span class="pl-c1">process</span>.<span class="pl-smi">env</span>.<span class="pl-c1">BOT_TOKEN</span>)
+<div class="highlight highlight-source-js"><pre><span class="pl-k">var</span> telegraf <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-en">Telegraf</span>(<span class="pl-c1">process</span>.<span class="pl-smi">env</span>.<span class="pl-c1">BOT_TOKEN</span>)
 
 <span class="pl-c">// Logger middleware</span>
-<span class="pl-smi">app</span>.<span class="pl-en">use</span>(<span class="pl-k">function</span> <span class="pl-k">*</span> (<span class="pl-smi">next</span>){
+<span class="pl-smi">telegraf</span>.<span class="pl-en">use</span>(<span class="pl-k">function</span> <span class="pl-k">*</span> (<span class="pl-smi">next</span>){
   <span class="pl-k">var</span> start <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-en">Date</span>
   <span class="pl-v">this</span>.<span class="pl-smi">state</span>.<span class="pl-smi">started</span> <span class="pl-k">=</span> start
   <span class="pl-k">yield</span> next
@@ -113,7 +116,7 @@ its upstream behaviour.</p>
   <span class="pl-en">debug</span>(<span class="pl-s"><span class="pl-pds">'</span>response time %sms<span class="pl-pds">'</span></span>, ms)
 })
 
-<span class="pl-smi">app</span>.<span class="pl-en">on</span>(<span class="pl-s"><span class="pl-pds">'</span>text<span class="pl-pds">'</span></span>, <span class="pl-k">function</span> <span class="pl-k">*</span> (){
+<span class="pl-smi">telegraf</span>.<span class="pl-en">on</span>(<span class="pl-s"><span class="pl-pds">'</span>text<span class="pl-pds">'</span></span>, <span class="pl-k">function</span> <span class="pl-k">*</span> (){
   <span class="pl-v">this</span>.<span class="pl-en">reply</span>(<span class="pl-s"><span class="pl-pds">'</span>Hello World<span class="pl-pds">'</span></span>)
 })</pre></div>
 
@@ -123,7 +126,8 @@ its upstream behaviour.</p>
 <p>A Telegraf Context encapsulates telegram message.
 Context is created per request, and is referenced in middleware as the receiver, or the this identifier, as shown in the following snippet:</p>
 
-<div class="highlight highlight-source-js"><pre><span class="pl-smi">app</span>.<span class="pl-en">use</span>(<span class="pl-k">function</span> <span class="pl-k">*</span> (){
+<div class="highlight highlight-source-js"><pre><span class="pl-smi">telegraf</span>.<span class="pl-en">use</span>(<span class="pl-k">function</span> <span class="pl-k">*</span> (){
+  <span class="pl-v">this</span>.<span class="pl-smi">telegraf</span>           <span class="pl-c">// Telegraf instance</span>
   <span class="pl-v">this</span>.<span class="pl-smi">eventType</span>          <span class="pl-c">// Event type</span>
   <span class="pl-v">this</span>.<span class="pl-smi">message</span>            <span class="pl-c">// Received message</span>
   <span class="pl-v">this</span>.<span class="pl-smi">inlineQuery</span>        <span class="pl-c">// Received inline query</span>
@@ -149,15 +153,31 @@ Context is created per request, and is referenced in middleware as the receiver,
 
 <p>The recommended namespace to share information between middlewares.</p>
 
-<div class="highlight highlight-source-js"><pre><span class="pl-k">var</span> app <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-en">Telegraf</span>(<span class="pl-c1">process</span>.<span class="pl-smi">env</span>.<span class="pl-c1">BOT_TOKEN</span>)
+<div class="highlight highlight-source-js"><pre><span class="pl-k">var</span> telegraf <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-en">Telegraf</span>(<span class="pl-c1">process</span>.<span class="pl-smi">env</span>.<span class="pl-c1">BOT_TOKEN</span>)
 
-<span class="pl-smi">app</span>.<span class="pl-en">use</span>(<span class="pl-k">function</span> <span class="pl-k">*</span> (<span class="pl-smi">next</span>) {
+<span class="pl-smi">telegraf</span>.<span class="pl-en">use</span>(<span class="pl-k">function</span> <span class="pl-k">*</span> (<span class="pl-smi">next</span>) {
   <span class="pl-v">this</span>.<span class="pl-smi">state</span>.<span class="pl-smi">role</span> <span class="pl-k">=</span> <span class="pl-en">getUserRole</span>(<span class="pl-v">this</span>.<span class="pl-smi">message</span>) 
   <span class="pl-k">yield</span> next
 })
 
-<span class="pl-smi">app</span>.<span class="pl-en">on</span>(<span class="pl-s"><span class="pl-pds">'</span>text<span class="pl-pds">'</span></span>, <span class="pl-k">function</span> <span class="pl-k">*</span> (){
+<span class="pl-smi">telegraf</span>.<span class="pl-en">on</span>(<span class="pl-s"><span class="pl-pds">'</span>text<span class="pl-pds">'</span></span>, <span class="pl-k">function</span> <span class="pl-k">*</span> (){
   <span class="pl-v">this</span>.<span class="pl-en">reply</span>(<span class="pl-s"><span class="pl-pds">`</span>Hello <span class="pl-s1"><span class="pl-pse">${</span><span class="pl-v">this</span>.<span class="pl-smi">state</span>.<span class="pl-smi">role</span><span class="pl-pse">}</span></span><span class="pl-pds">`</span></span>)
+})</pre></div>
+
+<h2>
+<a id="session" class="anchor" href="#session" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Session</h2>
+
+<p>For development you can use <code>Telegraf.memorySession()</code>, but session will be lost on app restart.
+For production environment use any <a href="https://www.npmjs.com/search?q=telegraf-session"><code>telegraf-session-*</code></a> middleware.</p>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-k">var</span> telegraf <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-en">Telegraf</span>(<span class="pl-c1">process</span>.<span class="pl-smi">env</span>.<span class="pl-c1">BOT_TOKEN</span>)
+
+<span class="pl-smi">telegraf</span>.<span class="pl-en">use</span>(<span class="pl-smi">Telegraf</span>.<span class="pl-en">memorySession</span>())
+
+<span class="pl-smi">telegraf</span>.<span class="pl-en">on</span>(<span class="pl-s"><span class="pl-pds">'</span>text<span class="pl-pds">'</span></span>, <span class="pl-k">function</span> <span class="pl-k">*</span> (){
+  <span class="pl-v">this</span>.<span class="pl-smi">session</span>.<span class="pl-smi">counter</span> <span class="pl-k">=</span> <span class="pl-v">this</span>.<span class="pl-smi">session</span>.<span class="pl-smi">counter</span> <span class="pl-k">||</span> <span class="pl-c1">0</span>
+  <span class="pl-v">this</span>.<span class="pl-smi">session</span>.<span class="pl-smi">counter</span><span class="pl-k">++</span>
+  <span class="pl-v">this</span>.<span class="pl-en">reply</span>(<span class="pl-s"><span class="pl-pds">`</span>Message counter:<span class="pl-s1"><span class="pl-pse">${</span><span class="pl-v">this</span>.<span class="pl-smi">session</span>.<span class="pl-smi">counter</span><span class="pl-pse">}</span></span><span class="pl-pds">`</span></span>)
 })</pre></div>
 
 <h2>
@@ -166,7 +186,7 @@ Context is created per request, and is referenced in middleware as the receiver,
 <p>By default Telegraf will print all errors to stderr and rethrow error. 
 To perform custom error-handling logic you can set <code>onError</code> handler:</p>
 
-<div class="highlight highlight-source-js"><pre><span class="pl-smi">app</span>.<span class="pl-en">onError</span> <span class="pl-k">=</span> <span class="pl-k">function</span>(<span class="pl-smi">err</span>){
+<div class="highlight highlight-source-js"><pre><span class="pl-smi">telegraf</span>.<span class="pl-en">onError</span> <span class="pl-k">=</span> <span class="pl-k">function</span>(<span class="pl-smi">err</span>){
   <span class="pl-smi">log</span>.<span class="pl-en">error</span>(<span class="pl-s"><span class="pl-pds">'</span>server error<span class="pl-pds">'</span></span>, err)
 
   <span class="pl-c">// If user messages is important for us, we will exit from update loop</span>
@@ -182,8 +202,9 @@ To perform custom error-handling logic you can set <code>onError</code> handler:
 
 <ul>
 <li><a href="#new"><code>new Telegraf(token)</code></a></li>
+<li><a href="#setwebhook"><code>.setWebHook(url, cert)</code></a></li>
+<li><a href="#startWebHook"><code>.startWebHook(path, tlsOptions, port, [host])</code></a></li>
 <li><a href="#startPolling"><code>.startPolling(timeout, limit)</code></a></li>
-<li><a href="#startWebHook"><code>.startWebHook(token, tlsOptions, port, [host])</code></a></li>
 <li><a href="#stop"><code>.stop()</code></a></li>
 <li><a href="#use"><code>.use(function)</code></a></li>
 <li><a href="#on"><code>.on(messageType, function)</code></a></li>
@@ -202,7 +223,6 @@ To perform custom error-handling logic you can set <code>onError</code> handler:
 <li><a href="#getuserprofilephotos"><code>.getUserProfilePhotos(userId, offset, limit)</code></a></li>
 <li><a href="#getfile"><code>.getFile(fileId)</code></a></li>
 <li><a href="#getFileLink"><code>.getFileLink(fileId)</code></a></li>
-<li><a href="#setwebhook"><code>.setWebHook(url, cert)</code></a></li>
 <li><a href="#removewebhook"><code>.removeWebHook()</code></a></li>
 <li><a href="#kickchatmember"><code>.kickChatMember(chatId, userId)</code></a></li>
 <li><a href="#unbanchatmember"><code>.unbanChatMember(chatId, userId)</code></a></li>
@@ -221,7 +241,7 @@ To perform custom error-handling logic you can set <code>onError</code> handler:
 <a id="telegrafnewtoken" class="anchor" href="#telegrafnewtoken" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>Telegraf.new(token)</code>
 </h4>
 
-<p>Initialize new app.</p>
+<p>Initialize new Telegraf app.</p>
 
 <table>
 <thead>
@@ -236,6 +256,82 @@ To perform custom error-handling logic you can set <code>onError</code> handler:
 <td>token</td>
 <td><code>String</code></td>
 <td><a href="https://core.telegram.org/bots#3-how-do-i-create-a-bot">Bot Token</a></td>
+</tr>
+</tbody>
+</table>
+
+<hr>
+
+<p><a name="setwebhook"></a></p>
+
+<h4>
+<a id="telegrafsetwebhookurl-cert--promise" class="anchor" href="#telegrafsetwebhookurl-cert--promise" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>Telegraf.setWebHook(url, [cert])</code> =&gt; <code>Promise</code>
+</h4>
+
+<p>Specifies an url to receive incoming updates via an outgoing webHook.</p>
+
+<table>
+<thead>
+<tr>
+<th>Param</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>url</td>
+<td><code>String</code></td>
+<td>Public url for webhook</td>
+</tr>
+<tr>
+<td>cert</td>
+<td><a href="#file"><code>File</code></a></td>
+<td>SSL public certificate</td>
+</tr>
+</tbody>
+</table>
+
+<p><a href="https://core.telegram.org/bots/api#setwebhook">Related Telegram api docs</a></p>
+
+<hr>
+
+<p><a name="startWebHook"></a></p>
+
+<h4>
+<a id="telegrafstartwebhooktoken-tlsoptions-port-host" class="anchor" href="#telegrafstartwebhooktoken-tlsoptions-port-host" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>Telegraf.startWebHook(token, tlsOptions, port, [host])</code>
+</h4>
+
+<p>Start listening @ <code>https://host:port/token</code> for Telegram calls.</p>
+
+<table>
+<thead>
+<tr>
+<th>Param</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>path</td>
+<td><code>String</code></td>
+<td>Url path (see Telegraf.setWebHook)</td>
+</tr>
+<tr>
+<td>tlsOptions</td>
+<td><code>Object</code></td>
+<td><a href="https://nodejs.org/api/tls.html#tls_tls_createserver_options_secureconnectionlistener">tls server options</a></td>
+</tr>
+<tr>
+<td>port</td>
+<td><code>Int</code></td>
+<td>Port number</td>
+</tr>
+<tr>
+<td>host</td>
+<td><code>String</code></td>
+<td>Hostname</td>
 </tr>
 </tbody>
 </table>
@@ -271,48 +367,6 @@ To perform custom error-handling logic you can set <code>onError</code> handler:
 <td><code>Int</code></td>
 <td>100</td>
 <td>Limits the number of updates to be retrieved</td>
-</tr>
-</tbody>
-</table>
-
-<hr>
-
-<p><a name="startWebHook"></a></p>
-
-<h4>
-<a id="telegrafstartwebhooktoken-tlsoptions-port-host" class="anchor" href="#telegrafstartwebhooktoken-tlsoptions-port-host" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>Telegraf.startWebHook(token, tlsOptions, port, [host])</code>
-</h4>
-
-<p>Start listening @ <code>https://host:port/token</code> for Telegram calls.</p>
-
-<table>
-<thead>
-<tr>
-<th>Param</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>token</td>
-<td><code>String</code></td>
-<td>Token</td>
-</tr>
-<tr>
-<td>tlsOptions</td>
-<td><code>Object</code></td>
-<td><a href="https://nodejs.org/api/tls.html#tls_tls_createserver_options_secureconnectionlistener">tls server options</a></td>
-</tr>
-<tr>
-<td>port</td>
-<td><code>Int</code></td>
-<td>Port number</td>
-</tr>
-<tr>
-<td>host</td>
-<td><code>String</code></td>
-<td>Hostname</td>
 </tr>
 </tbody>
 </table>
@@ -950,40 +1004,6 @@ To perform custom error-handling logic you can set <code>onError</code> handler:
 
 <hr>
 
-<p><a name="setwebhook"></a></p>
-
-<h4>
-<a id="telegrafsetwebhookurl-cert--promise" class="anchor" href="#telegrafsetwebhookurl-cert--promise" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>Telegraf.setWebHook(url, [cert])</code> =&gt; <code>Promise</code>
-</h4>
-
-<p>Specifies an url to receive incoming updates via an outgoing webHook.</p>
-
-<table>
-<thead>
-<tr>
-<th>Param</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>url</td>
-<td><code>String</code></td>
-<td>File id</td>
-</tr>
-<tr>
-<td>cert</td>
-<td><a href="#file"><code>File</code></a></td>
-<td>SSL public certificate</td>
-</tr>
-</tbody>
-</table>
-
-<p><a href="https://core.telegram.org/bots/api#setwebhook">Related Telegram api docs</a></p>
-
-<hr>
-
 <p><a name="removewebhook"></a></p>
 
 <h4>
@@ -1348,13 +1368,13 @@ To perform custom error-handling logic you can set <code>onError</code> handler:
 
 <div class="highlight highlight-source-js"><pre>
 <span class="pl-c">// Handle stickers and photos</span>
-<span class="pl-smi">app</span>.<span class="pl-en">on</span>([<span class="pl-s"><span class="pl-pds">'</span>sticker<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>photo<span class="pl-pds">'</span></span>], <span class="pl-k">function</span> <span class="pl-k">*</span> () {
+<span class="pl-smi">telegraf</span>.<span class="pl-en">on</span>([<span class="pl-s"><span class="pl-pds">'</span>sticker<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>photo<span class="pl-pds">'</span></span>], <span class="pl-k">function</span> <span class="pl-k">*</span> () {
   <span class="pl-en">console</span>.<span class="pl-c1">log</span>(<span class="pl-v">this</span>.<span class="pl-smi">message</span>)
   <span class="pl-v">this</span>.<span class="pl-en">reply</span>(<span class="pl-s"><span class="pl-pds">'</span>Cool!<span class="pl-pds">'</span></span>)
 })
 
 <span class="pl-c">// Handle all messages except `inline_query`, `chosen_inline_result` and `callback_query`</span>
-<span class="pl-smi">app</span>.<span class="pl-en">on</span>(<span class="pl-s"><span class="pl-pds">'</span>message<span class="pl-pds">'</span></span>, <span class="pl-k">function</span> <span class="pl-k">*</span> () {
+<span class="pl-smi">telegraf</span>.<span class="pl-en">on</span>(<span class="pl-s"><span class="pl-pds">'</span>message<span class="pl-pds">'</span></span>, <span class="pl-k">function</span> <span class="pl-k">*</span> () {
   <span class="pl-v">this</span>.<span class="pl-en">reply</span>(<span class="pl-s"><span class="pl-pds">'</span>Hey there!<span class="pl-pds">'</span></span>)
 })</pre></div>
 
@@ -1368,11 +1388,11 @@ To perform custom error-handling logic you can set <code>onError</code> handler:
 <pre><code>Note: shortcuts are not available for `inline_query` and `chosen_inline_result` events.
 </code></pre>
 
-<div class="highlight highlight-source-js"><pre><span class="pl-k">var</span> app <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-en">Telegraf</span>(<span class="pl-c1">process</span>.<span class="pl-smi">env</span>.<span class="pl-c1">BOT_TOKEN</span>)
+<div class="highlight highlight-source-js"><pre><span class="pl-k">var</span> telegraf <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-en">Telegraf</span>(<span class="pl-c1">process</span>.<span class="pl-smi">env</span>.<span class="pl-c1">BOT_TOKEN</span>)
 
-<span class="pl-smi">app</span>.<span class="pl-en">on</span>(<span class="pl-s"><span class="pl-pds">'</span>text<span class="pl-pds">'</span></span>, <span class="pl-k">function</span> <span class="pl-k">*</span> (){
+<span class="pl-smi">telegraf</span>.<span class="pl-en">on</span>(<span class="pl-s"><span class="pl-pds">'</span>text<span class="pl-pds">'</span></span>, <span class="pl-k">function</span> <span class="pl-k">*</span> (){
   <span class="pl-c">// Simple usage </span>
-  <span class="pl-smi">app</span>.<span class="pl-en">sendMessage</span>(<span class="pl-v">this</span>.<span class="pl-smi">message</span>.<span class="pl-smi">chat</span>.<span class="pl-c1">id</span>, <span class="pl-s"><span class="pl-pds">`</span>Hello <span class="pl-s1"><span class="pl-pse">${</span><span class="pl-v">this</span>.<span class="pl-smi">state</span>.<span class="pl-smi">role</span><span class="pl-pse">}</span></span><span class="pl-pds">`</span></span>)
+  <span class="pl-smi">telegraf</span>.<span class="pl-en">sendMessage</span>(<span class="pl-v">this</span>.<span class="pl-smi">message</span>.<span class="pl-smi">chat</span>.<span class="pl-c1">id</span>, <span class="pl-s"><span class="pl-pds">`</span>Hello <span class="pl-s1"><span class="pl-pse">${</span><span class="pl-v">this</span>.<span class="pl-smi">state</span>.<span class="pl-smi">role</span><span class="pl-pse">}</span></span><span class="pl-pds">`</span></span>)
 
   <span class="pl-c">// Using shortcut</span>
   <span class="pl-v">this</span>.<span class="pl-en">reply</span>(<span class="pl-s"><span class="pl-pds">`</span>Hello <span class="pl-s1"><span class="pl-pse">${</span><span class="pl-v">this</span>.<span class="pl-smi">state</span>.<span class="pl-smi">role</span><span class="pl-pse">}</span></span><span class="pl-pds">`</span></span>)
@@ -1383,31 +1403,31 @@ To perform custom error-handling logic you can set <code>onError</code> handler:
 
 <ul>
 <li>
-<code>reply()</code> -&gt; <code>app.sendMessage()</code>
+<code>reply()</code> -&gt; <code>telegraf.sendMessage()</code>
 </li>
 <li>
-<code>replyWithPhoto()</code> -&gt; <code>app.sendPhoto()</code>
+<code>replyWithPhoto()</code> -&gt; <code>telegraf.sendPhoto()</code>
 </li>
 <li>
-<code>replyWithAudio()</code> -&gt; <code>app.sendAudio()</code>
+<code>replyWithAudio()</code> -&gt; <code>telegraf.sendAudio()</code>
 </li>
 <li>
-<code>replyWithDocument()</code> -&gt; <code>app.sendDocument()</code>
+<code>replyWithDocument()</code> -&gt; <code>telegraf.sendDocument()</code>
 </li>
 <li>
-<code>replyWithSticker()</code> -&gt; <code>app.sendSticker()</code>
+<code>replyWithSticker()</code> -&gt; <code>telegraf.sendSticker()</code>
 </li>
 <li>
-<code>replyWithVideo()</code> -&gt; <code>app.sendVideo()</code>
+<code>replyWithVideo()</code> -&gt; <code>telegraf.sendVideo()</code>
 </li>
 <li>
-<code>replyWithVoice()</code> -&gt; <code>app.sendVoice()</code>
+<code>replyWithVoice()</code> -&gt; <code>telegraf.sendVoice()</code>
 </li>
 <li>
-<code>replyWithChatAction()</code> -&gt; <code>app.sendChatAction()</code>
+<code>replyWithChatAction()</code> -&gt; <code>telegraf.sendChatAction()</code>
 </li>
 <li>
-<code>replyWithLocation()</code> -&gt; <code>app.sendLocation()</code>
+<code>replyWithLocation()</code> -&gt; <code>telegraf.sendLocation()</code>
 </li>
 </ul>
 
