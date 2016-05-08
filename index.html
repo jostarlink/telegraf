@@ -254,7 +254,7 @@ To perform custom error-handling logic you can set <code>onError</code> handler:
 <li><a href="#stop"><code>.stop()</code></a></li>
 <li><a href="#use"><code>.use(function)</code></a></li>
 <li><a href="#on"><code>.on(messageType, function)</code></a></li>
-<li><a href="#hear"><code>.hear(string|ReGex, function)</code></a></li>
+<li><a href="#hears"><code>.hears(string|ReGex, function)</code></a></li>
 <li><a href="#sendmessage"><code>.sendMessage(chatId, text, extra)</code></a></li>
 <li><a href="#forwardmessage"><code>.forwardMessage(chatId, fromChatId, messageId, extra)</code></a></li>
 <li><a href="#sendlocation"><code>.sendLocation(chatId, latitude, longitude, extra)</code></a></li>
@@ -519,10 +519,10 @@ You may also use this callback function to mount your telegraf app in a Koa/Conn
 
 <hr>
 
-<p><a name="hear"></a></p>
+<p><a name="hears"></a></p>
 
 <h4>
-<a id="telegrafhearpattern-handler" class="anchor" href="#telegrafhearpattern-handler" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>Telegraf.hear(pattern, handler)</code>
+<a id="telegrafhearspattern-handler" class="anchor" href="#telegrafhearspattern-handler" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>Telegraf.hears(pattern, handler)</code>
 </h4>
 
 <p>Registers handler only for <code>text</code> events using string pattern or RegEx.</p>
