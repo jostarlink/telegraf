@@ -1,38 +1,29 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="en-us">
   <head>
-    <meta charset='utf-8'>
-    <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <meta name="description" content="Telegraf : 📢 Modern Telegram bot framework">
-
-    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
-
-    <title>Telegraf</title>
+    <meta charset="UTF-8">
+    <title>Telegraf by telegraf</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
   </head>
-
   <body>
+    <section class="page-header">
+      <h1 class="project-name">Telegraf</h1>
+      <h2 class="project-tagline">📢 Modern Telegram bot framework</h2>
+      <a href="https://github.com/telegraf/telegraf" class="btn">View on GitHub</a>
+      <a href="https://github.com/telegraf/telegraf/zipball/master" class="btn">Download .zip</a>
+      <a href="https://github.com/telegraf/telegraf/tarball/master" class="btn">Download .tar.gz</a>
+    </section>
 
-    <!-- HEADER -->
-    <div id="header_wrap" class="outer">
-        <header class="inner">
-          <a id="forkme_banner" href="https://github.com/telegraf/telegraf">View on GitHub</a>
-
-          <h1 id="project_title">Telegraf</h1>
-          <h2 id="project_tagline">📢 Modern Telegram bot framework</h2>
-
-            <section id="downloads">
-              <a class="zip_download_link" href="https://github.com/telegraf/telegraf/zipball/master">Download this project as a .zip file</a>
-              <a class="tar_download_link" href="https://github.com/telegraf/telegraf/tarball/master">Download this project as a tar.gz file</a>
-            </section>
-        </header>
-    </div>
-
-    <!-- MAIN CONTENT -->
-    <div id="main_content_wrap" class="outer">
-      <section id="main_content" class="inner">
-        <p><a href="https://travis-ci.org/telegraf/telegraf"><img src="https://img.shields.io/travis/telegraf/telegraf.svg?branch=master&amp;style=flat-square" alt="Build Status"></a>
-<a href="https://www.npmjs.com/package/telegraf"><img src="https://img.shields.io/npm/v/telegraf.svg?style=flat-square" alt="NPM Version"></a></p>
+    <section class="main-content">
+      <p><a href="https://www.npmjs.com/package/telegraf"><img src="https://img.shields.io/npm/l/telegraf.svg?style=flat-square" alt="npm"></a>
+<a href="https://www.npmjs.com/package/telegraf"><img src="https://img.shields.io/npm/v/telegraf.svg?style=flat-square" alt="NPM Version"></a>
+<a href="https://www.npmjs.com/package/telegraf"><img src="https://img.shields.io/node/v/telegraf.svg?style=flat-square" alt="node"></a>
+<a href="https://www.npmjs.com/package/telegraf"><img src="https://img.shields.io/david/telegraf/telegraf.svg?style=flat-square" alt="David"></a>
+<a href="https://travis-ci.org/telegraf/telegraf"><img src="https://img.shields.io/travis/telegraf/telegraf.svg?branch=master&amp;style=flat-square" alt="Build Status"></a></p>
 
 <h2>
 <a id="installation" class="anchor" href="#installation" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Installation</h2>
@@ -126,7 +117,8 @@ Context is created per request, and is referenced in middleware as the receiver,
 
 <div class="highlight highlight-source-js"><pre><span class="pl-smi">telegraf</span>.<span class="pl-en">use</span>(<span class="pl-k">function</span> <span class="pl-k">*</span> (){
   <span class="pl-v">this</span>.<span class="pl-smi">telegraf</span>           <span class="pl-c">// Telegraf instance</span>
-  <span class="pl-v">this</span>.<span class="pl-smi">eventType</span>          <span class="pl-c">// Event type</span>
+  <span class="pl-v">this</span>.<span class="pl-smi">eventType</span>          <span class="pl-c">// Event type(message, inline_query, etc.)</span>
+  <span class="pl-v">this</span>.<span class="pl-smi">eventSubType</span>       <span class="pl-c">// Event subtype(text, sticker, audio, etc.)</span>
   <span class="pl-v">this</span>.<span class="pl-smi">message</span>            <span class="pl-c">// Received message</span>
   <span class="pl-v">this</span>.<span class="pl-smi">inlineQuery</span>        <span class="pl-c">// Received inline query</span>
   <span class="pl-v">this</span>.<span class="pl-smi">chosenInlineResult</span> <span class="pl-c">// Received inline query result</span>
@@ -136,13 +128,13 @@ Context is created per request, and is referenced in middleware as the receiver,
 
 <p>The recommended way to extend application context.</p>
 
-<div class="highlight highlight-source-js"><pre><span class="pl-k">var</span> app <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-en">Telegraf</span>(<span class="pl-c1">process</span>.<span class="pl-smi">env</span>.<span class="pl-c1">BOT_TOKEN</span>)
+<div class="highlight highlight-source-js"><pre><span class="pl-k">var</span> telegraf <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-en">Telegraf</span>(<span class="pl-c1">process</span>.<span class="pl-smi">env</span>.<span class="pl-c1">BOT_TOKEN</span>)
 
-<span class="pl-smi">app</span>.<span class="pl-smi">context</span>.<span class="pl-smi">db</span> <span class="pl-k">=</span> {
+<span class="pl-smi">telegraf</span>.<span class="pl-smi">context</span>.<span class="pl-smi">db</span> <span class="pl-k">=</span> {
   <span class="pl-en">getScores</span><span class="pl-k">:</span> <span class="pl-k">function</span> () { <span class="pl-k">return</span> <span class="pl-c1">42</span> }
 }
 
-<span class="pl-smi">app</span>.<span class="pl-en">on</span>(<span class="pl-s"><span class="pl-pds">'</span>text<span class="pl-pds">'</span></span>, <span class="pl-k">function</span> <span class="pl-k">*</span> (){
+<span class="pl-smi">telegraf</span>.<span class="pl-en">on</span>(<span class="pl-s"><span class="pl-pds">'</span>text<span class="pl-pds">'</span></span>, <span class="pl-k">function</span> <span class="pl-k">*</span> (){
   <span class="pl-k">var</span> scores <span class="pl-k">=</span> <span class="pl-v">this</span>.<span class="pl-smi">db</span>.<span class="pl-en">getScores</span>(<span class="pl-v">this</span>.<span class="pl-smi">message</span>.<span class="pl-smi">from</span>.<span class="pl-smi">username</span>)
   <span class="pl-v">this</span>.<span class="pl-en">reply</span>(<span class="pl-s"><span class="pl-pds">`</span><span class="pl-s1"><span class="pl-pse">${</span><span class="pl-v">this</span>.<span class="pl-smi">message</span>.<span class="pl-smi">from</span>.<span class="pl-smi">username</span><span class="pl-pse">}</span></span>: <span class="pl-s1"><span class="pl-pse">${</span>score<span class="pl-pse">}</span></span><span class="pl-pds">`</span></span>)
 })</pre></div>
@@ -166,11 +158,9 @@ Context is created per request, and is referenced in middleware as the receiver,
 <h3>
 <a id="session" class="anchor" href="#session" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Session</h3>
 
-<p>For development you can use <code>Telegraf.memorySession()</code>, but session will be lost on app restart.
-For production environment use any <a href="https://www.npmjs.com/search?q=telegraf-session"><code>telegraf-session-*</code></a> middleware.</p>
-
 <div class="highlight highlight-source-js"><pre><span class="pl-k">var</span> telegraf <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-en">Telegraf</span>(<span class="pl-c1">process</span>.<span class="pl-smi">env</span>.<span class="pl-c1">BOT_TOKEN</span>)
 
+<span class="pl-c">// Session will be lost on app restart</span>
 <span class="pl-smi">telegraf</span>.<span class="pl-en">use</span>(<span class="pl-smi">Telegraf</span>.<span class="pl-en">memorySession</span>())
 
 <span class="pl-smi">telegraf</span>.<span class="pl-en">on</span>(<span class="pl-s"><span class="pl-pds">'</span>text<span class="pl-pds">'</span></span>, <span class="pl-k">function</span> <span class="pl-k">*</span> (){
@@ -178,6 +168,8 @@ For production environment use any <a href="https://www.npmjs.com/search?q=teleg
   <span class="pl-v">this</span>.<span class="pl-smi">session</span>.<span class="pl-smi">counter</span><span class="pl-k">++</span>
   <span class="pl-v">this</span>.<span class="pl-en">reply</span>(<span class="pl-s"><span class="pl-pds">`</span>Message counter:<span class="pl-s1"><span class="pl-pse">${</span><span class="pl-v">this</span>.<span class="pl-smi">session</span>.<span class="pl-smi">counter</span><span class="pl-pse">}</span></span><span class="pl-pds">`</span></span>)
 })</pre></div>
+
+<p><strong>Important: For production environment use any of <a href="https://www.npmjs.com/search?q=telegraf-session"><code>telegraf-session-*</code></a> middleware.</strong></p>
 
 <h3>
 <a id="telegram-webhook" class="anchor" href="#telegram-webhook" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Telegram WebHook</h3>
@@ -189,12 +181,15 @@ For production environment use any <a href="https://www.npmjs.com/search?q=teleg
 <span class="pl-k">var</span> tlsOptions <span class="pl-k">=</span> {
   key<span class="pl-k">:</span> <span class="pl-smi">fs</span>.<span class="pl-en">readFileSync</span>(<span class="pl-s"><span class="pl-pds">'</span>server-key.pem<span class="pl-pds">'</span></span>),
   cert<span class="pl-k">:</span> <span class="pl-smi">fs</span>.<span class="pl-en">readFileSync</span>(<span class="pl-s"><span class="pl-pds">'</span>server-cert.pem<span class="pl-pds">'</span></span>),
-  <span class="pl-c">// This is necessary only if the client uses the self-signed certificate.</span>
+  <span class="pl-c">// This is necessary only if the client </span>
+  <span class="pl-c">// uses the self-signed certificate.</span>
   ca<span class="pl-k">:</span> [ <span class="pl-smi">fs</span>.<span class="pl-en">readFileSync</span>(<span class="pl-s"><span class="pl-pds">'</span>client-cert.pem<span class="pl-pds">'</span></span>) ]
 }
 
 <span class="pl-c">// Set telegram webhook</span>
-<span class="pl-smi">telegraf</span>.<span class="pl-en">setWebHook</span>(<span class="pl-s"><span class="pl-pds">'</span>https://server.tld:8443/secret-path<span class="pl-pds">'</span></span>, {content<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>server-cert.pem<span class="pl-pds">'</span></span>})
+<span class="pl-smi">telegraf</span>.<span class="pl-en">setWebHook</span>(<span class="pl-s"><span class="pl-pds">'</span>https://server.tld:8443/secret-path<span class="pl-pds">'</span></span>, {
+  content<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>server-cert.pem<span class="pl-pds">'</span></span>
+})
 
 <span class="pl-c">// Start https webhook</span>
 <span class="pl-smi">telegraf</span>.<span class="pl-en">startWebHook</span>(<span class="pl-s"><span class="pl-pds">'</span>/secret-path<span class="pl-pds">'</span></span>, tlsOptions, <span class="pl-c1">8443</span>)
@@ -205,9 +200,13 @@ For production environment use any <a href="https://www.npmjs.com/search?q=teleg
 
 
 <span class="pl-c">// Use webHookCallback() if you want attach telegraf to existing http server</span>
-<span class="pl-c1">require</span>(<span class="pl-s"><span class="pl-pds">'</span>http<span class="pl-pds">'</span></span>).<span class="pl-en">createServer</span>(<span class="pl-smi">telegraf</span>.<span class="pl-en">webHookCallback</span>(<span class="pl-s"><span class="pl-pds">'</span>/secret-path<span class="pl-pds">'</span></span>)).<span class="pl-en">listen</span>(<span class="pl-c1">3000</span>);
-<span class="pl-c1">require</span>(<span class="pl-s"><span class="pl-pds">'</span>https<span class="pl-pds">'</span></span>).<span class="pl-en">createServer</span>(tlsOptions, <span class="pl-smi">telegraf</span>.<span class="pl-en">webHookCallback</span>(<span class="pl-s"><span class="pl-pds">'</span>/secret-path<span class="pl-pds">'</span></span>)).<span class="pl-en">listen</span>(<span class="pl-c1">8443</span>);
+<span class="pl-c1">require</span>(<span class="pl-s"><span class="pl-pds">'</span>http<span class="pl-pds">'</span></span>)
+  .<span class="pl-en">createServer</span>(<span class="pl-smi">telegraf</span>.<span class="pl-en">webHookCallback</span>(<span class="pl-s"><span class="pl-pds">'</span>/secret-path<span class="pl-pds">'</span></span>))
+  .<span class="pl-en">listen</span>(<span class="pl-c1">3000</span>)
 
+<span class="pl-c1">require</span>(<span class="pl-s"><span class="pl-pds">'</span>https<span class="pl-pds">'</span></span>)
+  .<span class="pl-en">createServer</span>(tlsOptions, <span class="pl-smi">telegraf</span>.<span class="pl-en">webHookCallback</span>(<span class="pl-s"><span class="pl-pds">'</span>/secret-path<span class="pl-pds">'</span></span>))
+  .<span class="pl-en">listen</span>(<span class="pl-c1">8443</span>)
 
 <span class="pl-c">// Connect/Express.js integration</span>
 <span class="pl-k">var</span> express <span class="pl-k">=</span> <span class="pl-c1">require</span>(<span class="pl-s"><span class="pl-pds">'</span>express<span class="pl-pds">'</span></span>)
@@ -232,8 +231,6 @@ To perform custom error-handling logic you can set <code>onError</code> handler:
 
 <div class="highlight highlight-source-js"><pre><span class="pl-smi">telegraf</span>.<span class="pl-en">onError</span> <span class="pl-k">=</span> <span class="pl-k">function</span>(<span class="pl-smi">err</span>){
   <span class="pl-smi">log</span>.<span class="pl-en">error</span>(<span class="pl-s"><span class="pl-pds">'</span>server error<span class="pl-pds">'</span></span>, err)
-
-  <span class="pl-c">// If user messages is important for us, we will exit from update loop</span>
   <span class="pl-k">throw</span> err
 }</pre></div>
 
@@ -242,8 +239,43 @@ To perform custom error-handling logic you can set <code>onError</code> handler:
 
 <p>Telegraf context have many handy shortcuts.</p>
 
-<pre><code>Note: shortcuts are not available for `inline_query` and `chosen_inline_result` events.
-</code></pre>
+<p><strong>Available shortcuts for <code>message</code> event:</strong></p>
+
+<ul>
+<li><code>reply() -&gt; telegraf.sendMessage()</code></li>
+<li><code>replyWithPhoto() -&gt; telegraf.sendPhoto()</code></li>
+<li><code>replyWithAudio() -&gt; telegraf.sendAudio()</code></li>
+<li><code>replyWithDocument() -&gt; telegraf.sendDocument()</code></li>
+<li><code>replyWithSticker() -&gt; telegraf.sendSticker()</code></li>
+<li><code>replyWithVideo() -&gt; telegraf.sendVideo()</code></li>
+<li><code>replyWithVoice() -&gt; telegraf.sendVoice()</code></li>
+<li><code>replyWithChatAction() -&gt; telegraf.sendChatAction()</code></li>
+<li><code>replyWithLocation() -&gt; telegraf.sendLocation()</code></li>
+</ul>
+
+<p><strong>Shortcuts for <code>callback_query</code> event:</strong></p>
+
+<ul>
+<li><code>answerCallbackQuery() -&gt; telegraf.answerCallbackQuery()</code></li>
+<li><code>reply() -&gt; telegraf.sendMessage()</code></li>
+<li><code>replyWithPhoto() -&gt; telegraf.sendPhoto()</code></li>
+<li><code>replyWithAudio() -&gt; telegraf.sendAudio()</code></li>
+<li><code>replyWithDocument() -&gt; telegraf.sendDocument()</code></li>
+<li><code>replyWithSticker() -&gt; telegraf.sendSticker()</code></li>
+<li><code>replyWithVideo() -&gt; telegraf.sendVideo()</code></li>
+<li><code>replyWithVoice() -&gt; telegraf.sendVoice()</code></li>
+<li><code>replyWithChatAction() -&gt; telegraf.sendChatAction()</code></li>
+<li><code>replyWithLocation() -&gt; telegraf.sendLocation()</code></li>
+</ul>
+
+<p><strong>Shortcuts for <code>inline_query</code> event:</strong> </p>
+
+<ul>
+<li><code>answerInlineQuery() -&gt; telegraf.answerInlineQuery()</code></li>
+</ul>
+
+<h4>
+<a id="examples" class="anchor" href="#examples" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Examples</h4>
 
 <div class="highlight highlight-source-js"><pre><span class="pl-k">var</span> telegraf <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-en">Telegraf</span>(<span class="pl-c1">process</span>.<span class="pl-smi">env</span>.<span class="pl-c1">BOT_TOKEN</span>)
 
@@ -256,37 +288,24 @@ To perform custom error-handling logic you can set <code>onError</code> handler:
 
   <span class="pl-c">// If you want to mark message as reply to source message</span>
   <span class="pl-v">this</span>.<span class="pl-en">reply</span>(<span class="pl-s"><span class="pl-pds">`</span>Hello <span class="pl-s1"><span class="pl-pse">${</span><span class="pl-v">this</span>.<span class="pl-smi">state</span>.<span class="pl-smi">role</span><span class="pl-pse">}</span></span><span class="pl-pds">`</span></span>, { reply_to_message_id<span class="pl-k">:</span> <span class="pl-v">this</span>.<span class="pl-smi">message</span>.<span class="pl-c1">id</span> })
-})</pre></div>
+})
 
-<ul>
-<li>
-<code>reply()</code> -&gt; <code>telegraf.sendMessage()</code>
-</li>
-<li>
-<code>replyWithPhoto()</code> -&gt; <code>telegraf.sendPhoto()</code>
-</li>
-<li>
-<code>replyWithAudio()</code> -&gt; <code>telegraf.sendAudio()</code>
-</li>
-<li>
-<code>replyWithDocument()</code> -&gt; <code>telegraf.sendDocument()</code>
-</li>
-<li>
-<code>replyWithSticker()</code> -&gt; <code>telegraf.sendSticker()</code>
-</li>
-<li>
-<code>replyWithVideo()</code> -&gt; <code>telegraf.sendVideo()</code>
-</li>
-<li>
-<code>replyWithVoice()</code> -&gt; <code>telegraf.sendVoice()</code>
-</li>
-<li>
-<code>replyWithChatAction()</code> -&gt; <code>telegraf.sendChatAction()</code>
-</li>
-<li>
-<code>replyWithLocation()</code> -&gt; <code>telegraf.sendLocation()</code>
-</li>
-</ul>
+<span class="pl-smi">telegraf</span>.<span class="pl-en">on</span>(<span class="pl-s"><span class="pl-pds">'</span>callback_query<span class="pl-pds">'</span></span>, <span class="pl-k">function</span> <span class="pl-k">*</span> (){
+  <span class="pl-c">// Simple usage </span>
+  <span class="pl-smi">telegraf</span>.<span class="pl-en">answerCallbackQuery</span>(<span class="pl-v">this</span>.<span class="pl-smi">callbackQuery</span>.<span class="pl-c1">id</span>)
+
+  <span class="pl-c">// Using shortcut</span>
+  <span class="pl-v">this</span>.<span class="pl-en">answerCallbackQuery</span>()
+})
+
+<span class="pl-smi">telegraf</span>.<span class="pl-en">on</span>(<span class="pl-s"><span class="pl-pds">'</span>inline_query<span class="pl-pds">'</span></span>, <span class="pl-k">function</span> <span class="pl-k">*</span> (){
+  <span class="pl-k">var</span> result <span class="pl-k">=</span> []
+  <span class="pl-c">// Simple usage </span>
+  <span class="pl-smi">telegraf</span>.<span class="pl-en">answerInlineQuery</span>(<span class="pl-v">this</span>.<span class="pl-smi">inlineQuery</span>.<span class="pl-c1">id</span>, result)
+
+  <span class="pl-c">// Using shortcut</span>
+  <span class="pl-v">this</span>.<span class="pl-en">answerInlineQuery</span>(result)
+})</pre></div>
 
 <h2>
 <a id="api-reference" class="anchor" href="#api-reference" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>API reference</h2>
@@ -299,9 +318,10 @@ To perform custom error-handling logic you can set <code>onError</code> handler:
 <li><a href="#new"><code>new Telegraf(token)</code></a></li>
 <li><a href="#webhookcallback"><code>.webHookCallback(webHookPath)</code></a></li>
 <li><a href="#setwebhook"><code>.setWebHook(url, cert)</code></a></li>
-<li><a href="#startWebHook"><code>.startWebHook(webHookPath, tlsOptions, port, [host])</code></a></li>
+<li><a href="#startwebhook"><code>.startWebHook(webHookPath, tlsOptions, port, [host])</code></a></li>
 <li><a href="#startPolling"><code>.startPolling(timeout, limit)</code></a></li>
 <li><a href="#stop"><code>.stop()</code></a></li>
+<li><a href="#handleupdate"><code>.handleUpdate(rawUpdate, response)</code></a></li>
 <li><a href="#use"><code>.use(function)</code></a></li>
 <li><a href="#on"><code>.on(messageType, function)</code></a></li>
 <li><a href="#hears"><code>.hears(string|ReGex, function)</code></a></li>
@@ -333,9 +353,9 @@ To perform custom error-handling logic you can set <code>onError</code> handler:
 
 <p><a name="new"></a></p>
 
-<h3>
+<h5>
 <a id="telegrafnewtoken" class="anchor" href="#telegrafnewtoken" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>Telegraf.new(token)</code>
-</h3>
+</h5>
 
 <p>Initialize new Telegraf app.</p>
 
@@ -360,9 +380,9 @@ To perform custom error-handling logic you can set <code>onError</code> handler:
 
 <p><a name="webhookcallback"></a></p>
 
-<h3>
-<a id="telegrafwebhookcallbackwebhookpath--function" class="anchor" href="#telegrafwebhookcallbackwebhookpath--function" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>Telegraf.webHookCallback(webHookPath)</code> =&gt; <code>Function</code>
-</h3>
+<h5>
+<a id="telegrafwebhookcallbackwebhookpath--function" class="anchor" href="#telegrafwebhookcallbackwebhookpath--function" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>Telegraf.webHookCallback(webHookPath) =&gt; Function</code>
+</h5>
 
 <p>Return a callback function suitable for the http[s].createServer() method to handle a request. 
 You may also use this callback function to mount your telegraf app in a Koa/Connect/Express app.</p>
@@ -388,11 +408,11 @@ You may also use this callback function to mount your telegraf app in a Koa/Conn
 
 <p><a name="setwebhook"></a></p>
 
-<h3>
-<a id="telegrafsetwebhookurl-cert--promise" class="anchor" href="#telegrafsetwebhookurl-cert--promise" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>Telegraf.setWebHook(url, [cert])</code> =&gt; <code>Promise</code>
-</h3>
+<h5>
+<a id="telegrafsetwebhookurl-cert--promise" class="anchor" href="#telegrafsetwebhookurl-cert--promise" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>Telegraf.setWebHook(url, [cert]) =&gt; Promise</code>
+</h5>
 
-<p>Specifies an url to receive incoming updates via an outgoing webHook.</p>
+<p>Specifies an url to receive incoming updates via an outgoing webhook.</p>
 
 <table>
 <thead>
@@ -420,13 +440,13 @@ You may also use this callback function to mount your telegraf app in a Koa/Conn
 
 <hr>
 
-<p><a name="startWebHook"></a></p>
+<p><a name="startwebhook"></a></p>
 
-<h3>
-<a id="telegrafstartwebhooktoken-tlsoptions-port-host" class="anchor" href="#telegrafstartwebhooktoken-tlsoptions-port-host" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>Telegraf.startWebHook(token, tlsOptions, port, [host])</code>
-</h3>
+<h5>
+<a id="telegrafstartwebhookwebhookpath-tlsoptions-port-host" class="anchor" href="#telegrafstartwebhookwebhookpath-tlsoptions-port-host" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>Telegraf.startWebHook(webHookPath, tlsOptions, port, [host])</code>
+</h5>
 
-<p>Start listening @ <code>https://host:port/token</code> for Telegram calls.</p>
+<p>Start listening @ <code>https://host:port/webHookPath</code> for Telegram calls.</p>
 
 <table>
 <thead>
@@ -455,7 +475,7 @@ You may also use this callback function to mount your telegraf app in a Koa/Conn
 <tr>
 <td>host</td>
 <td><code>String</code></td>
-<td>Hostname</td>
+<td>(Optional) Hostname</td>
 </tr>
 </tbody>
 </table>
@@ -464,9 +484,9 @@ You may also use this callback function to mount your telegraf app in a Koa/Conn
 
 <p><a name="startPolling"></a></p>
 
-<h3>
+<h5>
 <a id="telegrafstartpollingtimeout-limit" class="anchor" href="#telegrafstartpollingtimeout-limit" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>Telegraf.startPolling(timeout, limit)</code>
-</h3>
+</h5>
 
 <p>Start poll updates.</p>
 
@@ -499,19 +519,53 @@ You may also use this callback function to mount your telegraf app in a Koa/Conn
 
 <p><a name="stop"></a></p>
 
-<h3>
+<h5>
 <a id="telegrafstop" class="anchor" href="#telegrafstop" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>Telegraf.stop()</code>
-</h3>
+</h5>
 
 <p>Stop WebHook and polling</p>
 
 <hr>
 
+<p><a name="handleupdate"></a></p>
+
+<h5>
+<a id="telegrafhandleupdaterawupdate-webhookresponse" class="anchor" href="#telegrafhandleupdaterawupdate-webhookresponse" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>Telegraf.handleUpdate(rawUpdate, [webHookResponse])</code>
+</h5>
+
+<p>Handle raw Telegram update. 
+In case you use centralized webhook server, queue, etc.  </p>
+
+<table>
+<thead>
+<tr>
+<th>Param</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>rawUpdate</td>
+<td><code>Object</code></td>
+<td>Telegram update payload</td>
+</tr>
+<tr>
+<td>webHookResponse</td>
+<td><code>Object</code></td>
+<td>(Optional) <a href="https://nodejs.org/api/http.html#http_class_http_serverresponse">http.ServerResponse</a>
+</td>
+</tr>
+</tbody>
+</table>
+
+<hr>
+
 <p><a name="use"></a></p>
 
-<h3>
+<h5>
 <a id="telegrafusemiddleware" class="anchor" href="#telegrafusemiddleware" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>Telegraf.use(middleware)</code>
-</h3>
+</h5>
 
 <p>Registers a middleware.</p>
 
@@ -536,9 +590,9 @@ You may also use this callback function to mount your telegraf app in a Koa/Conn
 
 <p><a name="on"></a></p>
 
-<h3>
+<h5>
 <a id="telegrafoneventtype-handler" class="anchor" href="#telegrafoneventtype-handler" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>Telegraf.on(eventType, handler)</code>
-</h3>
+</h5>
 
 <p>Registers handler for provided <a href="#events">event type</a>.</p>
 
@@ -570,9 +624,9 @@ You may also use this callback function to mount your telegraf app in a Koa/Conn
 
 <p><a name="hears"></a></p>
 
-<h3>
+<h5>
 <a id="telegrafhearspattern-handler" class="anchor" href="#telegrafhearspattern-handler" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>Telegraf.hears(pattern, handler)</code>
-</h3>
+</h5>
 
 <p>Registers handler only for <code>text</code> events using string pattern or RegEx.</p>
 
@@ -604,9 +658,9 @@ You may also use this callback function to mount your telegraf app in a Koa/Conn
 
 <p><a name="sendmessage"></a></p>
 
-<h3>
-<a id="telegrafsendmessagechatid-text-extra--promise" class="anchor" href="#telegrafsendmessagechatid-text-extra--promise" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>Telegraf.sendMessage(chatId, text, extra)</code> =&gt; <code>Promise</code>
-</h3>
+<h5>
+<a id="telegrafsendmessagechatid-text-extra--promise" class="anchor" href="#telegrafsendmessagechatid-text-extra--promise" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>Telegraf.sendMessage(chatId, text, extra) =&gt; Promise</code>
+</h5>
 
 <p>Sends text message.</p>
 
@@ -643,9 +697,9 @@ You may also use this callback function to mount your telegraf app in a Koa/Conn
 
 <p><a name="forwardmessage"></a></p>
 
-<h3>
-<a id="telegrafforwardmessagechatid-fromchatid-messageid-extra--promise" class="anchor" href="#telegrafforwardmessagechatid-fromchatid-messageid-extra--promise" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>Telegraf.forwardMessage(chatId, fromChatId, messageId, extra)</code> =&gt; <code>Promise</code>
-</h3>
+<h5>
+<a id="telegrafforwardmessagechatid-fromchatid-messageid-extra--promise" class="anchor" href="#telegrafforwardmessagechatid-fromchatid-messageid-extra--promise" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>Telegraf.forwardMessage(chatId, fromChatId, messageId, extra) =&gt; Promise</code>
+</h5>
 
 <p>Forwards message.</p>
 
@@ -689,9 +743,9 @@ You may also use this callback function to mount your telegraf app in a Koa/Conn
 
 <p><a name="sendlocation"></a></p>
 
-<h3>
-<a id="telegrafsendlocationchatid-latitude-longitude-extra--promise" class="anchor" href="#telegrafsendlocationchatid-latitude-longitude-extra--promise" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>Telegraf.sendLocation(chatId, latitude, longitude, extra)</code> =&gt; <code>Promise</code>
-</h3>
+<h5>
+<a id="telegrafsendlocationchatid-latitude-longitude-extra--promise" class="anchor" href="#telegrafsendlocationchatid-latitude-longitude-extra--promise" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>Telegraf.sendLocation(chatId, latitude, longitude, extra) =&gt; Promise</code>
+</h5>
 
 <p>Sends location.</p>
 
@@ -733,9 +787,9 @@ You may also use this callback function to mount your telegraf app in a Koa/Conn
 
 <p><a name="sendphoto"></a></p>
 
-<h3>
-<a id="telegrafsendphotochatid-photo-extra--promise" class="anchor" href="#telegrafsendphotochatid-photo-extra--promise" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>Telegraf.sendPhoto(chatId, photo, extra)</code> =&gt; <code>Promise</code>
-</h3>
+<h5>
+<a id="telegrafsendphotochatid-photo-extra--promise" class="anchor" href="#telegrafsendphotochatid-photo-extra--promise" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>Telegraf.sendPhoto(chatId, photo, extra) =&gt; Promise</code>
+</h5>
 
 <p>Sends photo.</p>
 
@@ -772,9 +826,9 @@ You may also use this callback function to mount your telegraf app in a Koa/Conn
 
 <p><a name="senddocument"></a></p>
 
-<h3>
-<a id="telegrafsenddocumentchatid-doc-extra--promise" class="anchor" href="#telegrafsenddocumentchatid-doc-extra--promise" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>Telegraf.sendDocument(chatId, doc, extra)</code> =&gt; <code>Promise</code>
-</h3>
+<h5>
+<a id="telegrafsenddocumentchatid-doc-extra--promise" class="anchor" href="#telegrafsenddocumentchatid-doc-extra--promise" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>Telegraf.sendDocument(chatId, doc, extra) =&gt; Promise</code>
+</h5>
 
 <p>Sends document.</p>
 
@@ -811,9 +865,9 @@ You may also use this callback function to mount your telegraf app in a Koa/Conn
 
 <p><a name="sendaudio"></a></p>
 
-<h3>
-<a id="telegrafsendaudiochatid-audio-extra--promise" class="anchor" href="#telegrafsendaudiochatid-audio-extra--promise" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>Telegraf.sendAudio(chatId, audio, extra)</code> =&gt; <code>Promise</code>
-</h3>
+<h5>
+<a id="telegrafsendaudiochatid-audio-extra--promise" class="anchor" href="#telegrafsendaudiochatid-audio-extra--promise" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>Telegraf.sendAudio(chatId, audio, extra) =&gt; Promise</code>
+</h5>
 
 <p>Sends audio.</p>
 
@@ -850,9 +904,9 @@ You may also use this callback function to mount your telegraf app in a Koa/Conn
 
 <p><a name="sendsticker"></a></p>
 
-<h3>
-<a id="telegrafsendstickerchatid-sticker-extra--promise" class="anchor" href="#telegrafsendstickerchatid-sticker-extra--promise" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>Telegraf.sendSticker(chatId, sticker, extra)</code> =&gt; <code>Promise</code>
-</h3>
+<h5>
+<a id="telegrafsendstickerchatid-sticker-extra--promise" class="anchor" href="#telegrafsendstickerchatid-sticker-extra--promise" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>Telegraf.sendSticker(chatId, sticker, extra) =&gt; Promise</code>
+</h5>
 
 <p>Sends sticker.</p>
 
@@ -889,9 +943,9 @@ You may also use this callback function to mount your telegraf app in a Koa/Conn
 
 <p><a name="sendvideo"></a></p>
 
-<h3>
-<a id="telegrafsendvideochatid-video-extra--promise" class="anchor" href="#telegrafsendvideochatid-video-extra--promise" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>Telegraf.sendVideo(chatId, video, extra)</code> =&gt; <code>Promise</code>
-</h3>
+<h5>
+<a id="telegrafsendvideochatid-video-extra--promise" class="anchor" href="#telegrafsendvideochatid-video-extra--promise" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>Telegraf.sendVideo(chatId, video, extra) =&gt; Promise</code>
+</h5>
 
 <p>Sends video.</p>
 
@@ -928,9 +982,9 @@ You may also use this callback function to mount your telegraf app in a Koa/Conn
 
 <p><a name="sendvoice"></a></p>
 
-<h3>
-<a id="telegrafsendvoicechatid-voice-extra--promise" class="anchor" href="#telegrafsendvoicechatid-voice-extra--promise" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>Telegraf.sendVoice(chatId, voice, extra)</code> =&gt; <code>Promise</code>
-</h3>
+<h5>
+<a id="telegrafsendvoicechatid-voice-extra--promise" class="anchor" href="#telegrafsendvoicechatid-voice-extra--promise" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>Telegraf.sendVoice(chatId, voice, extra) =&gt; Promise</code>
+</h5>
 
 <p>Sends voice.</p>
 
@@ -967,9 +1021,9 @@ You may also use this callback function to mount your telegraf app in a Koa/Conn
 
 <p><a name="sendchataction"></a></p>
 
-<h3>
-<a id="telegrafsendchatactionchatid-action--promise" class="anchor" href="#telegrafsendchatactionchatid-action--promise" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>Telegraf.sendChatAction(chatId, action)</code> =&gt; <code>Promise</code>
-</h3>
+<h5>
+<a id="telegrafsendchatactionchatid-action--promise" class="anchor" href="#telegrafsendchatactionchatid-action--promise" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>Telegraf.sendChatAction(chatId, action) =&gt; Promise</code>
+</h5>
 
 <p>Sends chat action.</p>
 
@@ -1001,9 +1055,9 @@ You may also use this callback function to mount your telegraf app in a Koa/Conn
 
 <p><a name="getme"></a></p>
 
-<h3>
-<a id="telegrafgetme--promise" class="anchor" href="#telegrafgetme--promise" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>Telegraf.getMe()</code> =&gt; <code>Promise</code>
-</h3>
+<h5>
+<a id="telegrafgetme--promise" class="anchor" href="#telegrafgetme--promise" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>Telegraf.getMe() =&gt; Promise</code>
+</h5>
 
 <p>Returns basic information about the bot.</p>
 
@@ -1013,9 +1067,9 @@ You may also use this callback function to mount your telegraf app in a Koa/Conn
 
 <p><a name="getuserprofilephotos"></a></p>
 
-<h3>
-<a id="telegrafgetuserprofilephotosuserid-offset-limit--promise" class="anchor" href="#telegrafgetuserprofilephotosuserid-offset-limit--promise" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>Telegraf.getUserProfilePhotos(userId, offset, limit)</code> =&gt; <code>Promise</code>
-</h3>
+<h5>
+<a id="telegrafgetuserprofilephotosuserid-offset-limit--promise" class="anchor" href="#telegrafgetuserprofilephotosuserid-offset-limit--promise" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>Telegraf.getUserProfilePhotos(userId, offset, limit) =&gt; Promise</code>
+</h5>
 
 <p>Returns profiles photos for provided user.</p>
 
@@ -1052,9 +1106,9 @@ You may also use this callback function to mount your telegraf app in a Koa/Conn
 
 <p><a name="getfile"></a></p>
 
-<h3>
-<a id="telegrafgetfilefileid--promise" class="anchor" href="#telegrafgetfilefileid--promise" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>Telegraf.getFile(fileId)</code> =&gt; <code>Promise</code>
-</h3>
+<h5>
+<a id="telegrafgetfilefileid--promise" class="anchor" href="#telegrafgetfilefileid--promise" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>Telegraf.getFile(fileId) =&gt; Promise</code>
+</h5>
 
 <p>Returns basic info about a file and prepare it for downloading.</p>
 
@@ -1081,9 +1135,9 @@ You may also use this callback function to mount your telegraf app in a Koa/Conn
 
 <p><a name="getFileLink"></a></p>
 
-<h3>
-<a id="telegrafgetfilelinkfileid--promise" class="anchor" href="#telegrafgetfilelinkfileid--promise" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>Telegraf.getFileLink(fileId)</code> =&gt; <code>Promise</code>
-</h3>
+<h5>
+<a id="telegrafgetfilelinkfileid--promise" class="anchor" href="#telegrafgetfilelinkfileid--promise" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>Telegraf.getFileLink(fileId) =&gt; Promise</code>
+</h5>
 
 <p>Returns link to file.</p>
 
@@ -1110,9 +1164,9 @@ You may also use this callback function to mount your telegraf app in a Koa/Conn
 
 <p><a name="removewebhook"></a></p>
 
-<h3>
-<a id="telegrafremovewebhook--promise" class="anchor" href="#telegrafremovewebhook--promise" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>Telegraf.removeWebHook()</code> =&gt; <code>Promise</code>
-</h3>
+<h5>
+<a id="telegrafremovewebhook--promise" class="anchor" href="#telegrafremovewebhook--promise" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>Telegraf.removeWebHook() =&gt; Promise</code>
+</h5>
 
 <p>Removes webhook. Shortcut for <code>Telegraf.setWebHook('')</code></p>
 
@@ -1122,9 +1176,9 @@ You may also use this callback function to mount your telegraf app in a Koa/Conn
 
 <p><a name="kickchatmember"></a></p>
 
-<h3>
-<a id="telegrafkickchatmemberchatid-userid--promise" class="anchor" href="#telegrafkickchatmemberchatid-userid--promise" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>Telegraf.kickChatMember(chatId, userId)</code> =&gt; <code>Promise</code>
-</h3>
+<h5>
+<a id="telegrafkickchatmemberchatid-userid--promise" class="anchor" href="#telegrafkickchatmemberchatid-userid--promise" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>Telegraf.kickChatMember(chatId, userId) =&gt; Promise</code>
+</h5>
 
 <p>Use this method to kick a user from a group or a supergroup.</p>
 
@@ -1158,9 +1212,9 @@ You may also use this callback function to mount your telegraf app in a Koa/Conn
 
 <p><a name="unbanchatmember"></a></p>
 
-<h3>
-<a id="telegrafunbanchatmemberchatid-userid--promise" class="anchor" href="#telegrafunbanchatmemberchatid-userid--promise" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>Telegraf.unbanChatMember(chatId, userId)</code> =&gt; <code>Promise</code>
-</h3>
+<h5>
+<a id="telegrafunbanchatmemberchatid-userid--promise" class="anchor" href="#telegrafunbanchatmemberchatid-userid--promise" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>Telegraf.unbanChatMember(chatId, userId) =&gt; Promise</code>
+</h5>
 
 <p>Use this method to unban a previously kicked user in a supergroup.</p>
 
@@ -1194,9 +1248,9 @@ You may also use this callback function to mount your telegraf app in a Koa/Conn
 
 <p><a name="answerinlinequery"></a></p>
 
-<h3>
-<a id="telegrafanswerinlinequeryinlinequeryid-results-extra--promise" class="anchor" href="#telegrafanswerinlinequeryinlinequeryid-results-extra--promise" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>Telegraf.answerInlineQuery(inlineQueryId, results, extra)</code> =&gt; <code>Promise</code>
-</h3>
+<h5>
+<a id="telegrafanswerinlinequeryinlinequeryid-results-extra--promise" class="anchor" href="#telegrafanswerinlinequeryinlinequeryid-results-extra--promise" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>Telegraf.answerInlineQuery(inlineQueryId, results, extra) =&gt; Promise</code>
+</h5>
 
 <p>Use this method to send answers to an inline query.</p>
 
@@ -1231,9 +1285,9 @@ You may also use this callback function to mount your telegraf app in a Koa/Conn
 
 <p><a name="answercallbackquery"></a></p>
 
-<h3>
-<a id="telegrafanswercallbackquerycallbackqueryid-text-showalert--promise" class="anchor" href="#telegrafanswercallbackquerycallbackqueryid-text-showalert--promise" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>Telegraf.answerCallbackQuery(callbackQueryId, text, showAlert)</code> =&gt; <code>Promise</code>
-</h3>
+<h5>
+<a id="telegrafanswercallbackquerycallbackqueryid-text-showalert--promise" class="anchor" href="#telegrafanswercallbackquerycallbackqueryid-text-showalert--promise" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>Telegraf.answerCallbackQuery(callbackQueryId, text, showAlert) =&gt; Promise</code>
+</h5>
 
 <p>Use this method to send answers to callback queries.</p>
 
@@ -1270,9 +1324,9 @@ You may also use this callback function to mount your telegraf app in a Koa/Conn
 
 <p><a name="editmessagetext"></a></p>
 
-<h3>
-<a id="telegrafeditmessagetextchatid-messageid-text-extra--promise" class="anchor" href="#telegrafeditmessagetextchatid-messageid-text-extra--promise" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>Telegraf.editMessageText(chatId, messageId, text, extra)</code> =&gt; <code>Promise</code>
-</h3>
+<h5>
+<a id="telegrafeditmessagetextchatid-messageid-text-extra--promise" class="anchor" href="#telegrafeditmessagetextchatid-messageid-text-extra--promise" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>Telegraf.editMessageText(chatId, messageId, text, extra) =&gt; Promise</code>
+</h5>
 
 <p>Use this method to edit text messages sent by the bot or via the bot.</p>
 
@@ -1314,9 +1368,9 @@ You may also use this callback function to mount your telegraf app in a Koa/Conn
 
 <p><a name="editmessagecaption"></a></p>
 
-<h3>
-<a id="telegrafeditmessagecaptionchatid-messageid-caption-extra--promise" class="anchor" href="#telegrafeditmessagecaptionchatid-messageid-caption-extra--promise" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>Telegraf.editMessageCaption(chatId, messageId, caption, extra)</code> =&gt; <code>Promise</code>
-</h3>
+<h5>
+<a id="telegrafeditmessagecaptionchatid-messageid-caption-extra--promise" class="anchor" href="#telegrafeditmessagecaptionchatid-messageid-caption-extra--promise" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>Telegraf.editMessageCaption(chatId, messageId, caption, extra) =&gt; Promise</code>
+</h5>
 
 <p>Use this method to edit captions of messages sent by the bot or via the bot</p>
 
@@ -1358,9 +1412,9 @@ You may also use this callback function to mount your telegraf app in a Koa/Conn
 
 <p><a name="editmessagereplymarkup"></a></p>
 
-<h3>
-<a id="telegrafeditmessagereplymarkupchatid-messageid-markup-extra--promise" class="anchor" href="#telegrafeditmessagereplymarkupchatid-messageid-markup-extra--promise" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>Telegraf.editMessageReplyMarkup(chatId, messageId, markup, extra)</code> =&gt; <code>Promise</code>
-</h3>
+<h5>
+<a id="telegrafeditmessagereplymarkupchatid-messageid-markup-extra--promise" class="anchor" href="#telegrafeditmessagereplymarkupchatid-messageid-markup-extra--promise" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>Telegraf.editMessageReplyMarkup(chatId, messageId, markup, extra) =&gt; Promise</code>
+</h5>
 
 <p>Use this method to edit only the reply markup of messages sent by the bot or via the bot.</p>
 
@@ -1415,23 +1469,32 @@ You may also use this callback function to mount your telegraf app in a Koa/Conn
 <p>Example:</p>
 
 <div class="highlight highlight-source-js"><pre>  <span class="pl-c">// send file</span>
-  <span class="pl-smi">app</span>.<span class="pl-en">sendVideo</span>(<span class="pl-s"><span class="pl-pds">'</span>chatId<span class="pl-pds">'</span></span>, {source<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>/path/to/video.mp4<span class="pl-pds">'</span></span>}})
+  <span class="pl-smi">telegraf</span>.<span class="pl-en">sendVideo</span>(<span class="pl-s"><span class="pl-pds">'</span>chatId<span class="pl-pds">'</span></span>, {source<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>/path/to/video.mp4<span class="pl-pds">'</span></span>}})
 
   <span class="pl-c">// send buffer</span>
-  <span class="pl-smi">app</span>.<span class="pl-en">sendVoice</span>(<span class="pl-s"><span class="pl-pds">'</span>chatId<span class="pl-pds">'</span></span>, {source<span class="pl-k">:</span> <span class="pl-k">new</span> <span class="pl-en">Buffer</span>(<span class="pl-k">...</span>)})
+  <span class="pl-smi">telegraf</span>.<span class="pl-en">sendVoice</span>(<span class="pl-s"><span class="pl-pds">'</span>chatId<span class="pl-pds">'</span></span>, {source<span class="pl-k">:</span> <span class="pl-k">new</span> <span class="pl-en">Buffer</span>(<span class="pl-k">...</span>)})
 
   <span class="pl-c">// send stream</span>
-  <span class="pl-smi">app</span>.<span class="pl-en">sendAudio</span>(<span class="pl-s"><span class="pl-pds">'</span>chatId<span class="pl-pds">'</span></span>, {source<span class="pl-k">:</span> <span class="pl-smi">fs</span>.<span class="pl-en">createReadStream</span>(<span class="pl-s"><span class="pl-pds">'</span>/path/to/video.mp4<span class="pl-pds">'</span></span>)})
+  <span class="pl-smi">telegraf</span>.<span class="pl-en">sendAudio</span>(<span class="pl-s"><span class="pl-pds">'</span>chatId<span class="pl-pds">'</span></span>, {source<span class="pl-k">:</span> <span class="pl-smi">fs</span>.<span class="pl-en">createReadStream</span>(<span class="pl-s"><span class="pl-pds">'</span>/path/to/video.mp4<span class="pl-pds">'</span></span>)})
 
   <span class="pl-c">// resend existing file</span>
-  <span class="pl-smi">app</span>.<span class="pl-en">sendSticker</span>(<span class="pl-s"><span class="pl-pds">'</span>chatId<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>123123jkbhj6b<span class="pl-pds">'</span></span>)</pre></div>
+  <span class="pl-smi">telegraf</span>.<span class="pl-en">sendSticker</span>(<span class="pl-s"><span class="pl-pds">'</span>chatId<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>123123jkbhj6b<span class="pl-pds">'</span></span>)</pre></div>
 
 <p><a href="https://core.telegram.org/bots/api#file">Related Telegram api docs</a></p>
 
 <h3>
 <a id="events" class="anchor" href="#events" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Events</h3>
 
-<p>Supported events:</p>
+<p>Supported event:</p>
+
+<ul>
+<li><code>message</code></li>
+<li><code>inline_query</code></li>
+<li><code>chosen_inline_result</code></li>
+<li><code>callback_query</code></li>
+</ul>
+
+<p>Available virtual events:</p>
 
 <ul>
 <li><code>text</code></li>
@@ -1455,24 +1518,20 @@ You may also use this callback function to mount your telegraf app in a Koa/Conn
 <li><code>migrate_to_chat_id</code></li>
 <li><code>migrate_from_chat_id</code></li>
 <li><code>pinned_message</code></li>
-<li><code>inline_query</code></li>
-<li><code>chosen_inline_result</code></li>
-<li><code>callback_query</code></li>
 </ul>
 
-<p>Also, Telegraf will emit <code>message</code> event for for all messages except <code>inline_query</code>, <code>chosen_inline_result</code> and <code>callback_query</code>.</p>
-
 <div class="highlight highlight-source-js"><pre>
-<span class="pl-c">// Handle stickers and photos</span>
+<span class="pl-c">// Handle all messages</span>
+<span class="pl-smi">telegraf</span>.<span class="pl-en">on</span>(<span class="pl-s"><span class="pl-pds">'</span>message<span class="pl-pds">'</span></span>, <span class="pl-k">function</span> <span class="pl-k">*</span> () {
+  <span class="pl-v">this</span>.<span class="pl-en">reply</span>(<span class="pl-s"><span class="pl-pds">'</span>Hey there!<span class="pl-pds">'</span></span>)
+})
+
+<span class="pl-c">// Handle virtual events</span>
 <span class="pl-smi">telegraf</span>.<span class="pl-en">on</span>([<span class="pl-s"><span class="pl-pds">'</span>sticker<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>photo<span class="pl-pds">'</span></span>], <span class="pl-k">function</span> <span class="pl-k">*</span> () {
   <span class="pl-en">console</span>.<span class="pl-c1">log</span>(<span class="pl-v">this</span>.<span class="pl-smi">message</span>)
   <span class="pl-v">this</span>.<span class="pl-en">reply</span>(<span class="pl-s"><span class="pl-pds">'</span>Cool!<span class="pl-pds">'</span></span>)
 })
-
-<span class="pl-c">// Handle all messages except `inline_query`, `chosen_inline_result` and `callback_query`</span>
-<span class="pl-smi">telegraf</span>.<span class="pl-en">on</span>(<span class="pl-s"><span class="pl-pds">'</span>message<span class="pl-pds">'</span></span>, <span class="pl-k">function</span> <span class="pl-k">*</span> () {
-  <span class="pl-v">this</span>.<span class="pl-en">reply</span>(<span class="pl-s"><span class="pl-pds">'</span>Hey there!<span class="pl-pds">'</span></span>)
-})</pre></div>
+</pre></div>
 
 <p><a href="https://core.telegram.org/bots/api#message">Related Telegram api docs</a></p>
 
@@ -1500,18 +1559,15 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.</p>
-      </section>
-    </div>
 
-    <!-- FOOTER  -->
-    <div id="footer_wrap" class="outer">
-      <footer class="inner">
-        <p class="copyright">Telegraf maintained by <a href="https://github.com/telegraf">telegraf</a></p>
-        <p>Published with <a href="https://pages.github.com">GitHub Pages</a></p>
+      <footer class="site-footer">
+        <span class="site-footer-owner"><a href="https://github.com/telegraf/telegraf">Telegraf</a> is maintained by <a href="https://github.com/telegraf">telegraf</a>.</span>
+
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span>
       </footer>
-    </div>
 
-    
+    </section>
 
+  
   </body>
 </html>
