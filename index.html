@@ -1,28 +1,38 @@
-<!DOCTYPE html>
-<html lang="en-us">
+<!doctype html>
+<html>
   <head>
-    <meta charset="UTF-8">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
     <title>Telegraf by telegraf</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
-    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
-    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/github-light.css">
+    <meta name="viewport" content="width=device-width">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
   </head>
   <body>
-    <section class="page-header">
-      <h1 class="project-name">Telegraf</h1>
-      <h2 class="project-tagline">📢 Modern Telegram bot framework</h2>
-      <a href="https://github.com/telegraf/telegraf" class="btn">View on GitHub</a>
-      <a href="https://github.com/telegraf/telegraf/zipball/master" class="btn">Download .zip</a>
-      <a href="https://github.com/telegraf/telegraf/tarball/master" class="btn">Download .tar.gz</a>
-    </section>
+    <div class="wrapper">
+      <header>
+        <h1>Telegraf</h1>
+        <p>📢 Modern Telegram bot framework for Node.js</p>
 
-    <section class="main-content">
-      <p><a href="https://www.npmjs.com/package/telegraf"><img src="https://img.shields.io/npm/l/telegraf.svg?style=flat-square" alt="npm"></a>
+        <p class="view"><a href="https://github.com/telegraf/telegraf">View the Project on GitHub <small>telegraf/telegraf</small></a></p>
+
+
+        <ul>
+          <li><a href="https://github.com/telegraf/telegraf/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/telegraf/telegraf/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/telegraf/telegraf">View On <strong>GitHub</strong></a></li>
+        </ul>
+      </header>
+      <section>
+        <p><a href="https://www.npmjs.com/package/telegraf"><img src="https://img.shields.io/npm/l/telegraf.svg?style=flat-square" alt="npm"></a>
 <a href="https://www.npmjs.com/package/telegraf"><img src="https://img.shields.io/npm/v/telegraf.svg?style=flat-square" alt="NPM Version"></a>
 <a href="https://www.npmjs.com/package/telegraf"><img src="https://img.shields.io/node/v/telegraf.svg?style=flat-square" alt="node"></a>
 <a href="https://www.npmjs.com/package/telegraf"><img src="https://img.shields.io/david/telegraf/telegraf.svg?style=flat-square" alt="David"></a>
+<a href="http://standardjs.com/"><img src="https://img.shields.io/badge/code%20style-standard-brightgreen.svg?style=flat-square" alt="js-standard-style"></a>
 <a href="https://travis-ci.org/telegraf/telegraf"><img src="https://img.shields.io/travis/telegraf/telegraf.svg?branch=master&amp;style=flat-square" alt="Build Status"></a></p>
 
 <h2>
@@ -237,7 +247,7 @@ To perform custom error-handling logic you can set <code>onError</code> handler:
 <h3>
 <a id="shortcuts" class="anchor" href="#shortcuts" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Shortcuts</h3>
 
-<p>Telegraf context have many handy shortcuts.</p>
+<p>Telegraf context shortcuts:</p>
 
 <p><strong>Available shortcuts for <code>message</code> event:</strong></p>
 
@@ -316,40 +326,44 @@ To perform custom error-handling logic you can set <code>onError</code> handler:
 
 <ul>
 <li><a href="#new"><code>new Telegraf(token)</code></a></li>
-<li><a href="#webhookcallback"><code>.webHookCallback(webHookPath)</code></a></li>
-<li><a href="#setwebhook"><code>.setWebHook(url, cert)</code></a></li>
-<li><a href="#startwebhook"><code>.startWebHook(webHookPath, tlsOptions, port, [host])</code></a></li>
-<li><a href="#startPolling"><code>.startPolling(timeout, limit)</code></a></li>
-<li><a href="#stop"><code>.stop()</code></a></li>
-<li><a href="#handleupdate"><code>.handleUpdate(rawUpdate, response)</code></a></li>
-<li><a href="#use"><code>.use(function)</code></a></li>
-<li><a href="#on"><code>.on(messageType, function)</code></a></li>
-<li><a href="#hears"><code>.hears(string|ReGex, function)</code></a></li>
-<li><a href="#sendmessage"><code>.sendMessage(chatId, text, extra)</code></a></li>
-<li><a href="#forwardmessage"><code>.forwardMessage(chatId, fromChatId, messageId, extra)</code></a></li>
-<li><a href="#sendlocation"><code>.sendLocation(chatId, latitude, longitude, extra)</code></a></li>
-<li><a href="#sendphoto"><code>.sendPhoto(chatId, photo, extra)</code></a></li>
-<li><a href="#senddocument"><code>.sendDocument(chatId, doc, extra)</code></a></li>
-<li><a href="#sendaudio"><code>.sendAudio(chatId, audio, extra)</code></a></li>
-<li><a href="#sendsticker"><code>.sendSticker(chatId, sticker, extra)</code></a></li>
-<li><a href="#sendvideo"><code>.sendVideo(chatId, video, extra)</code></a></li>
-<li><a href="#sendvoice"><code>.sendVoice(chatId, voice, extra)</code></a></li>
-<li><a href="#sendchataction"><code>.sendChatAction(chatId, action)</code></a></li>
-<li><a href="#getme"><code>.getMe()</code></a></li>
-<li><a href="#getuserprofilephotos"><code>.getUserProfilePhotos(userId, offset, limit)</code></a></li>
-<li><a href="#getfile"><code>.getFile(fileId)</code></a></li>
-<li><a href="#getFileLink"><code>.getFileLink(fileId)</code></a></li>
-<li><a href="#removewebhook"><code>.removeWebHook()</code></a></li>
-<li><a href="#kickchatmember"><code>.kickChatMember(chatId, userId)</code></a></li>
-<li><a href="#unbanchatmember"><code>.unbanChatMember(chatId, userId)</code></a></li>
-<li><a href="#answerinlinequery"><code>.answerInlineQuery(inlineQueryId, results, extra)</code></a></li>
 <li><a href="#answercallbackquery"><code>.answerCallbackQuery(callbackQueryId, text, showAlert)</code></a></li>
-<li><a href="#editmessagetext"><code>.editMessageText(chatId, messageId, text, extra)</code></a></li>
+<li><a href="#answerinlinequery"><code>.answerInlineQuery(inlineQueryId, results, extra)</code></a></li>
 <li><a href="#editmessagecaption"><code>.editMessageCaption(chatId, messageId, caption, extra)</code></a></li>
 <li><a href="#editmessagereplymarkup"><code>.editMessageReplyMarkup(chatId, messageId, markup, extra)</code></a></li>
+<li><a href="#editmessagetext"><code>.editMessageText(chatId, messageId, text, extra)</code></a></li>
+<li><a href="#forwardmessage"><code>.forwardMessage(chatId, fromChatId, messageId, extra)</code></a></li>
+<li><a href="#getfile"><code>.getFile(fileId)</code></a></li>
+<li><a href="#getFileLink"><code>.getFileLink(fileId)</code></a></li>
+<li><a href="#getme"><code>.getMe()</code></a></li>
+<li><a href="#getuserprofilephotos"><code>.getUserProfilePhotos(userId, offset, limit)</code></a></li>
+<li><a href="#handleupdate"><code>.handleUpdate(rawUpdate, response)</code></a></li>
+<li><a href="#hears"><code>.hears(string|ReGex, function)</code></a></li>
+<li><a href="#kickchatmember"><code>.kickChatMember(chatId, userId)</code></a></li>
+<li><a href="#on"><code>.on(messageType, function)</code></a></li>
+<li><a href="#removewebhook"><code>.removeWebHook()</code></a></li>
+<li><a href="#sendaudio"><code>.sendAudio(chatId, audio, extra)</code></a></li>
+<li><a href="#sendchataction"><code>.sendChatAction(chatId, action)</code></a></li>
+<li><a href="#sendcontact"><code>.sendContact(chatId, phoneNumber, firstName, extra)</code></a></li>
+<li><a href="#senddocument"><code>.sendDocument(chatId, doc, extra)</code></a></li>
+<li><a href="#sendlocation"><code>.sendLocation(chatId, latitude, longitude, extra)</code></a></li>
+<li><a href="#sendmessage"><code>.sendMessage(chatId, text, extra)</code></a></li>
+<li><a href="#sendphoto"><code>.sendPhoto(chatId, photo, extra)</code></a></li>
+<li><a href="#sendsticker"><code>.sendSticker(chatId, sticker, extra)</code></a></li>
+<li><a href="#sendvenue"><code>.sendVenue(chatId, latitude, longitude, title, address, extra)</code></a></li>
+<li><a href="#sendvideo"><code>.sendVideo(chatId, video, extra)</code></a></li>
+<li><a href="#sendvoice"><code>.sendVoice(chatId, voice, extra)</code></a></li>
+<li><a href="#setwebhook"><code>.setWebHook(url, cert)</code></a></li>
+<li><a href="#startPolling"><code>.startPolling(timeout, limit)</code></a></li>
+<li><a href="#startwebhook"><code>.startWebHook(webHookPath, tlsOptions, port, [host])</code></a></li>
+<li><a href="#stop"><code>.stop()</code></a></li>
+<li><a href="#unbanchatmember"><code>.unbanChatMember(chatId, userId)</code></a></li>
+<li><a href="#use"><code>.use(function)</code></a></li>
+<li><a href="#webhookcallback"><code>.webHookCallback(webHookPath)</code></a></li>
 </ul>
 </li>
 </ul>
+
+<hr>
 
 <p><a name="new"></a></p>
 
@@ -370,913 +384,8 @@ To perform custom error-handling logic you can set <code>onError</code> handler:
 <tbody>
 <tr>
 <td>token</td>
-<td><code>String</code></td>
+<td><code>string</code></td>
 <td><a href="https://core.telegram.org/bots#3-how-do-i-create-a-bot">Bot Token</a></td>
-</tr>
-</tbody>
-</table>
-
-<hr>
-
-<p><a name="webhookcallback"></a></p>
-
-<h5>
-<a id="telegrafwebhookcallbackwebhookpath--function" class="anchor" href="#telegrafwebhookcallbackwebhookpath--function" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>Telegraf.webHookCallback(webHookPath) =&gt; Function</code>
-</h5>
-
-<p>Return a callback function suitable for the http[s].createServer() method to handle a request. 
-You may also use this callback function to mount your telegraf app in a Koa/Connect/Express app.</p>
-
-<table>
-<thead>
-<tr>
-<th>Param</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>webHookPath</td>
-<td><code>String</code></td>
-<td>Webhook url path (see Telegraf.setWebHook)</td>
-</tr>
-</tbody>
-</table>
-
-<hr>
-
-<p><a name="setwebhook"></a></p>
-
-<h5>
-<a id="telegrafsetwebhookurl-cert--promise" class="anchor" href="#telegrafsetwebhookurl-cert--promise" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>Telegraf.setWebHook(url, [cert]) =&gt; Promise</code>
-</h5>
-
-<p>Specifies an url to receive incoming updates via an outgoing webhook.</p>
-
-<table>
-<thead>
-<tr>
-<th>Param</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>url</td>
-<td><code>String</code></td>
-<td>Public url for webhook</td>
-</tr>
-<tr>
-<td>cert</td>
-<td><a href="#file"><code>File</code></a></td>
-<td>SSL public certificate</td>
-</tr>
-</tbody>
-</table>
-
-<p><a href="https://core.telegram.org/bots/api#setwebhook">Related Telegram api docs</a></p>
-
-<hr>
-
-<p><a name="startwebhook"></a></p>
-
-<h5>
-<a id="telegrafstartwebhookwebhookpath-tlsoptions-port-host" class="anchor" href="#telegrafstartwebhookwebhookpath-tlsoptions-port-host" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>Telegraf.startWebHook(webHookPath, tlsOptions, port, [host])</code>
-</h5>
-
-<p>Start listening @ <code>https://host:port/webHookPath</code> for Telegram calls.</p>
-
-<table>
-<thead>
-<tr>
-<th>Param</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>webHookPath</td>
-<td><code>String</code></td>
-<td>Webhook url path (see Telegraf.setWebHook)</td>
-</tr>
-<tr>
-<td>tlsOptions</td>
-<td><a href="https://nodejs.org/api/tls.html#tls_tls_createserver_options_secureconnectionlistener">TLS server options</a></td>
-<td>(Optional) Pass null to use http</td>
-</tr>
-<tr>
-<td>port</td>
-<td><code>Int</code></td>
-<td>Port number</td>
-</tr>
-<tr>
-<td>host</td>
-<td><code>String</code></td>
-<td>(Optional) Hostname</td>
-</tr>
-</tbody>
-</table>
-
-<hr>
-
-<p><a name="startPolling"></a></p>
-
-<h5>
-<a id="telegrafstartpollingtimeout-limit" class="anchor" href="#telegrafstartpollingtimeout-limit" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>Telegraf.startPolling(timeout, limit)</code>
-</h5>
-
-<p>Start poll updates.</p>
-
-<table>
-<thead>
-<tr>
-<th>Param</th>
-<th>Type</th>
-<th>Default</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>timeout</td>
-<td><code>Int</code></td>
-<td>0</td>
-<td>Poll timeout</td>
-</tr>
-<tr>
-<td>limit</td>
-<td><code>Int</code></td>
-<td>100</td>
-<td>Limits the number of updates to be retrieved</td>
-</tr>
-</tbody>
-</table>
-
-<hr>
-
-<p><a name="stop"></a></p>
-
-<h5>
-<a id="telegrafstop" class="anchor" href="#telegrafstop" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>Telegraf.stop()</code>
-</h5>
-
-<p>Stop WebHook and polling</p>
-
-<hr>
-
-<p><a name="handleupdate"></a></p>
-
-<h5>
-<a id="telegrafhandleupdaterawupdate-webhookresponse" class="anchor" href="#telegrafhandleupdaterawupdate-webhookresponse" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>Telegraf.handleUpdate(rawUpdate, [webHookResponse])</code>
-</h5>
-
-<p>Handle raw Telegram update. 
-In case you use centralized webhook server, queue, etc.  </p>
-
-<table>
-<thead>
-<tr>
-<th>Param</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>rawUpdate</td>
-<td><code>Object</code></td>
-<td>Telegram update payload</td>
-</tr>
-<tr>
-<td>webHookResponse</td>
-<td><code>Object</code></td>
-<td>(Optional) <a href="https://nodejs.org/api/http.html#http_class_http_serverresponse">http.ServerResponse</a>
-</td>
-</tr>
-</tbody>
-</table>
-
-<hr>
-
-<p><a name="use"></a></p>
-
-<h5>
-<a id="telegrafusemiddleware" class="anchor" href="#telegrafusemiddleware" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>Telegraf.use(middleware)</code>
-</h5>
-
-<p>Registers a middleware.</p>
-
-<table>
-<thead>
-<tr>
-<th>Param</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>middleware</td>
-<td><code>Function</code></td>
-<td>Middleware function</td>
-</tr>
-</tbody>
-</table>
-
-<hr>
-
-<p><a name="on"></a></p>
-
-<h5>
-<a id="telegrafoneventtype-handler" class="anchor" href="#telegrafoneventtype-handler" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>Telegraf.on(eventType, handler)</code>
-</h5>
-
-<p>Registers handler for provided <a href="#events">event type</a>.</p>
-
-<table>
-<thead>
-<tr>
-<th>Param</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>eventType</td>
-<td>
-<code>String</code> or <code>Array[String]</code>
-</td>
-<td><a href="#events">Event type</a></td>
-</tr>
-<tr>
-<td>handler</td>
-<td><code>Function</code></td>
-<td>Handler</td>
-</tr>
-</tbody>
-</table>
-
-<hr>
-
-<p><a name="hears"></a></p>
-
-<h5>
-<a id="telegrafhearspattern-handler" class="anchor" href="#telegrafhearspattern-handler" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>Telegraf.hears(pattern, handler)</code>
-</h5>
-
-<p>Registers handler only for <code>text</code> events using string pattern or RegEx.</p>
-
-<table>
-<thead>
-<tr>
-<th>Param</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>pattern</td>
-<td>
-<code>String</code>/<code>RegEx</code>
-</td>
-<td>Pattern or RegEx</td>
-</tr>
-<tr>
-<td>handler</td>
-<td><code>Function</code></td>
-<td>Handler</td>
-</tr>
-</tbody>
-</table>
-
-<hr>
-
-<p><a name="sendmessage"></a></p>
-
-<h5>
-<a id="telegrafsendmessagechatid-text-extra--promise" class="anchor" href="#telegrafsendmessagechatid-text-extra--promise" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>Telegraf.sendMessage(chatId, text, extra) =&gt; Promise</code>
-</h5>
-
-<p>Sends text message.</p>
-
-<table>
-<thead>
-<tr>
-<th>Param</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>chatId</td>
-<td>
-<code>Integer</code>/<code>String</code>
-</td>
-<td>Chat id</td>
-</tr>
-<tr>
-<td>text</td>
-<td><code>String</code></td>
-<td>Message</td>
-</tr>
-<tr>
-<td>extra</td>
-<td><code>Object</code></td>
-<td><a href="https://core.telegram.org/bots/api#sendmessage">Optional parameters</a></td>
-</tr>
-</tbody>
-</table>
-
-<hr>
-
-<p><a name="forwardmessage"></a></p>
-
-<h5>
-<a id="telegrafforwardmessagechatid-fromchatid-messageid-extra--promise" class="anchor" href="#telegrafforwardmessagechatid-fromchatid-messageid-extra--promise" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>Telegraf.forwardMessage(chatId, fromChatId, messageId, extra) =&gt; Promise</code>
-</h5>
-
-<p>Forwards message.</p>
-
-<table>
-<thead>
-<tr>
-<th>Param</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>chatId</td>
-<td>
-<code>Integer</code>/<code>String</code>
-</td>
-<td>Source Chat id</td>
-</tr>
-<tr>
-<td>fromChatId</td>
-<td>
-<code>Integer</code>/<code>String</code>
-</td>
-<td>Target Chat id</td>
-</tr>
-<tr>
-<td>messageId</td>
-<td><code>Integer</code></td>
-<td>Message id</td>
-</tr>
-<tr>
-<td>extra</td>
-<td><code>Object</code></td>
-<td><a href="https://core.telegram.org/bots/api#forwardmessage">Optional parameters</a></td>
-</tr>
-</tbody>
-</table>
-
-<hr>
-
-<p><a name="sendlocation"></a></p>
-
-<h5>
-<a id="telegrafsendlocationchatid-latitude-longitude-extra--promise" class="anchor" href="#telegrafsendlocationchatid-latitude-longitude-extra--promise" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>Telegraf.sendLocation(chatId, latitude, longitude, extra) =&gt; Promise</code>
-</h5>
-
-<p>Sends location.</p>
-
-<table>
-<thead>
-<tr>
-<th>Param</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>chatId</td>
-<td>
-<code>Integer</code>/<code>String</code>
-</td>
-<td>Chat id</td>
-</tr>
-<tr>
-<td>latitude</td>
-<td><code>Integer</code></td>
-<td>Latitude</td>
-</tr>
-<tr>
-<td>longitude</td>
-<td><code>Integer</code></td>
-<td>Longitude</td>
-</tr>
-<tr>
-<td>extra</td>
-<td><code>Object</code></td>
-<td><a href="https://core.telegram.org/bots/api#sendlocation">Optional parameters</a></td>
-</tr>
-</tbody>
-</table>
-
-<hr>
-
-<p><a name="sendphoto"></a></p>
-
-<h5>
-<a id="telegrafsendphotochatid-photo-extra--promise" class="anchor" href="#telegrafsendphotochatid-photo-extra--promise" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>Telegraf.sendPhoto(chatId, photo, extra) =&gt; Promise</code>
-</h5>
-
-<p>Sends photo.</p>
-
-<table>
-<thead>
-<tr>
-<th>Param</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>chatId</td>
-<td>
-<code>Integer</code>/<code>String</code>
-</td>
-<td>Chat id</td>
-</tr>
-<tr>
-<td>photo</td>
-<td><a href="#file"><code>File</code></a></td>
-<td>Photo</td>
-</tr>
-<tr>
-<td>extra</td>
-<td><code>Object</code></td>
-<td><a href="https://core.telegram.org/bots/api#sendphoto">Optional parameters</a></td>
-</tr>
-</tbody>
-</table>
-
-<hr>
-
-<p><a name="senddocument"></a></p>
-
-<h5>
-<a id="telegrafsenddocumentchatid-doc-extra--promise" class="anchor" href="#telegrafsenddocumentchatid-doc-extra--promise" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>Telegraf.sendDocument(chatId, doc, extra) =&gt; Promise</code>
-</h5>
-
-<p>Sends document.</p>
-
-<table>
-<thead>
-<tr>
-<th>Param</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>chatId</td>
-<td>
-<code>Integer</code>/<code>String</code>
-</td>
-<td>Chat id</td>
-</tr>
-<tr>
-<td>doc</td>
-<td><a href="#file"><code>File</code></a></td>
-<td>Document</td>
-</tr>
-<tr>
-<td>extra</td>
-<td><code>Object</code></td>
-<td><a href="https://core.telegram.org/bots/api#senddocument">Optional parameters</a></td>
-</tr>
-</tbody>
-</table>
-
-<hr>
-
-<p><a name="sendaudio"></a></p>
-
-<h5>
-<a id="telegrafsendaudiochatid-audio-extra--promise" class="anchor" href="#telegrafsendaudiochatid-audio-extra--promise" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>Telegraf.sendAudio(chatId, audio, extra) =&gt; Promise</code>
-</h5>
-
-<p>Sends audio.</p>
-
-<table>
-<thead>
-<tr>
-<th>Param</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>chatId</td>
-<td>
-<code>Integer</code>/<code>String</code>
-</td>
-<td>Chat id</td>
-</tr>
-<tr>
-<td>audio</td>
-<td><a href="#file"><code>File</code></a></td>
-<td>Document</td>
-</tr>
-<tr>
-<td>extra</td>
-<td><code>Object</code></td>
-<td><a href="https://core.telegram.org/bots/api#sendaudio">Optional parameters</a></td>
-</tr>
-</tbody>
-</table>
-
-<hr>
-
-<p><a name="sendsticker"></a></p>
-
-<h5>
-<a id="telegrafsendstickerchatid-sticker-extra--promise" class="anchor" href="#telegrafsendstickerchatid-sticker-extra--promise" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>Telegraf.sendSticker(chatId, sticker, extra) =&gt; Promise</code>
-</h5>
-
-<p>Sends sticker.</p>
-
-<table>
-<thead>
-<tr>
-<th>Param</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>chatId</td>
-<td>
-<code>Integer</code>/<code>String</code>
-</td>
-<td>Chat id</td>
-</tr>
-<tr>
-<td>sticker</td>
-<td><a href="#file"><code>File</code></a></td>
-<td>Document</td>
-</tr>
-<tr>
-<td>extra</td>
-<td><code>Object</code></td>
-<td><a href="https://core.telegram.org/bots/api#sendsticker">Optional parameters</a></td>
-</tr>
-</tbody>
-</table>
-
-<hr>
-
-<p><a name="sendvideo"></a></p>
-
-<h5>
-<a id="telegrafsendvideochatid-video-extra--promise" class="anchor" href="#telegrafsendvideochatid-video-extra--promise" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>Telegraf.sendVideo(chatId, video, extra) =&gt; Promise</code>
-</h5>
-
-<p>Sends video.</p>
-
-<table>
-<thead>
-<tr>
-<th>Param</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>chatId</td>
-<td>
-<code>Integer</code>/<code>String</code>
-</td>
-<td>Chat id</td>
-</tr>
-<tr>
-<td>video</td>
-<td><a href="#file"><code>File</code></a></td>
-<td>Document</td>
-</tr>
-<tr>
-<td>extra</td>
-<td><code>Object</code></td>
-<td><a href="https://core.telegram.org/bots/api#sendvideo">Optional parameters</a></td>
-</tr>
-</tbody>
-</table>
-
-<hr>
-
-<p><a name="sendvoice"></a></p>
-
-<h5>
-<a id="telegrafsendvoicechatid-voice-extra--promise" class="anchor" href="#telegrafsendvoicechatid-voice-extra--promise" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>Telegraf.sendVoice(chatId, voice, extra) =&gt; Promise</code>
-</h5>
-
-<p>Sends voice.</p>
-
-<table>
-<thead>
-<tr>
-<th>Param</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>chatId</td>
-<td>
-<code>Integer</code>/<code>String</code>
-</td>
-<td>Chat id</td>
-</tr>
-<tr>
-<td>voice</td>
-<td><a href="#file"><code>File</code></a></td>
-<td>Document</td>
-</tr>
-<tr>
-<td>extra</td>
-<td><code>Object</code></td>
-<td><a href="https://core.telegram.org/bots/api#sendvoice">Optional parameters</a></td>
-</tr>
-</tbody>
-</table>
-
-<hr>
-
-<p><a name="sendchataction"></a></p>
-
-<h5>
-<a id="telegrafsendchatactionchatid-action--promise" class="anchor" href="#telegrafsendchatactionchatid-action--promise" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>Telegraf.sendChatAction(chatId, action) =&gt; Promise</code>
-</h5>
-
-<p>Sends chat action.</p>
-
-<table>
-<thead>
-<tr>
-<th>Param</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>chatId</td>
-<td>
-<code>Integer</code>/<code>String</code>
-</td>
-<td>Chat id</td>
-</tr>
-<tr>
-<td>action</td>
-<td><code>String</code></td>
-<td><a href="https://core.telegram.org/bots/api#sendchataction">Chat action</a></td>
-</tr>
-</tbody>
-</table>
-
-<hr>
-
-<p><a name="getme"></a></p>
-
-<h5>
-<a id="telegrafgetme--promise" class="anchor" href="#telegrafgetme--promise" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>Telegraf.getMe() =&gt; Promise</code>
-</h5>
-
-<p>Returns basic information about the bot.</p>
-
-<p><a href="https://core.telegram.org/bots/api#getme">Related Telegram api docs</a></p>
-
-<hr>
-
-<p><a name="getuserprofilephotos"></a></p>
-
-<h5>
-<a id="telegrafgetuserprofilephotosuserid-offset-limit--promise" class="anchor" href="#telegrafgetuserprofilephotosuserid-offset-limit--promise" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>Telegraf.getUserProfilePhotos(userId, offset, limit) =&gt; Promise</code>
-</h5>
-
-<p>Returns profiles photos for provided user.</p>
-
-<table>
-<thead>
-<tr>
-<th>Param</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>userId</td>
-<td><code>Integer</code></td>
-<td>Chat id</td>
-</tr>
-<tr>
-<td>offset</td>
-<td><code>Integer</code></td>
-<td>Offset</td>
-</tr>
-<tr>
-<td>userId</td>
-<td><code>limit</code></td>
-<td>Limit</td>
-</tr>
-</tbody>
-</table>
-
-<p><a href="https://core.telegram.org/bots/api#getuserprofilephotos">Related Telegram api docs</a></p>
-
-<hr>
-
-<p><a name="getfile"></a></p>
-
-<h5>
-<a id="telegrafgetfilefileid--promise" class="anchor" href="#telegrafgetfilefileid--promise" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>Telegraf.getFile(fileId) =&gt; Promise</code>
-</h5>
-
-<p>Returns basic info about a file and prepare it for downloading.</p>
-
-<table>
-<thead>
-<tr>
-<th>Param</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>fileId</td>
-<td><code>String</code></td>
-<td>File id</td>
-</tr>
-</tbody>
-</table>
-
-<p><a href="https://core.telegram.org/bots/api#getfile">Related Telegram api docs</a></p>
-
-<hr>
-
-<p><a name="getFileLink"></a></p>
-
-<h5>
-<a id="telegrafgetfilelinkfileid--promise" class="anchor" href="#telegrafgetfilelinkfileid--promise" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>Telegraf.getFileLink(fileId) =&gt; Promise</code>
-</h5>
-
-<p>Returns link to file.</p>
-
-<table>
-<thead>
-<tr>
-<th>Param</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>fileId</td>
-<td><code>String</code></td>
-<td>File id</td>
-</tr>
-</tbody>
-</table>
-
-<p><a href="https://core.telegram.org/bots/api#getFileLink">Related Telegram api docs</a></p>
-
-<hr>
-
-<p><a name="removewebhook"></a></p>
-
-<h5>
-<a id="telegrafremovewebhook--promise" class="anchor" href="#telegrafremovewebhook--promise" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>Telegraf.removeWebHook() =&gt; Promise</code>
-</h5>
-
-<p>Removes webhook. Shortcut for <code>Telegraf.setWebHook('')</code></p>
-
-<p><a href="https://core.telegram.org/bots/api#removewebhook">Related Telegram api docs</a></p>
-
-<hr>
-
-<p><a name="kickchatmember"></a></p>
-
-<h5>
-<a id="telegrafkickchatmemberchatid-userid--promise" class="anchor" href="#telegrafkickchatmemberchatid-userid--promise" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>Telegraf.kickChatMember(chatId, userId) =&gt; Promise</code>
-</h5>
-
-<p>Use this method to kick a user from a group or a supergroup.</p>
-
-<table>
-<thead>
-<tr>
-<th>Param</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>chatId</td>
-<td>
-<code>Integer</code>/<code>String</code>
-</td>
-<td>Chat id</td>
-</tr>
-<tr>
-<td>userId</td>
-<td><code>Integer</code></td>
-<td>User id</td>
-</tr>
-</tbody>
-</table>
-
-<p><a href="https://core.telegram.org/bots/api#kickchatmember">Related Telegram api docs</a></p>
-
-<hr>
-
-<p><a name="unbanchatmember"></a></p>
-
-<h5>
-<a id="telegrafunbanchatmemberchatid-userid--promise" class="anchor" href="#telegrafunbanchatmemberchatid-userid--promise" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>Telegraf.unbanChatMember(chatId, userId) =&gt; Promise</code>
-</h5>
-
-<p>Use this method to unban a previously kicked user in a supergroup.</p>
-
-<table>
-<thead>
-<tr>
-<th>Param</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>chatId</td>
-<td>
-<code>Integer</code>/<code>String</code>
-</td>
-<td>Chat id</td>
-</tr>
-<tr>
-<td>userId</td>
-<td><code>Integer</code></td>
-<td>User id</td>
-</tr>
-</tbody>
-</table>
-
-<p><a href="https://core.telegram.org/bots/api#unbanchatmember">Related Telegram api docs</a></p>
-
-<hr>
-
-<p><a name="answerinlinequery"></a></p>
-
-<h5>
-<a id="telegrafanswerinlinequeryinlinequeryid-results-extra--promise" class="anchor" href="#telegrafanswerinlinequeryinlinequeryid-results-extra--promise" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>Telegraf.answerInlineQuery(inlineQueryId, results, extra) =&gt; Promise</code>
-</h5>
-
-<p>Use this method to send answers to an inline query.</p>
-
-<table>
-<thead>
-<tr>
-<th>Param</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>inlineQueryId</td>
-<td><code>String</code></td>
-<td>Query id</td>
-</tr>
-<tr>
-<td>results</td>
-<td><code>Array</code></td>
-<td>Results</td>
-</tr>
-<tr>
-<td>extra</td>
-<td><code>Object</code></td>
-<td><a href="https://core.telegram.org/bots/api#answerinlinequery">Optional parameters</a></td>
 </tr>
 </tbody>
 </table>
@@ -1302,33 +411,33 @@ In case you use centralized webhook server, queue, etc.  </p>
 <tbody>
 <tr>
 <td>callbackQueryId</td>
-<td><code>String</code></td>
+<td><code>string</code></td>
 <td>Query id</td>
 </tr>
 <tr>
 <td>text</td>
-<td><code>String</code></td>
+<td><code>string</code></td>
 <td>Notification text</td>
 </tr>
 <tr>
 <td>showAlert</td>
-<td><code>Bool</code></td>
+<td><code>bool</code></td>
 <td>Show alert instead of notification</td>
 </tr>
 </tbody>
 </table>
 
-<p><a href="https://core.telegram.org/bots/api#answercallbackquery">Related Telegram api docs</a></p>
+<p><sub><a href="https://core.telegram.org/bots/api#answercallbackquery">Related Telegram api docs</a></sub></p>
 
 <hr>
 
-<p><a name="editmessagetext"></a></p>
+<p><a name="answerinlinequery"></a></p>
 
 <h5>
-<a id="telegrafeditmessagetextchatid-messageid-text-extra--promise" class="anchor" href="#telegrafeditmessagetextchatid-messageid-text-extra--promise" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>Telegraf.editMessageText(chatId, messageId, text, extra) =&gt; Promise</code>
+<a id="telegrafanswerinlinequeryinlinequeryid-results-extra--promise" class="anchor" href="#telegrafanswerinlinequeryinlinequeryid-results-extra--promise" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>Telegraf.answerInlineQuery(inlineQueryId, results, extra) =&gt; Promise</code>
 </h5>
 
-<p>Use this method to edit text messages sent by the bot or via the bot.</p>
+<p>Use this method to send answers to an inline query.</p>
 
 <table>
 <thead>
@@ -1340,26 +449,19 @@ In case you use centralized webhook server, queue, etc.  </p>
 </thead>
 <tbody>
 <tr>
-<td>chatId</td>
-<td>
-<code>Integer</code>/<code>String</code>
-</td>
-<td>Chat id</td>
+<td>inlineQueryId</td>
+<td><code>string</code></td>
+<td>Query id</td>
 </tr>
 <tr>
-<td>messageId</td>
-<td><code>String</code></td>
-<td>Message id</td>
-</tr>
-<tr>
-<td>text</td>
-<td><code>String</code></td>
-<td>Message</td>
+<td>results</td>
+<td><code>object[]</code></td>
+<td>Results</td>
 </tr>
 <tr>
 <td>extra</td>
-<td><code>Object</code></td>
-<td><a href="https://core.telegram.org/bots/api#editmessagetext">Optional parameters</a></td>
+<td><code>object</code></td>
+<td><a href="https://core.telegram.org/bots/api#answerinlinequery">Optional parameters</a></td>
 </tr>
 </tbody>
 </table>
@@ -1386,23 +488,23 @@ In case you use centralized webhook server, queue, etc.  </p>
 <tr>
 <td>chatId</td>
 <td>
-<code>Integer</code>/<code>String</code>
+<code>number</code>|<code>string</code>
 </td>
 <td>Chat id</td>
 </tr>
 <tr>
 <td>messageId</td>
-<td><code>String</code></td>
+<td><code>string</code></td>
 <td>Message id</td>
 </tr>
 <tr>
 <td>caption</td>
-<td><code>String</code></td>
+<td><code>string</code></td>
 <td>Caption</td>
 </tr>
 <tr>
 <td>extra</td>
-<td><code>Object</code></td>
+<td><code>object</code></td>
 <td><a href="https://core.telegram.org/bots/api#editmessagecaption">Optional parameters</a></td>
 </tr>
 </tbody>
@@ -1430,24 +532,1034 @@ In case you use centralized webhook server, queue, etc.  </p>
 <tr>
 <td>chatId</td>
 <td>
-<code>Integer</code>/<code>String</code>
+<code>number</code>|<code>string</code>
 </td>
 <td>Chat id</td>
 </tr>
 <tr>
 <td>messageId</td>
-<td><code>String</code></td>
+<td><code>string</code></td>
 <td>Message id</td>
 </tr>
 <tr>
 <td>markup</td>
-<td><code>Object</code></td>
+<td><code>object</code></td>
 <td>Keyboard markup</td>
 </tr>
 <tr>
 <td>extra</td>
-<td><code>Object</code></td>
+<td><code>object</code></td>
 <td><a href="https://core.telegram.org/bots/api#editmessagereplymarkup">Optional parameters</a></td>
+</tr>
+</tbody>
+</table>
+
+<hr>
+
+<p><a name="editmessagetext"></a></p>
+
+<h5>
+<a id="telegrafeditmessagetextchatid-messageid-text-extra--promise" class="anchor" href="#telegrafeditmessagetextchatid-messageid-text-extra--promise" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>Telegraf.editMessageText(chatId, messageId, text, extra) =&gt; Promise</code>
+</h5>
+
+<p>Use this method to edit text messages sent by the bot or via the bot.</p>
+
+<table>
+<thead>
+<tr>
+<th>Param</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>chatId</td>
+<td>
+<code>number</code>|<code>string</code>
+</td>
+<td>Chat id</td>
+</tr>
+<tr>
+<td>messageId</td>
+<td><code>string</code></td>
+<td>Message id</td>
+</tr>
+<tr>
+<td>text</td>
+<td><code>string</code></td>
+<td>Message</td>
+</tr>
+<tr>
+<td>extra</td>
+<td><code>object</code></td>
+<td><a href="https://core.telegram.org/bots/api#editmessagetext">Optional parameters</a></td>
+</tr>
+</tbody>
+</table>
+
+<hr>
+
+<p><a name="forwardmessage"></a></p>
+
+<h5>
+<a id="telegrafforwardmessagechatid-fromchatid-messageid-extra--promise" class="anchor" href="#telegrafforwardmessagechatid-fromchatid-messageid-extra--promise" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>Telegraf.forwardMessage(chatId, fromChatId, messageId, extra) =&gt; Promise</code>
+</h5>
+
+<p>Forwards message.</p>
+
+<table>
+<thead>
+<tr>
+<th>Param</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>chatId</td>
+<td>
+<code>number</code>|<code>string</code>
+</td>
+<td>Source Chat id</td>
+</tr>
+<tr>
+<td>fromChatId</td>
+<td>
+<code>number</code>|<code>string</code>
+</td>
+<td>Target Chat id</td>
+</tr>
+<tr>
+<td>messageId</td>
+<td><code>number</code></td>
+<td>Message id</td>
+</tr>
+<tr>
+<td>extra</td>
+<td><code>object</code></td>
+<td><a href="https://core.telegram.org/bots/api#forwardmessage">Optional parameters</a></td>
+</tr>
+</tbody>
+</table>
+
+<hr>
+
+<p><a name="getfile"></a></p>
+
+<h5>
+<a id="telegrafgetfilefileid--promise" class="anchor" href="#telegrafgetfilefileid--promise" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>Telegraf.getFile(fileId) =&gt; Promise</code>
+</h5>
+
+<p>Returns basic info about a file and prepare it for downloading.</p>
+
+<table>
+<thead>
+<tr>
+<th>Param</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>fileId</td>
+<td><code>string</code></td>
+<td>File id</td>
+</tr>
+</tbody>
+</table>
+
+<p><sub><a href="https://core.telegram.org/bots/api#getfile">Related Telegram api docs</a></sub></p>
+
+<hr>
+
+<p><a name="getFileLink"></a></p>
+
+<h5>
+<a id="telegrafgetfilelinkfileid--promise" class="anchor" href="#telegrafgetfilelinkfileid--promise" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>Telegraf.getFileLink(fileId) =&gt; Promise</code>
+</h5>
+
+<p>Returns link to file.</p>
+
+<table>
+<thead>
+<tr>
+<th>Param</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>fileId</td>
+<td><code>string</code></td>
+<td>File id</td>
+</tr>
+</tbody>
+</table>
+
+<p><sub><a href="https://core.telegram.org/bots/api#getFileLink">Related Telegram api docs</a></sub></p>
+
+<hr>
+
+<p><a name="getme"></a></p>
+
+<h5>
+<a id="telegrafgetme--promise" class="anchor" href="#telegrafgetme--promise" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>Telegraf.getMe() =&gt; Promise</code>
+</h5>
+
+<p>Returns basic information about the bot.</p>
+
+<p><sub><a href="https://core.telegram.org/bots/api#getme">Related Telegram api docs</a></sub></p>
+
+<hr>
+
+<p><a name="getuserprofilephotos"></a></p>
+
+<h5>
+<a id="telegrafgetuserprofilephotosuserid-offset-limit--promise" class="anchor" href="#telegrafgetuserprofilephotosuserid-offset-limit--promise" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>Telegraf.getUserProfilePhotos(userId, offset, limit) =&gt; Promise</code>
+</h5>
+
+<p>Returns profiles photos for provided user.</p>
+
+<table>
+<thead>
+<tr>
+<th>Param</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>userId</td>
+<td><code>number</code></td>
+<td>Chat id</td>
+</tr>
+<tr>
+<td>offset</td>
+<td><code>number</code></td>
+<td>Offset</td>
+</tr>
+<tr>
+<td>limit</td>
+<td><code>number</code></td>
+<td>Limit</td>
+</tr>
+</tbody>
+</table>
+
+<p><sub><a href="https://core.telegram.org/bots/api#getuserprofilephotos">Related Telegram api docs</a></sub></p>
+
+<hr>
+
+<p><a name="handleupdate"></a></p>
+
+<h5>
+<a id="telegrafhandleupdaterawupdate-webhookresponse" class="anchor" href="#telegrafhandleupdaterawupdate-webhookresponse" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>Telegraf.handleUpdate(rawUpdate, [webHookResponse])</code>
+</h5>
+
+<p>Handle raw Telegram update. 
+In case you use centralized webhook server, queue, etc.  </p>
+
+<table>
+<thead>
+<tr>
+<th>Param</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>rawUpdate</td>
+<td><code>object</code></td>
+<td>Telegram update payload</td>
+</tr>
+<tr>
+<td>webHookResponse</td>
+<td><code>object</code></td>
+<td>(Optional) <a href="https://nodejs.org/api/http.html#http_class_http_serverresponse">http.ServerResponse</a>
+</td>
+</tr>
+</tbody>
+</table>
+
+<hr>
+
+<p><a name="hears"></a></p>
+
+<h5>
+<a id="telegrafhearspattern-handler" class="anchor" href="#telegrafhearspattern-handler" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>Telegraf.hears(pattern, handler)</code>
+</h5>
+
+<p>Registers handler only for <code>text</code> events using string pattern or RegEx.</p>
+
+<table>
+<thead>
+<tr>
+<th>Param</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>pattern</td>
+<td>
+<code>string</code>|<code>RegEx</code>
+</td>
+<td>Pattern or RegEx</td>
+</tr>
+<tr>
+<td>handler</td>
+<td><code>function</code></td>
+<td>Handler</td>
+</tr>
+</tbody>
+</table>
+
+<hr>
+
+<p><a name="kickchatmember"></a></p>
+
+<h5>
+<a id="telegrafkickchatmemberchatid-userid--promise" class="anchor" href="#telegrafkickchatmemberchatid-userid--promise" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>Telegraf.kickChatMember(chatId, userId) =&gt; Promise</code>
+</h5>
+
+<p>Use this method to kick a user from a group or a supergroup.</p>
+
+<table>
+<thead>
+<tr>
+<th>Param</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>chatId</td>
+<td>
+<code>number</code>|<code>string</code>
+</td>
+<td>Chat id</td>
+</tr>
+<tr>
+<td>userId</td>
+<td><code>number</code></td>
+<td>User id</td>
+</tr>
+</tbody>
+</table>
+
+<p><sub><a href="https://core.telegram.org/bots/api#kickchatmember">Related Telegram api docs</a></sub></p>
+
+<hr>
+
+<p><a name="on"></a></p>
+
+<h5>
+<a id="telegrafoneventtype-handler" class="anchor" href="#telegrafoneventtype-handler" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>Telegraf.on(eventType, handler)</code>
+</h5>
+
+<p>Registers handler for provided <a href="#events">event type</a>.</p>
+
+<table>
+<thead>
+<tr>
+<th>Param</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>eventType</td>
+<td>
+<code>string</code>|<code>string[]</code>
+</td>
+<td><a href="#events">Event type</a></td>
+</tr>
+<tr>
+<td>handler</td>
+<td><code>function</code></td>
+<td>Handler</td>
+</tr>
+</tbody>
+</table>
+
+<hr>
+
+<p><a name="removewebhook"></a></p>
+
+<h5>
+<a id="telegrafremovewebhook--promise" class="anchor" href="#telegrafremovewebhook--promise" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>Telegraf.removeWebHook() =&gt; Promise</code>
+</h5>
+
+<p>Removes webhook. Shortcut for <code>Telegraf.setWebHook('')</code></p>
+
+<p><sub><a href="https://core.telegram.org/bots/api#removewebhook">Related Telegram api docs</a></sub></p>
+
+<hr>
+
+<p><a name="sendaudio"></a></p>
+
+<h5>
+<a id="telegrafsendaudiochatid-audio-extra--promise" class="anchor" href="#telegrafsendaudiochatid-audio-extra--promise" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>Telegraf.sendAudio(chatId, audio, extra) =&gt; Promise</code>
+</h5>
+
+<p>Sends audio.</p>
+
+<table>
+<thead>
+<tr>
+<th>Param</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>chatId</td>
+<td>
+<code>number</code>|<code>string</code>
+</td>
+<td>Chat id</td>
+</tr>
+<tr>
+<td>audio</td>
+<td><a href="#file"><code>File</code></a></td>
+<td>Document</td>
+</tr>
+<tr>
+<td>extra</td>
+<td><code>object</code></td>
+<td><a href="https://core.telegram.org/bots/api#sendaudio">Optional parameters</a></td>
+</tr>
+</tbody>
+</table>
+
+<hr>
+
+<p><a name="sendchataction"></a></p>
+
+<h5>
+<a id="telegrafsendchatactionchatid-action--promise" class="anchor" href="#telegrafsendchatactionchatid-action--promise" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>Telegraf.sendChatAction(chatId, action) =&gt; Promise</code>
+</h5>
+
+<p>Sends chat action.</p>
+
+<table>
+<thead>
+<tr>
+<th>Param</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>chatId</td>
+<td>
+<code>number</code>|<code>string</code>
+</td>
+<td>Chat id</td>
+</tr>
+<tr>
+<td>action</td>
+<td><code>string</code></td>
+<td><a href="https://core.telegram.org/bots/api#sendchataction">Chat action</a></td>
+</tr>
+</tbody>
+</table>
+
+<hr>
+
+<p><a name="sendcontact"></a></p>
+
+<h5>
+<a id="telegrafsendcontactchatid-phonenumber-firstname-extra--promise" class="anchor" href="#telegrafsendcontactchatid-phonenumber-firstname-extra--promise" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>Telegraf.sendContact(chatId, phoneNumber, firstName, extra) =&gt; Promise</code>
+</h5>
+
+<p>Sends document.</p>
+
+<table>
+<thead>
+<tr>
+<th>Param</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>chatId</td>
+<td>
+<code>number</code>|<code>string</code>
+</td>
+<td>Chat id</td>
+</tr>
+<tr>
+<td>phoneNumber</td>
+<td><code>string</code></td>
+<td>Contact phone number</td>
+</tr>
+<tr>
+<td>firstName</td>
+<td><code>string</code></td>
+<td>Contact first name</td>
+</tr>
+<tr>
+<td>extra</td>
+<td><code>object</code></td>
+<td><a href="https://core.telegram.org/bots/api#sendcontact">Optional parameters</a></td>
+</tr>
+</tbody>
+</table>
+
+<hr>
+
+<p><a name="senddocument"></a></p>
+
+<h5>
+<a id="telegrafsenddocumentchatid-doc-extra--promise" class="anchor" href="#telegrafsenddocumentchatid-doc-extra--promise" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>Telegraf.sendDocument(chatId, doc, extra) =&gt; Promise</code>
+</h5>
+
+<p>Sends document.</p>
+
+<table>
+<thead>
+<tr>
+<th>Param</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>chatId</td>
+<td>
+<code>number</code>|<code>string</code>
+</td>
+<td>Chat id</td>
+</tr>
+<tr>
+<td>doc</td>
+<td><a href="#file"><code>File</code></a></td>
+<td>Document</td>
+</tr>
+<tr>
+<td>extra</td>
+<td><code>object</code></td>
+<td><a href="https://core.telegram.org/bots/api#senddocument">Optional parameters</a></td>
+</tr>
+</tbody>
+</table>
+
+<hr>
+
+<p><a name="sendlocation"></a></p>
+
+<h5>
+<a id="telegrafsendlocationchatid-latitude-longitude-extra--promise" class="anchor" href="#telegrafsendlocationchatid-latitude-longitude-extra--promise" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>Telegraf.sendLocation(chatId, latitude, longitude, extra) =&gt; Promise</code>
+</h5>
+
+<p>Sends location.</p>
+
+<table>
+<thead>
+<tr>
+<th>Param</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>chatId</td>
+<td>
+<code>number</code>|<code>string</code>
+</td>
+<td>Chat id</td>
+</tr>
+<tr>
+<td>latitude</td>
+<td><code>number</code></td>
+<td>Latitude</td>
+</tr>
+<tr>
+<td>longitude</td>
+<td><code>number</code></td>
+<td>Longitude</td>
+</tr>
+<tr>
+<td>extra</td>
+<td><code>object</code></td>
+<td><a href="https://core.telegram.org/bots/api#sendlocation">Optional parameters</a></td>
+</tr>
+</tbody>
+</table>
+
+<hr>
+
+<p><a name="sendmessage"></a></p>
+
+<h5>
+<a id="telegrafsendmessagechatid-text-extra--promise" class="anchor" href="#telegrafsendmessagechatid-text-extra--promise" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>Telegraf.sendMessage(chatId, text, extra) =&gt; Promise</code>
+</h5>
+
+<p>Sends text message.</p>
+
+<table>
+<thead>
+<tr>
+<th>Param</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>chatId</td>
+<td>
+<code>number</code>|<code>string</code>
+</td>
+<td>Chat id</td>
+</tr>
+<tr>
+<td>text</td>
+<td><code>string</code></td>
+<td>Message</td>
+</tr>
+<tr>
+<td>extra</td>
+<td><code>object</code></td>
+<td><a href="https://core.telegram.org/bots/api#sendmessage">Optional parameters</a></td>
+</tr>
+</tbody>
+</table>
+
+<hr>
+
+<p><a name="sendphoto"></a></p>
+
+<h5>
+<a id="telegrafsendphotochatid-photo-extra--promise" class="anchor" href="#telegrafsendphotochatid-photo-extra--promise" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>Telegraf.sendPhoto(chatId, photo, extra) =&gt; Promise</code>
+</h5>
+
+<p>Sends photo.</p>
+
+<table>
+<thead>
+<tr>
+<th>Param</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>chatId</td>
+<td>
+<code>number</code>|<code>string</code>
+</td>
+<td>Chat id</td>
+</tr>
+<tr>
+<td>photo</td>
+<td><a href="#file"><code>File</code></a></td>
+<td>Photo</td>
+</tr>
+<tr>
+<td>extra</td>
+<td><code>object</code></td>
+<td><a href="https://core.telegram.org/bots/api#sendphoto">Optional parameters</a></td>
+</tr>
+</tbody>
+</table>
+
+<hr>
+
+<p><a name="sendsticker"></a></p>
+
+<h5>
+<a id="telegrafsendstickerchatid-sticker-extra--promise" class="anchor" href="#telegrafsendstickerchatid-sticker-extra--promise" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>Telegraf.sendSticker(chatId, sticker, extra) =&gt; Promise</code>
+</h5>
+
+<p>Sends sticker.</p>
+
+<table>
+<thead>
+<tr>
+<th>Param</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>chatId</td>
+<td>
+<code>number</code>|<code>string</code>
+</td>
+<td>Chat id</td>
+</tr>
+<tr>
+<td>sticker</td>
+<td><a href="#file"><code>File</code></a></td>
+<td>Document</td>
+</tr>
+<tr>
+<td>extra</td>
+<td><code>object</code></td>
+<td><a href="https://core.telegram.org/bots/api#sendsticker">Optional parameters</a></td>
+</tr>
+</tbody>
+</table>
+
+<hr>
+
+<p><a name="sendvenue"></a></p>
+
+<h5>
+<a id="telegrafsendvenuechatid-latitude-longitude-title-address-extra--promise" class="anchor" href="#telegrafsendvenuechatid-latitude-longitude-title-address-extra--promise" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>Telegraf.sendVenue(chatId, latitude, longitude, title, address, extra) =&gt; Promise</code>
+</h5>
+
+<p>Sends venue information.</p>
+
+<table>
+<thead>
+<tr>
+<th>Param</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>chatId</td>
+<td>
+<code>number</code>|<code>string</code>
+</td>
+<td>Chat id</td>
+</tr>
+<tr>
+<td>latitude</td>
+<td><code>number</code></td>
+<td>Latitude</td>
+</tr>
+<tr>
+<td>longitude</td>
+<td><code>number</code></td>
+<td>Longitude</td>
+</tr>
+<tr>
+<td>title</td>
+<td><code>string</code></td>
+<td>Venue title</td>
+</tr>
+<tr>
+<td>address</td>
+<td><code>string</code></td>
+<td>Venue address</td>
+</tr>
+<tr>
+<td>extra</td>
+<td><code>object</code></td>
+<td><a href="https://core.telegram.org/bots/api#sendvenue">Optional parameters</a></td>
+</tr>
+</tbody>
+</table>
+
+<hr>
+
+<p><a name="sendvideo"></a></p>
+
+<h5>
+<a id="telegrafsendvideochatid-video-extra--promise" class="anchor" href="#telegrafsendvideochatid-video-extra--promise" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>Telegraf.sendVideo(chatId, video, extra) =&gt; Promise</code>
+</h5>
+
+<p>Sends video.</p>
+
+<table>
+<thead>
+<tr>
+<th>Param</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>chatId</td>
+<td>
+<code>number</code>|<code>string</code>
+</td>
+<td>Chat id</td>
+</tr>
+<tr>
+<td>video</td>
+<td><a href="#file"><code>File</code></a></td>
+<td>Document</td>
+</tr>
+<tr>
+<td>extra</td>
+<td><code>object</code></td>
+<td><a href="https://core.telegram.org/bots/api#sendvideo">Optional parameters</a></td>
+</tr>
+</tbody>
+</table>
+
+<hr>
+
+<p><a name="sendvoice"></a></p>
+
+<h5>
+<a id="telegrafsendvoicechatid-voice-extra--promise" class="anchor" href="#telegrafsendvoicechatid-voice-extra--promise" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>Telegraf.sendVoice(chatId, voice, extra) =&gt; Promise</code>
+</h5>
+
+<p>Sends voice.</p>
+
+<table>
+<thead>
+<tr>
+<th>Param</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>chatId</td>
+<td>
+<code>number</code>|<code>string</code>
+</td>
+<td>Chat id</td>
+</tr>
+<tr>
+<td>voice</td>
+<td><a href="#file"><code>File</code></a></td>
+<td>Document</td>
+</tr>
+<tr>
+<td>extra</td>
+<td><code>object</code></td>
+<td><a href="https://core.telegram.org/bots/api#sendvoice">Optional parameters</a></td>
+</tr>
+</tbody>
+</table>
+
+<hr>
+
+<p><a name="setwebhook"></a></p>
+
+<h5>
+<a id="telegrafsetwebhookurl-cert--promise" class="anchor" href="#telegrafsetwebhookurl-cert--promise" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>Telegraf.setWebHook(url, [cert]) =&gt; Promise</code>
+</h5>
+
+<p>Specifies an url to receive incoming updates via an outgoing webhook.</p>
+
+<table>
+<thead>
+<tr>
+<th>Param</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>url</td>
+<td><code>string</code></td>
+<td>Public url for webhook</td>
+</tr>
+<tr>
+<td>cert</td>
+<td><a href="#file"><code>File</code></a></td>
+<td>SSL public certificate</td>
+</tr>
+</tbody>
+</table>
+
+<p><sub><a href="https://core.telegram.org/bots/api#setwebhook">Related Telegram api docs</a></sub></p>
+
+<hr>
+
+<p><a name="startwebhook"></a></p>
+
+<h5>
+<a id="telegrafstartwebhookwebhookpath-tlsoptions-port-host" class="anchor" href="#telegrafstartwebhookwebhookpath-tlsoptions-port-host" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>Telegraf.startWebHook(webHookPath, tlsOptions, port, [host])</code>
+</h5>
+
+<p>Start listening @ <code>https://host:port/webHookPath</code> for Telegram calls.</p>
+
+<table>
+<thead>
+<tr>
+<th>Param</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>webHookPath</td>
+<td><code>string</code></td>
+<td>Webhook url path (see Telegraf.setWebHook)</td>
+</tr>
+<tr>
+<td>tlsOptions</td>
+<td><code>object</code></td>
+<td>(Optional) <a href="https://nodejs.org/api/tls.html#tls_tls_createserver_options_secureconnectionlistener">TLS server options</a>. Pass null to use http</td>
+</tr>
+<tr>
+<td>port</td>
+<td><code>number</code></td>
+<td>Port number</td>
+</tr>
+<tr>
+<td>host</td>
+<td><code>string</code></td>
+<td>(Optional) Hostname</td>
+</tr>
+</tbody>
+</table>
+
+<hr>
+
+<p><a name="startPolling"></a></p>
+
+<h5>
+<a id="telegrafstartpollingtimeout-limit" class="anchor" href="#telegrafstartpollingtimeout-limit" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>Telegraf.startPolling(timeout, limit)</code>
+</h5>
+
+<p>Start poll updates.</p>
+
+<table>
+<thead>
+<tr>
+<th>Param</th>
+<th>Type</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>timeout</td>
+<td><code>number</code></td>
+<td>0</td>
+<td>Poll timeout</td>
+</tr>
+<tr>
+<td>limit</td>
+<td><code>number</code></td>
+<td>100</td>
+<td>Limits the number of updates to be retrieved</td>
+</tr>
+</tbody>
+</table>
+
+<hr>
+
+<p><a name="stop"></a></p>
+
+<h5>
+<a id="telegrafstop" class="anchor" href="#telegrafstop" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>Telegraf.stop()</code>
+</h5>
+
+<p>Stop WebHook and polling</p>
+
+<hr>
+
+<p><a name="unbanchatmember"></a></p>
+
+<h5>
+<a id="telegrafunbanchatmemberchatid-userid--promise" class="anchor" href="#telegrafunbanchatmemberchatid-userid--promise" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>Telegraf.unbanChatMember(chatId, userId) =&gt; Promise</code>
+</h5>
+
+<p>Use this method to unban a previously kicked user in a supergroup.</p>
+
+<table>
+<thead>
+<tr>
+<th>Param</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>chatId</td>
+<td>
+<code>number</code>|<code>string</code>
+</td>
+<td>Chat id</td>
+</tr>
+<tr>
+<td>userId</td>
+<td><code>number</code></td>
+<td>User id</td>
+</tr>
+</tbody>
+</table>
+
+<p><sub><a href="https://core.telegram.org/bots/api#unbanchatmember">Related Telegram api docs</a></sub></p>
+
+<hr>
+
+<p><a name="use"></a></p>
+
+<h5>
+<a id="telegrafusemiddleware" class="anchor" href="#telegrafusemiddleware" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>Telegraf.use(middleware)</code>
+</h5>
+
+<p>Registers a middleware.</p>
+
+<table>
+<thead>
+<tr>
+<th>Param</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>middleware</td>
+<td><code>function</code></td>
+<td>Middleware function</td>
+</tr>
+</tbody>
+</table>
+
+<hr>
+
+<p><a name="webhookcallback"></a></p>
+
+<h5>
+<a id="telegrafwebhookcallbackwebhookpath--function" class="anchor" href="#telegrafwebhookcallbackwebhookpath--function" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>Telegraf.webHookCallback(webHookPath) =&gt; Function</code>
+</h5>
+
+<p>Return a callback function suitable for the http[s].createServer() method to handle a request. 
+You may also use this callback function to mount your telegraf app in a Koa/Connect/Express app.</p>
+
+<table>
+<thead>
+<tr>
+<th>Param</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>webHookPath</td>
+<td><code>string</code></td>
+<td>Webhook url path (see Telegraf.setWebHook)</td>
 </tr>
 </tbody>
 </table>
@@ -1480,7 +1592,7 @@ In case you use centralized webhook server, queue, etc.  </p>
   <span class="pl-c">// resend existing file</span>
   <span class="pl-smi">telegraf</span>.<span class="pl-en">sendSticker</span>(<span class="pl-s"><span class="pl-pds">'</span>chatId<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>123123jkbhj6b<span class="pl-pds">'</span></span>)</pre></div>
 
-<p><a href="https://core.telegram.org/bots/api#file">Related Telegram api docs</a></p>
+<p><sub><a href="https://core.telegram.org/bots/api#file">Related Telegram api docs</a></sub></p>
 
 <h3>
 <a id="events" class="anchor" href="#events" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Events</h3>
@@ -1533,7 +1645,7 @@ In case you use centralized webhook server, queue, etc.  </p>
 })
 </pre></div>
 
-<p><a href="https://core.telegram.org/bots/api#message">Related Telegram api docs</a></p>
+<p><sub><a href="https://core.telegram.org/bots/api#message">Related Telegram api docs</a></sub></p>
 
 <h2>
 <a id="license" class="anchor" href="#license" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>License</h2>
@@ -1559,15 +1671,13 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.</p>
-
-      <footer class="site-footer">
-        <span class="site-footer-owner"><a href="https://github.com/telegraf/telegraf">Telegraf</a> is maintained by <a href="https://github.com/telegraf">telegraf</a>.</span>
-
-        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span>
+      </section>
+      <footer>
+        <p>This project is maintained by <a href="https://github.com/telegraf">telegraf</a></p>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
       </footer>
-
-    </section>
-
-  
+    </div>
+    <script src="javascripts/scale.fix.js"></script>
+    
   </body>
 </html>
