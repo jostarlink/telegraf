@@ -328,7 +328,7 @@ To perform custom error-handling logic you can set <code>onError</code> handler:
 <a id="api-reference" class="anchor" href="#api-reference" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>API reference</h2>
 
 <ul>
-<li><a href="#optional"><code>Telegraf.optional(messageType, handler, [handler...])</code></a></li>
+<li><a href="#handler"><code>Telegraf.handler(messageType, handler, [handler...])</code></a></li>
 <li><a href="#compose"><code>Telegraf.compose(middleware)</code></a></li>
 <li>
 <a href="#new"><code>new Telegraf(token)</code></a>
@@ -373,10 +373,10 @@ To perform custom error-handling logic you can set <code>onError</code> handler:
 
 <hr>
 
-<p><a name="optional"></a></p>
+<p><a name="handler"></a></p>
 
 <h5>
-<a id="telegrafoptionaleventtype-handler-handler" class="anchor" href="#telegrafoptionaleventtype-handler-handler" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>Telegraf.optional(eventType, handler, [handler...])</code>
+<a id="telegrafhandlereventtype-handler-handler--generatorfunction" class="anchor" href="#telegrafhandlereventtype-handler-handler--generatorfunction" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>Telegraf.handler(eventType, handler, [handler...]) =&gt; GeneratorFunction</code>
 </h5>
 
 <p>Generates middleware for handling provided <a href="#events">event type</a>.</p>
@@ -410,7 +410,7 @@ To perform custom error-handling logic you can set <code>onError</code> handler:
 <p><a name="compose"></a></p>
 
 <h5>
-<a id="telegrafcomposemiddleware" class="anchor" href="#telegrafcomposemiddleware" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>Telegraf.compose(middleware)</code>
+<a id="telegrafcomposehandlers--generatorfunction" class="anchor" href="#telegrafcomposehandlers--generatorfunction" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>Telegraf.compose(handlers) =&gt; GeneratorFunction</code>
 </h5>
 
 <p>Compose <code>middleware</code> returning a fully valid middleware comprised of all those which are passed.</p>
@@ -425,9 +425,9 @@ To perform custom error-handling logic you can set <code>onError</code> handler:
 </thead>
 <tbody>
 <tr>
-<td>handler</td>
+<td>handlers</td>
 <td><code>GeneratorFunction[]</code></td>
-<td>middleware</td>
+<td>Array of handlers</td>
 </tr>
 </tbody>
 </table>
