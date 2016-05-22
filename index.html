@@ -28,7 +28,14 @@
         </ul>
       </header>
       <section>
-        <h2>
+        <p><a href="https://www.npmjs.com/package/telegraf"><img src="https://img.shields.io/npm/l/telegraf.svg?style=flat-square" alt="npm"></a>
+<a href="https://www.npmjs.com/package/telegraf"><img src="https://img.shields.io/npm/v/telegraf.svg?style=flat-square" alt="NPM Version"></a>
+<a href="https://www.npmjs.com/package/telegraf"><img src="https://img.shields.io/node/v/telegraf.svg?style=flat-square" alt="node"></a>
+<a href="https://www.npmjs.com/package/telegraf"><img src="https://img.shields.io/david/telegraf/telegraf.svg?style=flat-square" alt="David"></a>
+<a href="http://standardjs.com/"><img src="https://img.shields.io/badge/code%20style-standard-brightgreen.svg?style=flat-square" alt="js-standard-style"></a>
+<a href="https://travis-ci.org/telegraf/telegraf"><img src="https://img.shields.io/travis/telegraf/telegraf.svg?branch=master&amp;style=flat-square" alt="Build Status"></a></p>
+
+<h2>
 <a id="installation" class="anchor" href="#installation" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Installation</h2>
 
 <div class="highlight highlight-source-js"><pre>$ npm install telegraf</pre></div>
@@ -37,13 +44,20 @@
 <a id="example" class="anchor" href="#example" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Example</h2>
 
 <div class="highlight highlight-source-js"><pre><span class="pl-k">var</span> Telegraf <span class="pl-k">=</span> <span class="pl-c1">require</span>(<span class="pl-s"><span class="pl-pds">'</span>telegraf<span class="pl-pds">'</span></span>);
-
 <span class="pl-k">var</span> telegraf <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-en">Telegraf</span>(<span class="pl-c1">process</span>.<span class="pl-smi">env</span>.<span class="pl-c1">BOT_TOKEN</span>);
 
 <span class="pl-c">// Text messages handling</span>
 <span class="pl-smi">telegraf</span>.<span class="pl-en">hears</span>(<span class="pl-s"><span class="pl-pds">'</span>/answer<span class="pl-pds">'</span></span>, <span class="pl-k">function</span> <span class="pl-k">*</span> () {
   <span class="pl-v">this</span>.<span class="pl-en">reply</span>(<span class="pl-s"><span class="pl-pds">'</span>*42*<span class="pl-pds">'</span></span>, { parse_mode<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>Markdown<span class="pl-pds">'</span></span> })
 })
+
+<span class="pl-smi">telegraf</span>.<span class="pl-en">startPolling</span>()</pre></div>
+
+<h3>
+<a id="one-more-example" class="anchor" href="#one-more-example" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>One more example</h3>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-k">var</span> Telegraf <span class="pl-k">=</span> <span class="pl-c1">require</span>(<span class="pl-s"><span class="pl-pds">'</span>telegraf<span class="pl-pds">'</span></span>);
+<span class="pl-k">var</span> telegraf <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-en">Telegraf</span>(<span class="pl-c1">process</span>.<span class="pl-smi">env</span>.<span class="pl-c1">BOT_TOKEN</span>);
 
 <span class="pl-c">// Look ma, middleware!</span>
 <span class="pl-k">var</span> <span class="pl-en">sayYoMiddleware</span> <span class="pl-k">=</span> <span class="pl-k">function</span> <span class="pl-k">*</span> (<span class="pl-smi">next</span>) {
@@ -73,8 +87,7 @@ however a key design decision was made to provide high level "sugar" at the othe
 middleware layer. This improves interoperability, robustness, and makes writing middleware much
 more enjoyable. </p>
 
-<div class="highlight highlight-source-js"><pre><span class="pl-k">var</span> Telegraf <span class="pl-k">=</span> <span class="pl-c1">require</span>(<span class="pl-s"><span class="pl-pds">'</span>telegraf<span class="pl-pds">'</span></span>)
-<span class="pl-k">var</span> telegraf <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-en">Telegraf</span>(<span class="pl-c1">process</span>.<span class="pl-smi">env</span>.<span class="pl-c1">BOT_TOKEN</span>)
+<div class="highlight highlight-source-js"><pre><span class="pl-k">var</span> telegraf <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-en">Telegraf</span>(<span class="pl-c1">process</span>.<span class="pl-smi">env</span>.<span class="pl-c1">BOT_TOKEN</span>)
 
 <span class="pl-smi">telegraf</span>.<span class="pl-en">on</span>(<span class="pl-s"><span class="pl-pds">'</span>text<span class="pl-pds">'</span></span>, <span class="pl-k">function</span> <span class="pl-k">*</span> (){
   <span class="pl-v">this</span>.<span class="pl-en">reply</span>(<span class="pl-s"><span class="pl-pds">'</span>Hello World<span class="pl-pds">'</span></span>)
@@ -242,7 +255,11 @@ To perform custom error-handling logic you can set <code>onError</code> handler:
 
 <p>Telegraf context shortcuts:</p>
 
-<p><strong>Available shortcuts for <code>message</code> event:</strong></p>
+<p><strong>Available shortcuts</strong></p>
+
+<ul>
+<li>
+<code>message</code> event
 
 <ul>
 <li><code>reply() -&gt; telegraf.sendMessage()</code></li>
@@ -255,8 +272,9 @@ To perform custom error-handling logic you can set <code>onError</code> handler:
 <li><code>replyWithChatAction() -&gt; telegraf.sendChatAction()</code></li>
 <li><code>replyWithLocation() -&gt; telegraf.sendLocation()</code></li>
 </ul>
-
-<p><strong>Shortcuts for <code>callback_query</code> event:</strong></p>
+</li>
+<li>
+<code>callback_query</code> event
 
 <ul>
 <li><code>answerCallbackQuery() -&gt; telegraf.answerCallbackQuery()</code></li>
@@ -270,11 +288,14 @@ To perform custom error-handling logic you can set <code>onError</code> handler:
 <li><code>replyWithChatAction() -&gt; telegraf.sendChatAction()</code></li>
 <li><code>replyWithLocation() -&gt; telegraf.sendLocation()</code></li>
 </ul>
-
-<p><strong>Shortcuts for <code>inline_query</code> event:</strong> </p>
+</li>
+<li>
+<code>inline_query</code> event
 
 <ul>
 <li><code>answerInlineQuery() -&gt; telegraf.answerInlineQuery()</code></li>
+</ul>
+</li>
 </ul>
 
 <h4>
@@ -314,11 +335,12 @@ To perform custom error-handling logic you can set <code>onError</code> handler:
 <a id="api-reference" class="anchor" href="#api-reference" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>API reference</h2>
 
 <ul>
+<li><a href="#optional"><code>Telegraf.optional(messageType, handler, [handler...])</code></a></li>
+<li><a href="#compose"><code>Telegraf.compose(middleware)</code></a></li>
 <li>
-<code>Telegraf</code>
+<a href="#new"><code>new Telegraf(token)</code></a>
 
 <ul>
-<li><a href="#new"><code>new Telegraf(token)</code></a></li>
 <li><a href="#answercallbackquery"><code>.answerCallbackQuery(callbackQueryId, text, showAlert)</code></a></li>
 <li><a href="#answerinlinequery"><code>.answerInlineQuery(inlineQueryId, results, extra)</code></a></li>
 <li><a href="#editmessagecaption"><code>.editMessageCaption(chatId, messageId, caption, extra)</code></a></li>
@@ -330,9 +352,9 @@ To perform custom error-handling logic you can set <code>onError</code> handler:
 <li><a href="#getme"><code>.getMe()</code></a></li>
 <li><a href="#getuserprofilephotos"><code>.getUserProfilePhotos(userId, offset, limit)</code></a></li>
 <li><a href="#handleupdate"><code>.handleUpdate(rawUpdate, response)</code></a></li>
-<li><a href="#hears"><code>.hears(string|ReGex, function)</code></a></li>
+<li><a href="#hears"><code>.hears(string|ReGex, handler, [handler...])</code></a></li>
 <li><a href="#kickchatmember"><code>.kickChatMember(chatId, userId)</code></a></li>
-<li><a href="#on"><code>.on(messageType, function)</code></a></li>
+<li><a href="#on"><code>.on(messageType, handler, [handler...])</code></a></li>
 <li><a href="#removewebhook"><code>.removeWebHook()</code></a></li>
 <li><a href="#sendaudio"><code>.sendAudio(chatId, audio, extra)</code></a></li>
 <li><a href="#sendchataction"><code>.sendChatAction(chatId, action)</code></a></li>
@@ -358,10 +380,71 @@ To perform custom error-handling logic you can set <code>onError</code> handler:
 
 <hr>
 
+<p><a name="optional"></a></p>
+
+<h5>
+<a id="telegrafoptionaleventtype-handler-handler" class="anchor" href="#telegrafoptionaleventtype-handler-handler" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>Telegraf.optional(eventType, handler, [handler...])</code>
+</h5>
+
+<p>Generates middleware for handling provided <a href="#events">event type</a>.</p>
+
+<table>
+<thead>
+<tr>
+<th>Param</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>eventType</td>
+<td>
+<code>string</code>|<code>string[]</code>
+</td>
+<td><a href="#events">Event type</a></td>
+</tr>
+<tr>
+<td>handler</td>
+<td><code>GeneratorFunction</code></td>
+<td>Handler</td>
+</tr>
+</tbody>
+</table>
+
+<hr>
+
+<p><a name="compose"></a></p>
+
+<h5>
+<a id="telegrafcomposemiddleware" class="anchor" href="#telegrafcomposemiddleware" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>Telegraf.compose(middleware)</code>
+</h5>
+
+<p>Compose <code>middleware</code> returning a fully valid middleware comprised of all those which are passed.</p>
+
+<table>
+<thead>
+<tr>
+<th>Param</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>handler</td>
+<td><code>GeneratorFunction[]</code></td>
+<td>middleware</td>
+</tr>
+</tbody>
+</table>
+
+<hr>
+
 <p><a name="new"></a></p>
 
 <h5>
-<a id="telegrafnewtoken" class="anchor" href="#telegrafnewtoken" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>Telegraf.new(token)</code>
+<a id="new-telegraftoken" class="anchor" href="#new-telegraftoken" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>new Telegraf(token)</code>
 </h5>
 
 <p>Initialize new Telegraf app.</p>
@@ -388,7 +471,7 @@ To perform custom error-handling logic you can set <code>onError</code> handler:
 <p><a name="answercallbackquery"></a></p>
 
 <h5>
-<a id="telegrafanswercallbackquerycallbackqueryid-text-showalert--promise" class="anchor" href="#telegrafanswercallbackquerycallbackqueryid-text-showalert--promise" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>Telegraf.answerCallbackQuery(callbackQueryId, text, showAlert) =&gt; Promise</code>
+<a id="answercallbackquerycallbackqueryid-text-showalert--promise" class="anchor" href="#answercallbackquerycallbackqueryid-text-showalert--promise" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>.answerCallbackQuery(callbackQueryId, text, showAlert) =&gt; Promise</code>
 </h5>
 
 <p>Use this method to send answers to callback queries.</p>
@@ -408,12 +491,12 @@ To perform custom error-handling logic you can set <code>onError</code> handler:
 <td>Query id</td>
 </tr>
 <tr>
-<td>text</td>
+<td>[text]</td>
 <td><code>string</code></td>
 <td>Notification text</td>
 </tr>
 <tr>
-<td>showAlert</td>
+<td>[showAlert]</td>
 <td><code>bool</code></td>
 <td>Show alert instead of notification</td>
 </tr>
@@ -427,7 +510,7 @@ To perform custom error-handling logic you can set <code>onError</code> handler:
 <p><a name="answerinlinequery"></a></p>
 
 <h5>
-<a id="telegrafanswerinlinequeryinlinequeryid-results-extra--promise" class="anchor" href="#telegrafanswerinlinequeryinlinequeryid-results-extra--promise" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>Telegraf.answerInlineQuery(inlineQueryId, results, extra) =&gt; Promise</code>
+<a id="answerinlinequeryinlinequeryid-results-extra--promise" class="anchor" href="#answerinlinequeryinlinequeryid-results-extra--promise" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>.answerInlineQuery(inlineQueryId, results, extra) =&gt; Promise</code>
 </h5>
 
 <p>Use this method to send answers to an inline query.</p>
@@ -452,9 +535,9 @@ To perform custom error-handling logic you can set <code>onError</code> handler:
 <td>Results</td>
 </tr>
 <tr>
-<td>extra</td>
+<td>[extra]</td>
 <td><code>object</code></td>
-<td><a href="https://core.telegram.org/bots/api#answerinlinequery">Optional parameters</a></td>
+<td><a href="https://core.telegram.org/bots/api#answerinlinequery">Extra parameters</a></td>
 </tr>
 </tbody>
 </table>
@@ -464,7 +547,7 @@ To perform custom error-handling logic you can set <code>onError</code> handler:
 <p><a name="editmessagecaption"></a></p>
 
 <h5>
-<a id="telegrafeditmessagecaptionchatid-messageid-caption-extra--promise" class="anchor" href="#telegrafeditmessagecaptionchatid-messageid-caption-extra--promise" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>Telegraf.editMessageCaption(chatId, messageId, caption, extra) =&gt; Promise</code>
+<a id="editmessagecaptionchatid-messageid-caption-extra--promise" class="anchor" href="#editmessagecaptionchatid-messageid-caption-extra--promise" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>.editMessageCaption(chatId, messageId, caption, extra) =&gt; Promise</code>
 </h5>
 
 <p>Use this method to edit captions of messages sent by the bot or via the bot</p>
@@ -496,9 +579,9 @@ To perform custom error-handling logic you can set <code>onError</code> handler:
 <td>Caption</td>
 </tr>
 <tr>
-<td>extra</td>
+<td>[extra]</td>
 <td><code>object</code></td>
-<td><a href="https://core.telegram.org/bots/api#editmessagecaption">Optional parameters</a></td>
+<td><a href="https://core.telegram.org/bots/api#editmessagecaption">Extra parameters</a></td>
 </tr>
 </tbody>
 </table>
@@ -508,7 +591,7 @@ To perform custom error-handling logic you can set <code>onError</code> handler:
 <p><a name="editmessagereplymarkup"></a></p>
 
 <h5>
-<a id="telegrafeditmessagereplymarkupchatid-messageid-markup-extra--promise" class="anchor" href="#telegrafeditmessagereplymarkupchatid-messageid-markup-extra--promise" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>Telegraf.editMessageReplyMarkup(chatId, messageId, markup, extra) =&gt; Promise</code>
+<a id="editmessagereplymarkupchatid-messageid-markup-extra--promise" class="anchor" href="#editmessagereplymarkupchatid-messageid-markup-extra--promise" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>.editMessageReplyMarkup(chatId, messageId, markup, extra) =&gt; Promise</code>
 </h5>
 
 <p>Use this method to edit only the reply markup of messages sent by the bot or via the bot.</p>
@@ -540,9 +623,9 @@ To perform custom error-handling logic you can set <code>onError</code> handler:
 <td>Keyboard markup</td>
 </tr>
 <tr>
-<td>extra</td>
+<td>[extra]</td>
 <td><code>object</code></td>
-<td><a href="https://core.telegram.org/bots/api#editmessagereplymarkup">Optional parameters</a></td>
+<td><a href="https://core.telegram.org/bots/api#editmessagereplymarkup">Extra parameters</a></td>
 </tr>
 </tbody>
 </table>
@@ -552,7 +635,7 @@ To perform custom error-handling logic you can set <code>onError</code> handler:
 <p><a name="editmessagetext"></a></p>
 
 <h5>
-<a id="telegrafeditmessagetextchatid-messageid-text-extra--promise" class="anchor" href="#telegrafeditmessagetextchatid-messageid-text-extra--promise" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>Telegraf.editMessageText(chatId, messageId, text, extra) =&gt; Promise</code>
+<a id="editmessagetextchatid-messageid-text-extra--promise" class="anchor" href="#editmessagetextchatid-messageid-text-extra--promise" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>.editMessageText(chatId, messageId, text, extra) =&gt; Promise</code>
 </h5>
 
 <p>Use this method to edit text messages sent by the bot or via the bot.</p>
@@ -584,9 +667,9 @@ To perform custom error-handling logic you can set <code>onError</code> handler:
 <td>Message</td>
 </tr>
 <tr>
-<td>extra</td>
+<td>[extra]</td>
 <td><code>object</code></td>
-<td><a href="https://core.telegram.org/bots/api#editmessagetext">Optional parameters</a></td>
+<td><a href="https://core.telegram.org/bots/api#editmessagetext">Extra parameters</a></td>
 </tr>
 </tbody>
 </table>
@@ -596,7 +679,7 @@ To perform custom error-handling logic you can set <code>onError</code> handler:
 <p><a name="forwardmessage"></a></p>
 
 <h5>
-<a id="telegrafforwardmessagechatid-fromchatid-messageid-extra--promise" class="anchor" href="#telegrafforwardmessagechatid-fromchatid-messageid-extra--promise" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>Telegraf.forwardMessage(chatId, fromChatId, messageId, extra) =&gt; Promise</code>
+<a id="forwardmessagechatid-fromchatid-messageid-extra--promise" class="anchor" href="#forwardmessagechatid-fromchatid-messageid-extra--promise" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>.forwardMessage(chatId, fromChatId, messageId, extra) =&gt; Promise</code>
 </h5>
 
 <p>Forwards message.</p>
@@ -630,9 +713,9 @@ To perform custom error-handling logic you can set <code>onError</code> handler:
 <td>Message id</td>
 </tr>
 <tr>
-<td>extra</td>
+<td>[extra]</td>
 <td><code>object</code></td>
-<td><a href="https://core.telegram.org/bots/api#forwardmessage">Optional parameters</a></td>
+<td><a href="https://core.telegram.org/bots/api#forwardmessage">Extra parameters</a></td>
 </tr>
 </tbody>
 </table>
@@ -642,7 +725,7 @@ To perform custom error-handling logic you can set <code>onError</code> handler:
 <p><a name="getfile"></a></p>
 
 <h5>
-<a id="telegrafgetfilefileid--promise" class="anchor" href="#telegrafgetfilefileid--promise" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>Telegraf.getFile(fileId) =&gt; Promise</code>
+<a id="getfilefileid--promise" class="anchor" href="#getfilefileid--promise" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>.getFile(fileId) =&gt; Promise</code>
 </h5>
 
 <p>Returns basic info about a file and prepare it for downloading.</p>
@@ -671,7 +754,7 @@ To perform custom error-handling logic you can set <code>onError</code> handler:
 <p><a name="getFileLink"></a></p>
 
 <h5>
-<a id="telegrafgetfilelinkfileid--promise" class="anchor" href="#telegrafgetfilelinkfileid--promise" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>Telegraf.getFileLink(fileId) =&gt; Promise</code>
+<a id="getfilelinkfileid--promise" class="anchor" href="#getfilelinkfileid--promise" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>.getFileLink(fileId) =&gt; Promise</code>
 </h5>
 
 <p>Returns link to file.</p>
@@ -700,7 +783,7 @@ To perform custom error-handling logic you can set <code>onError</code> handler:
 <p><a name="getme"></a></p>
 
 <h5>
-<a id="telegrafgetme--promise" class="anchor" href="#telegrafgetme--promise" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>Telegraf.getMe() =&gt; Promise</code>
+<a id="getme--promise" class="anchor" href="#getme--promise" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>.getMe() =&gt; Promise</code>
 </h5>
 
 <p>Returns basic information about the bot.</p>
@@ -712,7 +795,7 @@ To perform custom error-handling logic you can set <code>onError</code> handler:
 <p><a name="getuserprofilephotos"></a></p>
 
 <h5>
-<a id="telegrafgetuserprofilephotosuserid-offset-limit--promise" class="anchor" href="#telegrafgetuserprofilephotosuserid-offset-limit--promise" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>Telegraf.getUserProfilePhotos(userId, offset, limit) =&gt; Promise</code>
+<a id="getuserprofilephotosuserid-offset-limit--promise" class="anchor" href="#getuserprofilephotosuserid-offset-limit--promise" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>.getUserProfilePhotos(userId, offset, limit) =&gt; Promise</code>
 </h5>
 
 <p>Returns profiles photos for provided user.</p>
@@ -751,7 +834,7 @@ To perform custom error-handling logic you can set <code>onError</code> handler:
 <p><a name="handleupdate"></a></p>
 
 <h5>
-<a id="telegrafhandleupdaterawupdate-webhookresponse" class="anchor" href="#telegrafhandleupdaterawupdate-webhookresponse" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>Telegraf.handleUpdate(rawUpdate, [webHookResponse])</code>
+<a id="handleupdaterawupdate-webhookresponse" class="anchor" href="#handleupdaterawupdate-webhookresponse" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>.handleUpdate(rawUpdate, [webHookResponse])</code>
 </h5>
 
 <p>Handle raw Telegram update. 
@@ -772,7 +855,7 @@ In case you use centralized webhook server, queue, etc.  </p>
 <td>Telegram update payload</td>
 </tr>
 <tr>
-<td>webHookResponse</td>
+<td>[webHookResponse]</td>
 <td><code>object</code></td>
 <td>(Optional) <a href="https://nodejs.org/api/http.html#http_class_http_serverresponse">http.ServerResponse</a>
 </td>
@@ -785,7 +868,7 @@ In case you use centralized webhook server, queue, etc.  </p>
 <p><a name="hears"></a></p>
 
 <h5>
-<a id="telegrafhearspattern-handler" class="anchor" href="#telegrafhearspattern-handler" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>Telegraf.hears(pattern, handler)</code>
+<a id="hearspattern-handler-handler" class="anchor" href="#hearspattern-handler-handler" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>.hears(pattern, handler, [handler...])</code>
 </h5>
 
 <p>Registers handler only for <code>text</code> events using string pattern or RegEx.</p>
@@ -808,7 +891,7 @@ In case you use centralized webhook server, queue, etc.  </p>
 </tr>
 <tr>
 <td>handler</td>
-<td><code>function</code></td>
+<td><code>GeneratorFunction</code></td>
 <td>Handler</td>
 </tr>
 </tbody>
@@ -819,7 +902,7 @@ In case you use centralized webhook server, queue, etc.  </p>
 <p><a name="kickchatmember"></a></p>
 
 <h5>
-<a id="telegrafkickchatmemberchatid-userid--promise" class="anchor" href="#telegrafkickchatmemberchatid-userid--promise" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>Telegraf.kickChatMember(chatId, userId) =&gt; Promise</code>
+<a id="kickchatmemberchatid-userid--promise" class="anchor" href="#kickchatmemberchatid-userid--promise" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>.kickChatMember(chatId, userId) =&gt; Promise</code>
 </h5>
 
 <p>Use this method to kick a user from a group or a supergroup.</p>
@@ -855,7 +938,7 @@ In case you use centralized webhook server, queue, etc.  </p>
 <p><a name="on"></a></p>
 
 <h5>
-<a id="telegrafoneventtype-handler" class="anchor" href="#telegrafoneventtype-handler" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>Telegraf.on(eventType, handler)</code>
+<a id="oneventtype-handler-handler" class="anchor" href="#oneventtype-handler-handler" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>.on(eventType, handler, [handler...])</code>
 </h5>
 
 <p>Registers handler for provided <a href="#events">event type</a>.</p>
@@ -878,7 +961,7 @@ In case you use centralized webhook server, queue, etc.  </p>
 </tr>
 <tr>
 <td>handler</td>
-<td><code>function</code></td>
+<td><code>GeneratorFunction</code></td>
 <td>Handler</td>
 </tr>
 </tbody>
@@ -889,7 +972,7 @@ In case you use centralized webhook server, queue, etc.  </p>
 <p><a name="removewebhook"></a></p>
 
 <h5>
-<a id="telegrafremovewebhook--promise" class="anchor" href="#telegrafremovewebhook--promise" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>Telegraf.removeWebHook() =&gt; Promise</code>
+<a id="removewebhook--promise" class="anchor" href="#removewebhook--promise" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>.removeWebHook() =&gt; Promise</code>
 </h5>
 
 <p>Removes webhook. Shortcut for <code>Telegraf.setWebHook('')</code></p>
@@ -901,7 +984,7 @@ In case you use centralized webhook server, queue, etc.  </p>
 <p><a name="sendaudio"></a></p>
 
 <h5>
-<a id="telegrafsendaudiochatid-audio-extra--promise" class="anchor" href="#telegrafsendaudiochatid-audio-extra--promise" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>Telegraf.sendAudio(chatId, audio, extra) =&gt; Promise</code>
+<a id="sendaudiochatid-audio-extra--promise" class="anchor" href="#sendaudiochatid-audio-extra--promise" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>.sendAudio(chatId, audio, extra) =&gt; Promise</code>
 </h5>
 
 <p>Sends audio.</p>
@@ -928,9 +1011,9 @@ In case you use centralized webhook server, queue, etc.  </p>
 <td>Document</td>
 </tr>
 <tr>
-<td>extra</td>
+<td>[extra]</td>
 <td><code>object</code></td>
-<td><a href="https://core.telegram.org/bots/api#sendaudio">Optional parameters</a></td>
+<td><a href="https://core.telegram.org/bots/api#sendaudio">Extra parameters</a></td>
 </tr>
 </tbody>
 </table>
@@ -940,7 +1023,7 @@ In case you use centralized webhook server, queue, etc.  </p>
 <p><a name="sendchataction"></a></p>
 
 <h5>
-<a id="telegrafsendchatactionchatid-action--promise" class="anchor" href="#telegrafsendchatactionchatid-action--promise" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>Telegraf.sendChatAction(chatId, action) =&gt; Promise</code>
+<a id="sendchatactionchatid-action--promise" class="anchor" href="#sendchatactionchatid-action--promise" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>.sendChatAction(chatId, action) =&gt; Promise</code>
 </h5>
 
 <p>Sends chat action.</p>
@@ -974,7 +1057,7 @@ In case you use centralized webhook server, queue, etc.  </p>
 <p><a name="sendcontact"></a></p>
 
 <h5>
-<a id="telegrafsendcontactchatid-phonenumber-firstname-extra--promise" class="anchor" href="#telegrafsendcontactchatid-phonenumber-firstname-extra--promise" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>Telegraf.sendContact(chatId, phoneNumber, firstName, extra) =&gt; Promise</code>
+<a id="sendcontactchatid-phonenumber-firstname-extra--promise" class="anchor" href="#sendcontactchatid-phonenumber-firstname-extra--promise" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>.sendContact(chatId, phoneNumber, firstName, extra) =&gt; Promise</code>
 </h5>
 
 <p>Sends document.</p>
@@ -1006,9 +1089,9 @@ In case you use centralized webhook server, queue, etc.  </p>
 <td>Contact first name</td>
 </tr>
 <tr>
-<td>extra</td>
+<td>[extra]</td>
 <td><code>object</code></td>
-<td><a href="https://core.telegram.org/bots/api#sendcontact">Optional parameters</a></td>
+<td><a href="https://core.telegram.org/bots/api#sendcontact">Extra parameters</a></td>
 </tr>
 </tbody>
 </table>
@@ -1018,7 +1101,7 @@ In case you use centralized webhook server, queue, etc.  </p>
 <p><a name="senddocument"></a></p>
 
 <h5>
-<a id="telegrafsenddocumentchatid-doc-extra--promise" class="anchor" href="#telegrafsenddocumentchatid-doc-extra--promise" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>Telegraf.sendDocument(chatId, doc, extra) =&gt; Promise</code>
+<a id="senddocumentchatid-doc-extra--promise" class="anchor" href="#senddocumentchatid-doc-extra--promise" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>.sendDocument(chatId, doc, extra) =&gt; Promise</code>
 </h5>
 
 <p>Sends document.</p>
@@ -1045,9 +1128,9 @@ In case you use centralized webhook server, queue, etc.  </p>
 <td>Document</td>
 </tr>
 <tr>
-<td>extra</td>
+<td>[extra]</td>
 <td><code>object</code></td>
-<td><a href="https://core.telegram.org/bots/api#senddocument">Optional parameters</a></td>
+<td><a href="https://core.telegram.org/bots/api#senddocument">Extra parameters</a></td>
 </tr>
 </tbody>
 </table>
@@ -1057,7 +1140,7 @@ In case you use centralized webhook server, queue, etc.  </p>
 <p><a name="sendlocation"></a></p>
 
 <h5>
-<a id="telegrafsendlocationchatid-latitude-longitude-extra--promise" class="anchor" href="#telegrafsendlocationchatid-latitude-longitude-extra--promise" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>Telegraf.sendLocation(chatId, latitude, longitude, extra) =&gt; Promise</code>
+<a id="sendlocationchatid-latitude-longitude-extra--promise" class="anchor" href="#sendlocationchatid-latitude-longitude-extra--promise" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>.sendLocation(chatId, latitude, longitude, extra) =&gt; Promise</code>
 </h5>
 
 <p>Sends location.</p>
@@ -1089,9 +1172,9 @@ In case you use centralized webhook server, queue, etc.  </p>
 <td>Longitude</td>
 </tr>
 <tr>
-<td>extra</td>
+<td>[extra]</td>
 <td><code>object</code></td>
-<td><a href="https://core.telegram.org/bots/api#sendlocation">Optional parameters</a></td>
+<td><a href="https://core.telegram.org/bots/api#sendlocation">Extra parameters</a></td>
 </tr>
 </tbody>
 </table>
@@ -1101,7 +1184,7 @@ In case you use centralized webhook server, queue, etc.  </p>
 <p><a name="sendmessage"></a></p>
 
 <h5>
-<a id="telegrafsendmessagechatid-text-extra--promise" class="anchor" href="#telegrafsendmessagechatid-text-extra--promise" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>Telegraf.sendMessage(chatId, text, extra) =&gt; Promise</code>
+<a id="sendmessagechatid-text-extra--promise" class="anchor" href="#sendmessagechatid-text-extra--promise" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>.sendMessage(chatId, text, extra) =&gt; Promise</code>
 </h5>
 
 <p>Sends text message.</p>
@@ -1128,9 +1211,9 @@ In case you use centralized webhook server, queue, etc.  </p>
 <td>Message</td>
 </tr>
 <tr>
-<td>extra</td>
+<td>[extra]</td>
 <td><code>object</code></td>
-<td><a href="https://core.telegram.org/bots/api#sendmessage">Optional parameters</a></td>
+<td><a href="https://core.telegram.org/bots/api#sendmessage">Extra parameters</a></td>
 </tr>
 </tbody>
 </table>
@@ -1140,7 +1223,7 @@ In case you use centralized webhook server, queue, etc.  </p>
 <p><a name="sendphoto"></a></p>
 
 <h5>
-<a id="telegrafsendphotochatid-photo-extra--promise" class="anchor" href="#telegrafsendphotochatid-photo-extra--promise" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>Telegraf.sendPhoto(chatId, photo, extra) =&gt; Promise</code>
+<a id="sendphotochatid-photo-extra--promise" class="anchor" href="#sendphotochatid-photo-extra--promise" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>.sendPhoto(chatId, photo, extra) =&gt; Promise</code>
 </h5>
 
 <p>Sends photo.</p>
@@ -1167,9 +1250,9 @@ In case you use centralized webhook server, queue, etc.  </p>
 <td>Photo</td>
 </tr>
 <tr>
-<td>extra</td>
+<td>[extra]</td>
 <td><code>object</code></td>
-<td><a href="https://core.telegram.org/bots/api#sendphoto">Optional parameters</a></td>
+<td><a href="https://core.telegram.org/bots/api#sendphoto">Extra parameters</a></td>
 </tr>
 </tbody>
 </table>
@@ -1179,7 +1262,7 @@ In case you use centralized webhook server, queue, etc.  </p>
 <p><a name="sendsticker"></a></p>
 
 <h5>
-<a id="telegrafsendstickerchatid-sticker-extra--promise" class="anchor" href="#telegrafsendstickerchatid-sticker-extra--promise" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>Telegraf.sendSticker(chatId, sticker, extra) =&gt; Promise</code>
+<a id="sendstickerchatid-sticker-extra--promise" class="anchor" href="#sendstickerchatid-sticker-extra--promise" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>.sendSticker(chatId, sticker, extra) =&gt; Promise</code>
 </h5>
 
 <p>Sends sticker.</p>
@@ -1206,9 +1289,9 @@ In case you use centralized webhook server, queue, etc.  </p>
 <td>Document</td>
 </tr>
 <tr>
-<td>extra</td>
+<td>[extra]</td>
 <td><code>object</code></td>
-<td><a href="https://core.telegram.org/bots/api#sendsticker">Optional parameters</a></td>
+<td><a href="https://core.telegram.org/bots/api#sendsticker">Extra parameters</a></td>
 </tr>
 </tbody>
 </table>
@@ -1218,7 +1301,7 @@ In case you use centralized webhook server, queue, etc.  </p>
 <p><a name="sendvenue"></a></p>
 
 <h5>
-<a id="telegrafsendvenuechatid-latitude-longitude-title-address-extra--promise" class="anchor" href="#telegrafsendvenuechatid-latitude-longitude-title-address-extra--promise" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>Telegraf.sendVenue(chatId, latitude, longitude, title, address, extra) =&gt; Promise</code>
+<a id="sendvenuechatid-latitude-longitude-title-address-extra--promise" class="anchor" href="#sendvenuechatid-latitude-longitude-title-address-extra--promise" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>.sendVenue(chatId, latitude, longitude, title, address, extra) =&gt; Promise</code>
 </h5>
 
 <p>Sends venue information.</p>
@@ -1260,9 +1343,9 @@ In case you use centralized webhook server, queue, etc.  </p>
 <td>Venue address</td>
 </tr>
 <tr>
-<td>extra</td>
+<td>[extra]</td>
 <td><code>object</code></td>
-<td><a href="https://core.telegram.org/bots/api#sendvenue">Optional parameters</a></td>
+<td><a href="https://core.telegram.org/bots/api#sendvenue">Extra parameters</a></td>
 </tr>
 </tbody>
 </table>
@@ -1272,7 +1355,7 @@ In case you use centralized webhook server, queue, etc.  </p>
 <p><a name="sendvideo"></a></p>
 
 <h5>
-<a id="telegrafsendvideochatid-video-extra--promise" class="anchor" href="#telegrafsendvideochatid-video-extra--promise" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>Telegraf.sendVideo(chatId, video, extra) =&gt; Promise</code>
+<a id="sendvideochatid-video-extra--promise" class="anchor" href="#sendvideochatid-video-extra--promise" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>.sendVideo(chatId, video, extra) =&gt; Promise</code>
 </h5>
 
 <p>Sends video.</p>
@@ -1299,9 +1382,9 @@ In case you use centralized webhook server, queue, etc.  </p>
 <td>Document</td>
 </tr>
 <tr>
-<td>extra</td>
+<td>[extra]</td>
 <td><code>object</code></td>
-<td><a href="https://core.telegram.org/bots/api#sendvideo">Optional parameters</a></td>
+<td><a href="https://core.telegram.org/bots/api#sendvideo">Extra parameters</a></td>
 </tr>
 </tbody>
 </table>
@@ -1311,7 +1394,7 @@ In case you use centralized webhook server, queue, etc.  </p>
 <p><a name="sendvoice"></a></p>
 
 <h5>
-<a id="telegrafsendvoicechatid-voice-extra--promise" class="anchor" href="#telegrafsendvoicechatid-voice-extra--promise" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>Telegraf.sendVoice(chatId, voice, extra) =&gt; Promise</code>
+<a id="sendvoicechatid-voice-extra--promise" class="anchor" href="#sendvoicechatid-voice-extra--promise" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>.sendVoice(chatId, voice, extra) =&gt; Promise</code>
 </h5>
 
 <p>Sends voice.</p>
@@ -1338,9 +1421,9 @@ In case you use centralized webhook server, queue, etc.  </p>
 <td>Document</td>
 </tr>
 <tr>
-<td>extra</td>
+<td>[extra]</td>
 <td><code>object</code></td>
-<td><a href="https://core.telegram.org/bots/api#sendvoice">Optional parameters</a></td>
+<td><a href="https://core.telegram.org/bots/api#sendvoice">Extra parameters</a></td>
 </tr>
 </tbody>
 </table>
@@ -1350,7 +1433,7 @@ In case you use centralized webhook server, queue, etc.  </p>
 <p><a name="setwebhook"></a></p>
 
 <h5>
-<a id="telegrafsetwebhookurl-cert--promise" class="anchor" href="#telegrafsetwebhookurl-cert--promise" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>Telegraf.setWebHook(url, [cert]) =&gt; Promise</code>
+<a id="setwebhookurl-cert--promise" class="anchor" href="#setwebhookurl-cert--promise" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>.setWebHook(url, [cert]) =&gt; Promise</code>
 </h5>
 
 <p>Specifies an url to receive incoming updates via an outgoing webhook.</p>
@@ -1370,7 +1453,7 @@ In case you use centralized webhook server, queue, etc.  </p>
 <td>Public url for webhook</td>
 </tr>
 <tr>
-<td>cert</td>
+<td>[cert]</td>
 <td><a href="#file"><code>File</code></a></td>
 <td>SSL public certificate</td>
 </tr>
@@ -1384,7 +1467,7 @@ In case you use centralized webhook server, queue, etc.  </p>
 <p><a name="startwebhook"></a></p>
 
 <h5>
-<a id="telegrafstartwebhookwebhookpath-tlsoptions-port-host" class="anchor" href="#telegrafstartwebhookwebhookpath-tlsoptions-port-host" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>Telegraf.startWebHook(webHookPath, tlsOptions, port, [host])</code>
+<a id="startwebhookwebhookpath-tlsoptions-port-host" class="anchor" href="#startwebhookwebhookpath-tlsoptions-port-host" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>.startWebHook(webHookPath, tlsOptions, port, [host])</code>
 </h5>
 
 <p>Start listening @ <code>https://host:port/webHookPath</code> for Telegram calls.</p>
@@ -1414,7 +1497,7 @@ In case you use centralized webhook server, queue, etc.  </p>
 <td>Port number</td>
 </tr>
 <tr>
-<td>host</td>
+<td>[host]</td>
 <td><code>string</code></td>
 <td>(Optional) Hostname</td>
 </tr>
@@ -1426,7 +1509,7 @@ In case you use centralized webhook server, queue, etc.  </p>
 <p><a name="startPolling"></a></p>
 
 <h5>
-<a id="telegrafstartpollingtimeout-limit" class="anchor" href="#telegrafstartpollingtimeout-limit" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>Telegraf.startPolling(timeout, limit)</code>
+<a id="startpollingtimeout-limit" class="anchor" href="#startpollingtimeout-limit" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>.startPolling(timeout, limit)</code>
 </h5>
 
 <p>Start poll updates.</p>
@@ -1461,7 +1544,7 @@ In case you use centralized webhook server, queue, etc.  </p>
 <p><a name="stop"></a></p>
 
 <h5>
-<a id="telegrafstop" class="anchor" href="#telegrafstop" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>Telegraf.stop()</code>
+<a id="stop" class="anchor" href="#stop" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>.stop()</code>
 </h5>
 
 <p>Stop WebHook and polling</p>
@@ -1471,7 +1554,7 @@ In case you use centralized webhook server, queue, etc.  </p>
 <p><a name="unbanchatmember"></a></p>
 
 <h5>
-<a id="telegrafunbanchatmemberchatid-userid--promise" class="anchor" href="#telegrafunbanchatmemberchatid-userid--promise" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>Telegraf.unbanChatMember(chatId, userId) =&gt; Promise</code>
+<a id="unbanchatmemberchatid-userid--promise" class="anchor" href="#unbanchatmemberchatid-userid--promise" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>.unbanChatMember(chatId, userId) =&gt; Promise</code>
 </h5>
 
 <p>Use this method to unban a previously kicked user in a supergroup.</p>
@@ -1507,7 +1590,7 @@ In case you use centralized webhook server, queue, etc.  </p>
 <p><a name="use"></a></p>
 
 <h5>
-<a id="telegrafusemiddleware" class="anchor" href="#telegrafusemiddleware" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>Telegraf.use(middleware)</code>
+<a id="usemiddleware" class="anchor" href="#usemiddleware" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>.use(middleware)</code>
 </h5>
 
 <p>Registers a middleware.</p>
@@ -1534,7 +1617,7 @@ In case you use centralized webhook server, queue, etc.  </p>
 <p><a name="webhookcallback"></a></p>
 
 <h5>
-<a id="telegrafwebhookcallbackwebhookpath--function" class="anchor" href="#telegrafwebhookcallbackwebhookpath--function" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>Telegraf.webHookCallback(webHookPath) =&gt; Function</code>
+<a id="webhookcallbackwebhookpath--function" class="anchor" href="#webhookcallbackwebhookpath--function" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>.webHookCallback(webHookPath) =&gt; Function</code>
 </h5>
 
 <p>Return a callback function suitable for the http[s].createServer() method to handle a request. 
@@ -1612,8 +1695,8 @@ You may also use this callback function to mount your telegraf app in a Koa/Conn
 <li><code>contact</code></li>
 <li><code>location</code></li>
 <li><code>venue</code></li>
-<li><code>new_chat_participant</code></li>
-<li><code>left_chat_participant</code></li>
+<li><code>new_chat_member</code></li>
+<li><code>left_chat_member</code></li>
 <li><code>new_chat_title</code></li>
 <li><code>new_chat_photo</code></li>
 <li><code>delete_chat_photo</code></li>
