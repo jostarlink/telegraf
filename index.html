@@ -28,8 +28,21 @@
         </ul>
       </header>
       <section>
-        <h1>
-<a id="installation" class="anchor" href="#installation" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Installation</h1>
+        <h2>
+<a id="features" class="anchor" href="#features" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Features</h2>
+
+<ul>
+<li>Full <a href="https://core.telegram.org/bots/api">Telegram Bot API 2.1</a> support;</li>
+<li>
+<a href="https://core.telegram.org/bots/api#inline-mode">Inline mode</a>;</li>
+<li>Middleware support(<a href="https://www.npmjs.com/search?q=telegraf-">Community middlewares on npm</a>);</li>
+<li>HTTP/HTTPS webhooks;</li>
+<li>Connect/express.js webhooks;</li>
+<li>Reply via webhook connection;</li>
+</ul>
+
+<h2>
+<a id="installation" class="anchor" href="#installation" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Installation</h2>
 
 <div class="highlight highlight-source-js"><pre>$ npm install telegraf</pre></div>
 
@@ -39,8 +52,8 @@
 <div class="highlight highlight-source-js"><pre><span class="pl-k">var</span> Telegraf <span class="pl-k">=</span> <span class="pl-c1">require</span>(<span class="pl-s"><span class="pl-pds">'</span>telegraf<span class="pl-pds">'</span></span>);
 <span class="pl-k">var</span> telegraf <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-en">Telegraf</span>(<span class="pl-c1">process</span>.<span class="pl-smi">env</span>.<span class="pl-c1">BOT_TOKEN</span>);
 
-<span class="pl-c">// Text messages handling</span>
-<span class="pl-smi">telegraf</span>.<span class="pl-en">hears</span>(<span class="pl-s"><span class="pl-pds">'</span>/answer<span class="pl-pds">'</span></span>, <span class="pl-k">function</span> <span class="pl-k">*</span> () {
+<span class="pl-c">// Message handling</span>
+<span class="pl-smi">telegraf</span>.<span class="pl-en">on</span>(<span class="pl-s"><span class="pl-pds">'</span>message<span class="pl-pds">'</span></span>, <span class="pl-k">function</span> <span class="pl-k">*</span> () {
   <span class="pl-v">this</span>.<span class="pl-en">reply</span>(<span class="pl-s"><span class="pl-pds">'</span>*42*<span class="pl-pds">'</span></span>, { parse_mode<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>Markdown<span class="pl-pds">'</span></span> })
 })
 
@@ -57,6 +70,11 @@
   <span class="pl-k">yield</span> <span class="pl-v">this</span>.<span class="pl-en">reply</span>(<span class="pl-s"><span class="pl-pds">'</span>yo<span class="pl-pds">'</span></span>)
   <span class="pl-k">yield</span> next
 }
+
+<span class="pl-c">// Command handling</span>
+<span class="pl-smi">telegraf</span>.<span class="pl-en">hears</span>(<span class="pl-s"><span class="pl-pds">'</span>/command<span class="pl-pds">'</span></span>, sayYoMiddleware, <span class="pl-k">function</span> <span class="pl-k">*</span> () {
+  <span class="pl-v">this</span>.<span class="pl-en">reply</span>(<span class="pl-s"><span class="pl-pds">'</span>Sure<span class="pl-pds">'</span></span>)
+})
 
 <span class="pl-c">// Wow! RegEx</span>
 <span class="pl-smi">telegraf</span>.<span class="pl-en">hears</span>(<span class="pl-sr"><span class="pl-pds">/</span>reverse (<span class="pl-c1">.</span><span class="pl-k">+</span>)<span class="pl-pds">/</span></span>, sayYoMiddleware, <span class="pl-k">function</span> <span class="pl-k">*</span> () {
@@ -124,16 +142,19 @@ its upstream behaviour.</p>
 <p>A Telegraf Context encapsulates telegram message.
 Context is created per request, and is referenced in middleware as the receiver, or the this identifier, as shown in the following snippet:</p>
 
-<div class="highlight highlight-source-js"><pre><span class="pl-smi">telegraf</span>.<span class="pl-en">use</span>(<span class="pl-k">function</span> <span class="pl-k">*</span> (){
-  <span class="pl-v">this</span>.<span class="pl-smi">telegraf</span>           <span class="pl-c">// Telegraf instance</span>
-  <span class="pl-v">this</span>.<span class="pl-smi">eventType</span>          <span class="pl-c">// Event type(message, inline_query, etc.)</span>
-  <span class="pl-v">this</span>.<span class="pl-smi">eventSubType</span>       <span class="pl-c">// Event subtype(text, sticker, audio, etc.)</span>
-  <span class="pl-v">this</span>.<span class="pl-smi">message</span>            <span class="pl-c">// Received message</span>
-  <span class="pl-v">this</span>.<span class="pl-smi">inlineQuery</span>        <span class="pl-c">// Received inline query</span>
-  <span class="pl-v">this</span>.<span class="pl-smi">chosenInlineResult</span> <span class="pl-c">// Received inline query result</span>
-  <span class="pl-v">this</span>.<span class="pl-smi">callbackQuery</span>      <span class="pl-c">// Received callback query</span>
-  <span class="pl-v">this</span>.<span class="pl-smi">match</span>              <span class="pl-c">// Regex match (available only for `hears` handler)</span>
-});</pre></div>
+<div class="highlight highlight-source-js"><pre><span class="pl-smi">telegraf</span>.<span class="pl-en">use</span>(<span class="pl-k">function</span> <span class="pl-k">*</span> () {
+  <span class="pl-v">this</span>.<span class="pl-smi">telegraf</span>             <span class="pl-c">// Telegraf instance</span>
+  <span class="pl-v">this</span>.<span class="pl-smi">updateType</span>           <span class="pl-c">// Update type(message, inline_query, etc.)</span>
+  [<span class="pl-v">this</span>.<span class="pl-smi">updateSubType</span>]      <span class="pl-c">// Update subtype(text, sticker, audio, etc.)</span>
+  [<span class="pl-v">this</span>.<span class="pl-smi">message</span>]            <span class="pl-c">// Received message</span>
+  [<span class="pl-v">this</span>.<span class="pl-smi">editedMessage</span>]      <span class="pl-c">// Edited message</span>
+  [<span class="pl-v">this</span>.<span class="pl-smi">inlineQuery</span>]        <span class="pl-c">// Received inline query</span>
+  [<span class="pl-v">this</span>.<span class="pl-smi">chosenInlineResult</span>] <span class="pl-c">// Received inline query result</span>
+  [<span class="pl-v">this</span>.<span class="pl-smi">callbackQuery</span>]      <span class="pl-c">// Received callback query</span>
+  [<span class="pl-v">this</span>.<span class="pl-smi">chat</span>]               <span class="pl-c">// Current chat info</span>
+  [<span class="pl-v">this</span>.<span class="pl-smi">from</span>]               <span class="pl-c">// Sender info</span>
+  [<span class="pl-v">this</span>.<span class="pl-smi">match</span>]              <span class="pl-c">// Regex match (available only for `hears` handler)</span>
+})</pre></div>
 
 <p>The recommended way to extend application context.</p>
 
@@ -147,6 +168,60 @@ Context is created per request, and is referenced in middleware as the receiver,
   <span class="pl-k">var</span> scores <span class="pl-k">=</span> <span class="pl-v">this</span>.<span class="pl-smi">db</span>.<span class="pl-en">getScores</span>(<span class="pl-v">this</span>.<span class="pl-smi">message</span>.<span class="pl-smi">from</span>.<span class="pl-smi">username</span>)
   <span class="pl-v">this</span>.<span class="pl-en">reply</span>(<span class="pl-s"><span class="pl-pds">`</span><span class="pl-s1"><span class="pl-pse">${</span><span class="pl-v">this</span>.<span class="pl-smi">message</span>.<span class="pl-smi">from</span>.<span class="pl-smi">username</span><span class="pl-pse">}</span></span>: <span class="pl-s1"><span class="pl-pse">${</span>score<span class="pl-pse">}</span></span><span class="pl-pds">`</span></span>)
 })</pre></div>
+
+<h3>
+<a id="update-types" class="anchor" href="#update-types" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Update types</h3>
+
+<p>Supported update types:</p>
+
+<ul>
+<li><code>message</code></li>
+<li><code>edited_message</code></li>
+<li><code>inline_query</code></li>
+<li><code>chosen_inline_result</code></li>
+<li><code>callback_query</code></li>
+</ul>
+
+<p>Available update sub-types:</p>
+
+<ul>
+<li><code>text</code></li>
+<li><code>audio</code></li>
+<li><code>document</code></li>
+<li><code>photo</code></li>
+<li><code>sticker</code></li>
+<li><code>video</code></li>
+<li><code>voice</code></li>
+<li><code>contact</code></li>
+<li><code>location</code></li>
+<li><code>venue</code></li>
+<li><code>new_chat_member</code></li>
+<li><code>left_chat_member</code></li>
+<li><code>new_chat_title</code></li>
+<li><code>new_chat_photo</code></li>
+<li><code>delete_chat_photo</code></li>
+<li><code>group_chat_created</code></li>
+<li><code>supergroup_chat_created</code></li>
+<li><code>channel_chat_created</code></li>
+<li><code>migrate_to_chat_id</code></li>
+<li><code>migrate_from_chat_id</code></li>
+<li><code>pinned_message</code></li>
+</ul>
+
+<div class="highlight highlight-source-js"><pre>
+<span class="pl-c">// Handle message update</span>
+<span class="pl-smi">telegraf</span>.<span class="pl-en">on</span>(<span class="pl-s"><span class="pl-pds">'</span>message<span class="pl-pds">'</span></span>, <span class="pl-k">function</span> <span class="pl-k">*</span> () {
+  <span class="pl-v">this</span>.<span class="pl-en">reply</span>(<span class="pl-s"><span class="pl-pds">'</span>Hey there!<span class="pl-pds">'</span></span>)
+})
+
+<span class="pl-c">// Handle sticker update</span>
+<span class="pl-smi">telegraf</span>.<span class="pl-en">on</span>([<span class="pl-s"><span class="pl-pds">'</span>sticker<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>photo<span class="pl-pds">'</span></span>], <span class="pl-k">function</span> <span class="pl-k">*</span> () {
+  <span class="pl-en">console</span>.<span class="pl-c1">log</span>(<span class="pl-v">this</span>.<span class="pl-smi">message</span>)
+  <span class="pl-v">this</span>.<span class="pl-en">reply</span>(<span class="pl-s"><span class="pl-pds">'</span>Cool!<span class="pl-pds">'</span></span>)
+})
+</pre></div>
+
+<p><sub><a href="https://core.telegram.org/bots/api#message">Related Telegram api docs</a></sub></p>
 
 <h3>
 <a id="state" class="anchor" href="#state" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>State</h3>
@@ -169,7 +244,7 @@ Context is created per request, and is referenced in middleware as the receiver,
 
 <div class="highlight highlight-source-js"><pre><span class="pl-k">var</span> telegraf <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-en">Telegraf</span>(<span class="pl-c1">process</span>.<span class="pl-smi">env</span>.<span class="pl-c1">BOT_TOKEN</span>)
 
-<span class="pl-c">// Session will be lost on app restart</span>
+<span class="pl-c">// Session state will be lost on app restart</span>
 <span class="pl-smi">telegraf</span>.<span class="pl-en">use</span>(<span class="pl-smi">Telegraf</span>.<span class="pl-en">memorySession</span>())
 
 <span class="pl-smi">telegraf</span>.<span class="pl-en">on</span>(<span class="pl-s"><span class="pl-pds">'</span>text<span class="pl-pds">'</span></span>, <span class="pl-k">function</span> <span class="pl-k">*</span> (){
@@ -248,46 +323,110 @@ To perform custom error-handling logic you can set <code>onError</code> handler:
 
 <p>Telegraf context shortcuts:</p>
 
-<p><strong>Available shortcuts</strong></p>
+<p>Available shortcuts:</p>
+
+<p><strong>message</strong> update:</p>
 
 <ul>
 <li>
-<code>message</code> event
-
-<ul>
-<li><code>reply() -&gt; telegraf.sendMessage()</code></li>
-<li><code>replyWithPhoto() -&gt; telegraf.sendPhoto()</code></li>
-<li><code>replyWithAudio() -&gt; telegraf.sendAudio()</code></li>
-<li><code>replyWithDocument() -&gt; telegraf.sendDocument()</code></li>
-<li><code>replyWithSticker() -&gt; telegraf.sendSticker()</code></li>
-<li><code>replyWithVideo() -&gt; telegraf.sendVideo()</code></li>
-<li><code>replyWithVoice() -&gt; telegraf.sendVoice()</code></li>
-<li><code>replyWithChatAction() -&gt; telegraf.sendChatAction()</code></li>
-<li><code>replyWithLocation() -&gt; telegraf.sendLocation()</code></li>
-</ul>
+<code>getChat() -&gt;</code><a href="#getchat"><code>telegraf.getChat()</code></a>
 </li>
 <li>
-<code>callback_query</code> event
-
-<ul>
-<li><code>answerCallbackQuery() -&gt; telegraf.answerCallbackQuery()</code></li>
-<li><code>reply() -&gt; telegraf.sendMessage()</code></li>
-<li><code>replyWithPhoto() -&gt; telegraf.sendPhoto()</code></li>
-<li><code>replyWithAudio() -&gt; telegraf.sendAudio()</code></li>
-<li><code>replyWithDocument() -&gt; telegraf.sendDocument()</code></li>
-<li><code>replyWithSticker() -&gt; telegraf.sendSticker()</code></li>
-<li><code>replyWithVideo() -&gt; telegraf.sendVideo()</code></li>
-<li><code>replyWithVoice() -&gt; telegraf.sendVoice()</code></li>
-<li><code>replyWithChatAction() -&gt; telegraf.sendChatAction()</code></li>
-<li><code>replyWithLocation() -&gt; telegraf.sendLocation()</code></li>
-</ul>
+<code>getChatAdministrators() -&gt;</code><a href="#getchatadministrators"><code>telegraf.getChatAdministrators()</code></a>
 </li>
 <li>
-<code>inline_query</code> event
+<code>getChatMember() -&gt;</code><a href="#getchatmember"><code>telegraf.getChatMember()</code></a>
+</li>
+<li>
+<code>getChatMembersCount() -&gt;</code><a href="#getchatmemberscount"><code>telegraf.getChatMembersCount()</code></a>
+</li>
+<li>
+<code>leaveChat() -&gt;</code><a href="#leavechat"><code>telegraf.leaveChat()</code></a>
+</li>
+<li>
+<code>reply() -&gt;</code><a href="#sendmessage"><code>telegraf.sendMessage()</code></a>
+</li>
+<li>
+<code>replyWithAudio() -&gt;</code><a href="#sendaudio"><code>telegraf.sendAudio()</code></a>
+</li>
+<li>
+<code>replyWithChatAction() -&gt;</code><a href="#sendchataction"><code>telegraf.sendChatAction()</code></a>
+</li>
+<li>
+<code>replyWithDocument() -&gt;</code><a href="#senddocument"><code>telegraf.sendDocument()</code></a>
+</li>
+<li>
+<code>replyWithLocation() -&gt;</code><a href="#sendlocation"><code>telegraf.sendLocation()</code></a>
+</li>
+<li>
+<code>replyWithPhoto() -&gt;</code><a href="#sendphoto"><code>telegraf.sendPhoto()</code></a>
+</li>
+<li>
+<code>replyWithSticker() -&gt;</code><a href="#sendsticker"><code>telegraf.sendSticker()</code></a>
+</li>
+<li>
+<code>replyWithVideo() -&gt;</code><a href="#sendvideo"><code>telegraf.sendVideo()</code></a>
+</li>
+<li>
+<code>replyWithVoice() -&gt;</code><a href="#sendvoice"><code>telegraf.sendVoice()</code></a>
+</li>
+</ul>
+
+<p><strong>callback_query</strong> update:</p>
 
 <ul>
-<li><code>answerInlineQuery() -&gt; telegraf.answerInlineQuery()</code></li>
+<li>
+<code>answerCallbackQuery() -&gt;</code><a href="#answercallbackquery"><code>telegraf.answerCallbackQuery()</code></a>
+</li>
+<li>
+<code>getChat() -&gt;</code><a href="#getchat"><code>telegraf.getChat()</code></a>
+</li>
+<li>
+<code>getChatAdministrators() -&gt;</code><a href="#getchatadministrators"><code>telegraf.getChatAdministrators()</code></a>
+</li>
+<li>
+<code>getChatMember() -&gt;</code><a href="#getchatmember"><code>telegraf.getChatMember()</code></a>
+</li>
+<li>
+<code>getChatMembersCount() -&gt;</code><a href="#getchatmemberscount"><code>telegraf.getChatMembersCount()</code></a>
+</li>
+<li>
+<code>leaveChat() -&gt;</code><a href="#leavechat"><code>telegraf.leaveChat()</code></a>
+</li>
+<li>
+<code>reply() -&gt;</code><a href="#sendmessage"><code>telegraf.sendMessage()</code></a>
+</li>
+<li>
+<code>replyWithAudio() -&gt;</code><a href="#sendaudio"><code>telegraf.sendAudio()</code></a>
+</li>
+<li>
+<code>replyWithChatAction() -&gt;</code><a href="#sendchataction"><code>telegraf.sendChatAction()</code></a>
+</li>
+<li>
+<code>replyWithDocument() -&gt;</code><a href="#senddocument"><code>telegraf.sendDocument()</code></a>
+</li>
+<li>
+<code>replyWithLocation() -&gt;</code><a href="#sendlocation"><code>telegraf.sendLocation()</code></a>
+</li>
+<li>
+<code>replyWithPhoto() -&gt;</code><a href="#sendphoto"><code>telegraf.sendPhoto()</code></a>
+</li>
+<li>
+<code>replyWithSticker() -&gt;</code><a href="#sendsticker"><code>telegraf.sendSticker()</code></a>
+</li>
+<li>
+<code>replyWithVideo() -&gt;</code><a href="#sendvideo"><code>telegraf.sendVideo()</code></a>
+</li>
+<li>
+<code>replyWithVoice() -&gt;</code><a href="#sendvoice"><code>telegraf.sendVoice()</code></a>
+</li>
 </ul>
+
+<p><strong>inline_query</strong> update:</p>
+
+<ul>
+<li>
+<code>answerInlineQuery() -&gt;</code><a href="#answerinlinequery"><code>telegraf.answerInlineQuery()</code></a>
 </li>
 </ul>
 
@@ -305,6 +444,14 @@ To perform custom error-handling logic you can set <code>onError</code> handler:
 
   <span class="pl-c">// If you want to mark message as reply to source message</span>
   <span class="pl-v">this</span>.<span class="pl-en">reply</span>(<span class="pl-s"><span class="pl-pds">`</span>Hello <span class="pl-s1"><span class="pl-pse">${</span><span class="pl-v">this</span>.<span class="pl-smi">state</span>.<span class="pl-smi">role</span><span class="pl-pse">}</span></span><span class="pl-pds">`</span></span>, { reply_to_message_id<span class="pl-k">:</span> <span class="pl-v">this</span>.<span class="pl-smi">message</span>.<span class="pl-c1">id</span> })
+})
+
+<span class="pl-smi">telegraf</span>.<span class="pl-en">on</span>(<span class="pl-s"><span class="pl-pds">'</span>/quit<span class="pl-pds">'</span></span>, <span class="pl-k">function</span> <span class="pl-k">*</span> (){
+  <span class="pl-c">// Simple usage </span>
+  <span class="pl-smi">telegraf</span>.<span class="pl-en">leaveChat</span>(<span class="pl-v">this</span>.<span class="pl-smi">message</span>.<span class="pl-smi">chat</span>.<span class="pl-c1">id</span>)
+
+  <span class="pl-c">// Using shortcut</span>
+  <span class="pl-v">this</span>.<span class="pl-en">leaveChat</span>()
 })
 
 <span class="pl-smi">telegraf</span>.<span class="pl-en">on</span>(<span class="pl-s"><span class="pl-pds">'</span>callback_query<span class="pl-pds">'</span></span>, <span class="pl-k">function</span> <span class="pl-k">*</span> (){
@@ -340,6 +487,10 @@ To perform custom error-handling logic you can set <code>onError</code> handler:
 <li><a href="#editmessagereplymarkup"><code>.editMessageReplyMarkup(chatId, messageId, markup, extra)</code></a></li>
 <li><a href="#editmessagetext"><code>.editMessageText(chatId, messageId, text, extra)</code></a></li>
 <li><a href="#forwardmessage"><code>.forwardMessage(chatId, fromChatId, messageId, extra)</code></a></li>
+<li><a href="#getchat"><code>.getChat(chatId)</code></a></li>
+<li><a href="#getchatadministrators"><code>.getChatAdministrators(chatId)</code></a></li>
+<li><a href="#getchatmember"><code>.getChatMember(chatId, userId)</code></a></li>
+<li><a href="#getchatmemberscount"><code>.getChatMembersCount(chatId)</code></a></li>
 <li><a href="#getfile"><code>.getFile(fileId)</code></a></li>
 <li><a href="#getFileLink"><code>.getFileLink(fileId)</code></a></li>
 <li><a href="#getme"><code>.getMe()</code></a></li>
@@ -347,6 +498,7 @@ To perform custom error-handling logic you can set <code>onError</code> handler:
 <li><a href="#handleupdate"><code>.handleUpdate(rawUpdate, response)</code></a></li>
 <li><a href="#hears"><code>.hears(string|ReGex, handler, [handler...])</code></a></li>
 <li><a href="#kickchatmember"><code>.kickChatMember(chatId, userId)</code></a></li>
+<li><a href="#leavechat"><code>.leaveChat(chatId)</code></a></li>
 <li><a href="#on"><code>.on(messageType, handler, [handler...])</code></a></li>
 <li><a href="#removewebhook"><code>.removeWebHook()</code></a></li>
 <li><a href="#sendaudio"><code>.sendAudio(chatId, audio, extra)</code></a></li>
@@ -376,10 +528,10 @@ To perform custom error-handling logic you can set <code>onError</code> handler:
 <p><a name="handler"></a></p>
 
 <h5>
-<a id="telegrafhandlereventtype-handler-handler--generatorfunction" class="anchor" href="#telegrafhandlereventtype-handler-handler--generatorfunction" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>Telegraf.handler(eventType, handler, [handler...]) =&gt; GeneratorFunction</code>
+<a id="telegrafhandlerupdatetype-handler-handler--generatorfunction" class="anchor" href="#telegrafhandlerupdatetype-handler-handler--generatorfunction" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>Telegraf.handler(updateType, handler, [handler...]) =&gt; GeneratorFunction</code>
 </h5>
 
-<p>Generates middleware for handling provided <a href="#events">event type</a>.</p>
+<p>Generates middleware for handling provided <a href="#update-types">update type</a>.</p>
 
 <table>
 <thead>
@@ -391,11 +543,11 @@ To perform custom error-handling logic you can set <code>onError</code> handler:
 </thead>
 <tbody>
 <tr>
-<td>eventType</td>
+<td>updateType</td>
 <td>
 <code>string</code>|<code>string[]</code>
 </td>
-<td><a href="#events">Event type</a></td>
+<td><a href="#update-types">update type</a></td>
 </tr>
 <tr>
 <td>handler</td>
@@ -715,6 +867,128 @@ To perform custom error-handling logic you can set <code>onError</code> handler:
 
 <hr>
 
+<p><a name="getchat"></a></p>
+
+<h5>
+<a id="getchatchatid--promise" class="anchor" href="#getchatchatid--promise" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>.getChat(chatId) =&gt; Promise</code>
+</h5>
+
+<p>Use this method to get up to date information about the chat (current name of the user for one-on-one conversations, current username of a user, group or channel, etc.).</p>
+
+<table>
+<thead>
+<tr>
+<th>Param</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>chatId</td>
+<td>
+<code>number</code>|<code>string</code>
+</td>
+<td>Chat id</td>
+</tr>
+</tbody>
+</table>
+
+<p><sub><a href="https://core.telegram.org/bots/api#getchat">Related Telegram api docs</a></sub></p>
+
+<hr>
+
+<p><a name="getchatadministrators"></a></p>
+
+<h5>
+<a id="getchatadministratorschatid--promise" class="anchor" href="#getchatadministratorschatid--promise" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>.getChatAdministrators(chatId) =&gt; Promise</code>
+</h5>
+
+<p>Use this method to get a list of administrators in a chat. On success, returns an Array of ChatMember objects that contains information about all chat administrators except other bots. If the chat is a group or a supergroup and no administrators were appointed, only the creator will be returned.</p>
+
+<table>
+<thead>
+<tr>
+<th>Param</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>chatId</td>
+<td>
+<code>number</code>|<code>string</code>
+</td>
+<td>Chat id</td>
+</tr>
+</tbody>
+</table>
+
+<p><sub><a href="https://core.telegram.org/bots/api#getchatadministrators">Related Telegram api docs</a></sub></p>
+
+<hr>
+
+<p><a name="getchatmember"></a></p>
+
+<h5>
+<a id="getchatmemberchatid--promise" class="anchor" href="#getchatmemberchatid--promise" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>.getChatMember(chatId) =&gt; Promise</code>
+</h5>
+
+<p>Use this method to get information about a member of a chat.</p>
+
+<table>
+<thead>
+<tr>
+<th>Param</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>chatId</td>
+<td>
+<code>number</code>|<code>string</code>
+</td>
+<td>Chat id</td>
+</tr>
+</tbody>
+</table>
+
+<p><sub><a href="https://core.telegram.org/bots/api#getchatmember">Related Telegram api docs</a></sub></p>
+
+<p><a name="getchatmemberscount"></a></p>
+
+<h5>
+<a id="getchatmemberscountchatid--promise" class="anchor" href="#getchatmemberscountchatid--promise" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>.getChatMembersCount(chatId) =&gt; Promise</code>
+</h5>
+
+<p>Use this method to get the number of members in a chat.</p>
+
+<table>
+<thead>
+<tr>
+<th>Param</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>chatId</td>
+<td>
+<code>number</code>|<code>string</code>
+</td>
+<td>Chat id</td>
+</tr>
+</tbody>
+</table>
+
+<p><sub><a href="https://core.telegram.org/bots/api#getchatmemberscount">Related Telegram api docs</a></sub></p>
+
+<hr>
+
 <p><a name="getfile"></a></p>
 
 <h5>
@@ -864,7 +1138,7 @@ In case you use centralized webhook server, queue, etc.  </p>
 <a id="hearspattern-handler-handler" class="anchor" href="#hearspattern-handler-handler" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>.hears(pattern, handler, [handler...])</code>
 </h5>
 
-<p>Registers handler only for <code>text</code> events using string pattern or RegEx.</p>
+<p>Registers handler only for <code>text</code> updates using string pattern or RegEx.</p>
 
 <table>
 <thead>
@@ -928,13 +1202,13 @@ In case you use centralized webhook server, queue, etc.  </p>
 
 <hr>
 
-<p><a name="on"></a></p>
+<p><a name="leavechat"></a></p>
 
 <h5>
-<a id="oneventtype-handler-handler" class="anchor" href="#oneventtype-handler-handler" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>.on(eventType, handler, [handler...])</code>
+<a id="leavechatchatid--promise" class="anchor" href="#leavechatchatid--promise" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>.leaveChat(chatId) =&gt; Promise</code>
 </h5>
 
-<p>Registers handler for provided <a href="#events">event type</a>.</p>
+<p>Use this method for your bot to leave a group, supergroup or channel.</p>
 
 <table>
 <thead>
@@ -946,11 +1220,42 @@ In case you use centralized webhook server, queue, etc.  </p>
 </thead>
 <tbody>
 <tr>
-<td>eventType</td>
+<td>chatId</td>
+<td>
+<code>number</code>|<code>string</code>
+</td>
+<td>Chat id</td>
+</tr>
+</tbody>
+</table>
+
+<p><sub><a href="https://core.telegram.org/bots/api#leavechat">Related Telegram api docs</a></sub></p>
+
+<hr>
+
+<p><a name="on"></a></p>
+
+<h5>
+<a id="onupdatetype-handler-handler" class="anchor" href="#onupdatetype-handler-handler" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>.on(updateType, handler, [handler...])</code>
+</h5>
+
+<p>Registers handler for provided <a href="#update-types">update type</a>.</p>
+
+<table>
+<thead>
+<tr>
+<th>Param</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>updateType</td>
 <td>
 <code>string</code>|<code>string[]</code>
 </td>
-<td><a href="#events">Event type</a></td>
+<td><a href="#update-types">update type</a></td>
 </tr>
 <tr>
 <td>handler</td>
@@ -1662,59 +1967,6 @@ You may also use this callback function to mount your telegraf app in a Koa/Conn
   <span class="pl-smi">telegraf</span>.<span class="pl-en">sendSticker</span>(<span class="pl-s"><span class="pl-pds">'</span>chatId<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>123123jkbhj6b<span class="pl-pds">'</span></span>)</pre></div>
 
 <p><sub><a href="https://core.telegram.org/bots/api#file">Related Telegram api docs</a></sub></p>
-
-<h3>
-<a id="events" class="anchor" href="#events" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Events</h3>
-
-<p>Supported event:</p>
-
-<ul>
-<li><code>message</code></li>
-<li><code>inline_query</code></li>
-<li><code>chosen_inline_result</code></li>
-<li><code>callback_query</code></li>
-</ul>
-
-<p>Available virtual events:</p>
-
-<ul>
-<li><code>text</code></li>
-<li><code>audio</code></li>
-<li><code>document</code></li>
-<li><code>photo</code></li>
-<li><code>sticker</code></li>
-<li><code>video</code></li>
-<li><code>voice</code></li>
-<li><code>contact</code></li>
-<li><code>location</code></li>
-<li><code>venue</code></li>
-<li><code>new_chat_member</code></li>
-<li><code>left_chat_member</code></li>
-<li><code>new_chat_title</code></li>
-<li><code>new_chat_photo</code></li>
-<li><code>delete_chat_photo</code></li>
-<li><code>group_chat_created</code></li>
-<li><code>supergroup_chat_created</code></li>
-<li><code>channel_chat_created</code></li>
-<li><code>migrate_to_chat_id</code></li>
-<li><code>migrate_from_chat_id</code></li>
-<li><code>pinned_message</code></li>
-</ul>
-
-<div class="highlight highlight-source-js"><pre>
-<span class="pl-c">// Handle all messages</span>
-<span class="pl-smi">telegraf</span>.<span class="pl-en">on</span>(<span class="pl-s"><span class="pl-pds">'</span>message<span class="pl-pds">'</span></span>, <span class="pl-k">function</span> <span class="pl-k">*</span> () {
-  <span class="pl-v">this</span>.<span class="pl-en">reply</span>(<span class="pl-s"><span class="pl-pds">'</span>Hey there!<span class="pl-pds">'</span></span>)
-})
-
-<span class="pl-c">// Handle virtual events</span>
-<span class="pl-smi">telegraf</span>.<span class="pl-en">on</span>([<span class="pl-s"><span class="pl-pds">'</span>sticker<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>photo<span class="pl-pds">'</span></span>], <span class="pl-k">function</span> <span class="pl-k">*</span> () {
-  <span class="pl-en">console</span>.<span class="pl-c1">log</span>(<span class="pl-v">this</span>.<span class="pl-smi">message</span>)
-  <span class="pl-v">this</span>.<span class="pl-en">reply</span>(<span class="pl-s"><span class="pl-pds">'</span>Cool!<span class="pl-pds">'</span></span>)
-})
-</pre></div>
-
-<p><sub><a href="https://core.telegram.org/bots/api#message">Related Telegram api docs</a></sub></p>
 
 <h2>
 <a id="license" class="anchor" href="#license" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>License</h2>
