@@ -72,7 +72,7 @@
 }
 
 <span class="pl-c">// Command handling</span>
-<span class="pl-smi">app</span>.<span class="pl-en">hears</span>(<span class="pl-s"><span class="pl-pds">'</span>/command<span class="pl-pds">'</span></span>, sayYoMiddleware, (<span class="pl-smi">ctx</span>) <span class="pl-k">=&gt;</span> {
+<span class="pl-smi">app</span>.<span class="pl-en">command</span>(<span class="pl-s"><span class="pl-pds">'</span>/command<span class="pl-pds">'</span></span>, sayYoMiddleware, (<span class="pl-smi">ctx</span>) <span class="pl-k">=&gt;</span> {
   <span class="pl-k">return</span> <span class="pl-smi">ctx</span>.<span class="pl-en">reply</span>(<span class="pl-s"><span class="pl-pds">'</span>Sure<span class="pl-pds">'</span></span>)
 })
 
@@ -246,7 +246,7 @@ To perform custom error-handling logic you can set <code>onError</code> handler:
 <h2>
 <a id="api-reference" class="anchor" href="#api-reference" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>API reference</h2>
 
-<p><a href="/api.md">Telegraf API reference</a></p>
+<p><a href="https://github.com/telegraf/telegraf/blob/master/api.md">Telegraf API reference</a></p>
 
 <h2>
 <a id="license" class="anchor" href="#license" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>License</h2>
