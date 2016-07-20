@@ -16,7 +16,7 @@
     <div class="wrapper">
       <header>
         <h1>Telegraf</h1>
-        <p>📢 Modern Telegram bot framework for Node.js</p>
+        <p>📢 Telegram bot framework for Node.js</p>
 
         <p class="view"><a href="https://github.com/telegraf/telegraf">View the Project on GitHub <small>telegraf/telegraf</small></a></p>
 
@@ -28,17 +28,32 @@
         </ul>
       </header>
       <section>
-        <p><g-emoji alias="loudspeaker" fallback-src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f4e2.png">📢</g-emoji> Modern Telegram bot framework for node.js.</p>
-
-<h2>
+        <h2>
 <a id="features" class="anchor" href="#features" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Features</h2>
 
 <ul>
 <li>Full <a href="https://core.telegram.org/bots/api">Telegram Bot API 2.1</a> support</li>
 <li><a href="https://core.telegram.org/bots/api#inline-mode">Inline mode</a></li>
-<li><a href="https://www.npmjs.com/search?q=telegraf-">Middlewares, middlewares everywhere</a></li>
+<li>Incredibly fast</li>
+<li>Easy to extend</li>
+<li><a href="#middlewares">Middlewares, middlewares everywhere</a></li>
 <li>http/https/Connect/express.js webhooks</li>
 <li>Reply via webhook</li>
+</ul>
+
+<h2>
+<a id="middlewares" class="anchor" href="#middlewares" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Middlewares</h2>
+
+<ul>
+<li><a href="https://github.com/telegraf/telegraf-i18n">Internationalization</a></li>
+<li><a href="https://github.com/telegraf/telegraf-session-redis">Redis powered session</a></li>
+<li><a href="https://github.com/telegraf/telegraf-ratelimit">Rate-limiting</a></li>
+<li><a href="https://github.com/telegraf/telegraf-quiz">Micro dialog engine</a></li>
+<li><a href="https://github.com/telegraf/telegraf-flow">Chat flow engine</a></li>
+<li><a href="https://github.com/telegraf/telegraf-mixpanel">Mixpanel integration</a></li>
+<li><a href="https://github.com/telegraf/telegraf-experiments">Multivariate and A/B testing</a></li>
+<li><a href="https://github.com/telegraf/telegraf-statsd">statsd integration</a></li>
+<li><a href="https://www.npmjs.com/search?q=telegraf-">and more...</a></li>
 </ul>
 
 <h2>
@@ -56,31 +71,12 @@
 
 <span class="pl-smi">app</span>.<span class="pl-en">startPolling</span>()</pre></div>
 
-<div class="highlight highlight-source-js"><pre><span class="pl-k">const</span> <span class="pl-c1">Telegraf</span> <span class="pl-k">=</span> <span class="pl-c1">require</span>(<span class="pl-s"><span class="pl-pds">'</span>telegraf<span class="pl-pds">'</span></span>)
-
-<span class="pl-k">const</span> <span class="pl-c1">app</span> <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-en">Telegraf</span>(<span class="pl-c1">process</span>.<span class="pl-smi">env</span>.<span class="pl-c1">BOT_TOKEN</span>)
-
-<span class="pl-c">// Look ma, middleware!</span>
-<span class="pl-k">const</span> <span class="pl-c1">sayYoMiddleware</span> <span class="pl-k">=</span> (<span class="pl-smi">ctx</span>, <span class="pl-smi">next</span>) <span class="pl-k">=&gt;</span> {
-  <span class="pl-k">return</span> <span class="pl-smi">ctx</span>.<span class="pl-en">reply</span>(<span class="pl-s"><span class="pl-pds">'</span>yo<span class="pl-pds">'</span></span>).<span class="pl-en">then</span>(next)
-}
-
-<span class="pl-c">// Command handling</span>
-<span class="pl-smi">app</span>.<span class="pl-en">command</span>(<span class="pl-s"><span class="pl-pds">'</span>/command<span class="pl-pds">'</span></span>, sayYoMiddleware, (<span class="pl-smi">ctx</span>) <span class="pl-k">=&gt;</span> {
-  <span class="pl-k">return</span> <span class="pl-smi">ctx</span>.<span class="pl-en">reply</span>(<span class="pl-s"><span class="pl-pds">'</span>Sure<span class="pl-pds">'</span></span>)
-})
-
-<span class="pl-c">// Wow! RegEx</span>
-<span class="pl-smi">app</span>.<span class="pl-en">hears</span>(<span class="pl-sr"><span class="pl-pds">/</span>reverse (<span class="pl-c1">.</span><span class="pl-k">+</span>)<span class="pl-pds">/</span></span>, sayYoMiddleware, (<span class="pl-smi">ctx</span>) <span class="pl-k">=&gt;</span> {
-  <span class="pl-k">return</span> <span class="pl-smi">ctx</span>.<span class="pl-en">reply</span>(<span class="pl-smi">ctx</span>.<span class="pl-smi">match</span>[<span class="pl-c1">1</span>].<span class="pl-c1">split</span>(<span class="pl-s"><span class="pl-pds">'</span><span class="pl-pds">'</span></span>).<span class="pl-c1">reverse</span>().<span class="pl-c1">join</span>(<span class="pl-s"><span class="pl-pds">'</span><span class="pl-pds">'</span></span>))
-})
-
-<span class="pl-smi">app</span>.<span class="pl-en">startPolling</span>()</pre></div>
-
 <p>There are some other <a href="/examples">examples</a>.</p>
 
 <h2>
 <a id="api" class="anchor" href="#api" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>API</h2>
+
+<p><a href="/api.md">Telegraf API reference</a></p>
 
 <h3>
 <a id="application" class="anchor" href="#application" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Application</h3>
@@ -228,11 +224,6 @@ To perform custom error-handling logic you can set <code>onError</code> handler:
   <span class="pl-smi">log</span>.<span class="pl-en">error</span>(<span class="pl-s"><span class="pl-pds">'</span>server error<span class="pl-pds">'</span></span>, err)
   <span class="pl-k">throw</span> err
 }</pre></div>
-
-<h2>
-<a id="api-reference" class="anchor" href="#api-reference" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>API reference</h2>
-
-<p><a href="https://github.com/telegraf/telegraf/blob/master/api.md">Telegraf API reference</a></p>
 
 <h2>
 <a id="license" class="anchor" href="#license" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>License</h2>
