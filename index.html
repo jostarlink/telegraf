@@ -35,10 +35,11 @@
 
 <ul>
 <li>Full <a href="https://core.telegram.org/bots/api">Telegram Bot API 2.1</a> support</li>
-<li><a href="https://core.telegram.org/bots/api#inline-mode">Inline mode</a></li>
 <li>Incredibly fast</li>
+<li>Minimum dependencies</li>
 <li>Easy to extend</li>
 <li><a href="#middlewares">Middlewares, middlewares everywhere</a></li>
+<li><a href="https://core.telegram.org/bots/api#inline-mode">Inline mode</a></li>
 <li>http/https/Connect/express.js webhooks</li>
 <li>Reply via webhook</li>
 </ul>
@@ -67,10 +68,8 @@
 <a id="examples" class="anchor" href="#examples" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Examples</h2>
 
 <div class="highlight highlight-source-js"><pre><span class="pl-k">const</span> <span class="pl-c1">Telegraf</span> <span class="pl-k">=</span> <span class="pl-c1">require</span>(<span class="pl-s"><span class="pl-pds">'</span>telegraf<span class="pl-pds">'</span></span>)
-
 <span class="pl-k">const</span> <span class="pl-c1">app</span> <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-en">Telegraf</span>(<span class="pl-c1">process</span>.<span class="pl-smi">env</span>.<span class="pl-c1">BOT_TOKEN</span>)
-<span class="pl-smi">app</span>.<span class="pl-en">on</span>(<span class="pl-s"><span class="pl-pds">'</span>message<span class="pl-pds">'</span></span>, (<span class="pl-smi">ctx</span>) <span class="pl-k">=&gt;</span> <span class="pl-smi">ctx</span>.<span class="pl-en">replyWithMarkdown</span>(<span class="pl-s"><span class="pl-pds">'</span>*42*<span class="pl-pds">'</span></span>))
-
+<span class="pl-smi">app</span>.<span class="pl-en">on</span>(<span class="pl-s"><span class="pl-pds">'</span>message<span class="pl-pds">'</span></span>, (<span class="pl-smi">ctx</span>) <span class="pl-k">=&gt;</span> <span class="pl-smi">ctx</span>.<span class="pl-en">reply</span>(<span class="pl-s"><span class="pl-pds">'</span>42<span class="pl-pds">'</span></span>))
 <span class="pl-smi">app</span>.<span class="pl-en">startPolling</span>()</pre></div>
 
 <p>There are some other <a href="https://github.com/telegraf/telegraf/blob/master/examples">examples</a>.</p>
