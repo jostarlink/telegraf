@@ -53,9 +53,10 @@
 <li><a href="https://github.com/telegraf/telegraf-ratelimit">Rate-limiting</a></li>
 <li><a href="https://github.com/telegraf/telegraf-quiz">Micro dialog engine</a></li>
 <li><a href="https://github.com/telegraf/telegraf-flow">Chat flow engine</a></li>
-<li><a href="https://github.com/telegraf/telegraf-mixpanel">Mixpanel integration</a></li>
+<li><a href="https://github.com/telegraf/telegraf-mixpanel">Powerfull bot stats via Mixpanel</a></li>
 <li><a href="https://github.com/telegraf/telegraf-experiments">Multivariate and A/B testing</a></li>
 <li><a href="https://github.com/telegraf/telegraf-statsd">statsd integration</a></li>
+<li><a href="https://github.com/telegraf/telegraf-recast">Natural language processing via recast.ai</a></li>
 <li><a href="https://www.npmjs.com/search?q=telegraf-">and more...</a></li>
 </ul>
 
@@ -68,6 +69,7 @@
 <a id="examples" class="anchor" href="#examples" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Examples</h2>
 
 <div class="highlight highlight-source-js"><pre><span class="pl-k">const</span> <span class="pl-c1">Telegraf</span> <span class="pl-k">=</span> <span class="pl-c1">require</span>(<span class="pl-s"><span class="pl-pds">'</span>telegraf<span class="pl-pds">'</span></span>)
+
 <span class="pl-k">const</span> <span class="pl-c1">app</span> <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-en">Telegraf</span>(<span class="pl-c1">process</span>.<span class="pl-smi">env</span>.<span class="pl-c1">BOT_TOKEN</span>)
 <span class="pl-smi">app</span>.<span class="pl-en">on</span>(<span class="pl-s"><span class="pl-pds">'</span>message<span class="pl-pds">'</span></span>, (<span class="pl-smi">ctx</span>) <span class="pl-k">=&gt;</span> <span class="pl-smi">ctx</span>.<span class="pl-en">reply</span>(<span class="pl-s"><span class="pl-pds">'</span>42<span class="pl-pds">'</span></span>))
 <span class="pl-smi">app</span>.<span class="pl-en">startPolling</span>()</pre></div>
@@ -76,8 +78,6 @@
 
 <h2>
 <a id="api" class="anchor" href="#api" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>API</h2>
-
-<p><a href="https://github.com/telegraf/telegraf/blob/master/docs/api.md">Telegraf API reference</a></p>
 
 <h3>
 <a id="application" class="anchor" href="#application" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Application</h3>
@@ -92,7 +92,7 @@ that you may have encountered such as Koa, Ruby's Rack, Connect.</p>
 <p>A Telegraf Context encapsulates telegram message.
 Context is created per request and contains following props:</p>
 
-<div class="highlight highlight-source-js"><pre><span class="pl-smi">app</span>.<span class="pl-en">use</span>((<span class="pl-smi">ctx</span>) <span class="pl-k">=&gt;</span> {
+<div class="highlight highlight-source-js"><pre><span class="pl-smi">app</span>.<span class="pl-en">on</span>(<span class="pl-s"><span class="pl-pds">'</span>message<span class="pl-pds">'</span></span>, (<span class="pl-smi">ctx</span>) <span class="pl-k">=&gt;</span> {
   <span class="pl-smi">ctx</span>.<span class="pl-smi">telegram</span>             <span class="pl-c">// Telegram instance</span>
   <span class="pl-smi">ctx</span>.<span class="pl-smi">updateType</span>           <span class="pl-c">// Update type(message, inline_query, etc.)</span>
   [<span class="pl-smi">ctx</span>.<span class="pl-smi">updateSubType</span>]      <span class="pl-c">// Update subtype(text, sticker, audio, etc.)</span>
@@ -105,8 +105,6 @@ Context is created per request and contains following props:</p>
   [<span class="pl-smi">ctx</span>.<span class="pl-smi">from</span>]               <span class="pl-c">// Sender info</span>
   [<span class="pl-smi">ctx</span>.<span class="pl-smi">match</span>]              <span class="pl-c">// Regex match (available only for `hears` handler)</span>
 })</pre></div>
-
-<p><a href="/api.md#context">Context api docs</a></p>
 
 <h3>
 <a id="cascading" class="anchor" href="#cascading" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Cascading</h3>
@@ -126,9 +124,7 @@ It returns a Promise with a then function for running code after completion.</p>
   })
 })
 
-<span class="pl-smi">app</span>.<span class="pl-en">on</span>(<span class="pl-s"><span class="pl-pds">'</span>text<span class="pl-pds">'</span></span>, (<span class="pl-smi">ctx</span>) <span class="pl-k">=&gt;</span> {
-  <span class="pl-k">return</span> <span class="pl-smi">ctx</span>.<span class="pl-en">reply</span>(<span class="pl-s"><span class="pl-pds">'</span>Hello World<span class="pl-pds">'</span></span>)
-})</pre></div>
+<span class="pl-smi">app</span>.<span class="pl-en">on</span>(<span class="pl-s"><span class="pl-pds">'</span>text<span class="pl-pds">'</span></span>, (<span class="pl-smi">ctx</span>) <span class="pl-k">=&gt;</span> <span class="pl-smi">ctx</span>.<span class="pl-en">reply</span>(<span class="pl-s"><span class="pl-pds">'</span>Hello World<span class="pl-pds">'</span></span>))</pre></div>
 
 <h3>
 <a id="state" class="anchor" href="#state" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>State</h3>
@@ -151,7 +147,7 @@ It returns a Promise with a then function for running code after completion.</p>
 
 <div class="highlight highlight-source-js"><pre><span class="pl-k">const</span> <span class="pl-c1">app</span> <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-en">Telegraf</span>(<span class="pl-c1">process</span>.<span class="pl-smi">env</span>.<span class="pl-c1">BOT_TOKEN</span>)
 
-<span class="pl-c">// Session state will be lost on app restart</span>
+<span class="pl-c">// FYI: Session state will be lost on app restart</span>
 <span class="pl-smi">app</span>.<span class="pl-en">use</span>(<span class="pl-smi">Telegraf</span>.<span class="pl-en">memorySession</span>())
 
 <span class="pl-smi">app</span>.<span class="pl-en">on</span>(<span class="pl-s"><span class="pl-pds">'</span>text<span class="pl-pds">'</span></span>, () <span class="pl-k">=&gt;</span> {
@@ -160,60 +156,7 @@ It returns a Promise with a then function for running code after completion.</p>
   <span class="pl-k">return</span> <span class="pl-smi">ctx</span>.<span class="pl-en">reply</span>(<span class="pl-s"><span class="pl-pds">`</span>Message counter:<span class="pl-s1"><span class="pl-pse">${</span><span class="pl-smi">ctx</span>.<span class="pl-smi">session</span>.<span class="pl-smi">counter</span><span class="pl-pse">}</span></span><span class="pl-pds">`</span></span>)
 })</pre></div>
 
-<p><strong>Important: For production environment use any of <a href="https://www.npmjs.com/search?q=telegraf-session"><code>telegraf-session-*</code></a> middleware.</strong></p>
-
-<h3>
-<a id="telegram-webhook" class="anchor" href="#telegram-webhook" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Telegram WebHook</h3>
-
-<div class="highlight highlight-source-js"><pre>
-<span class="pl-k">const</span> <span class="pl-c1">app</span> <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-en">Telegraf</span>(<span class="pl-c1">process</span>.<span class="pl-smi">env</span>.<span class="pl-c1">BOT_TOKEN</span>)
-
-<span class="pl-c">// TLS options</span>
-<span class="pl-k">const</span> <span class="pl-c1">tlsOptions</span> <span class="pl-k">=</span> {
-  key<span class="pl-k">:</span>  <span class="pl-smi">fs</span>.<span class="pl-en">readFileSync</span>(<span class="pl-s"><span class="pl-pds">'</span>server-key.pem<span class="pl-pds">'</span></span>),
-  cert<span class="pl-k">:</span> <span class="pl-smi">fs</span>.<span class="pl-en">readFileSync</span>(<span class="pl-s"><span class="pl-pds">'</span>server-cert.pem<span class="pl-pds">'</span></span>),
-  ca<span class="pl-k">:</span> [ 
-    <span class="pl-c">// This is necessary only if the client uses the self-signed certificate.</span>
-    <span class="pl-smi">fs</span>.<span class="pl-en">readFileSync</span>(<span class="pl-s"><span class="pl-pds">'</span>client-cert.pem<span class="pl-pds">'</span></span>) 
-  ]
-}
-
-<span class="pl-c">// Set telegram webhook</span>
-<span class="pl-smi">app</span>.<span class="pl-smi">telegram</span>.<span class="pl-en">setWebHook</span>(<span class="pl-s"><span class="pl-pds">'</span>https://server.tld:8443/secret-path<span class="pl-pds">'</span></span>, {
-  content<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>server-cert.pem<span class="pl-pds">'</span></span>
-})
-
-<span class="pl-c">// Start https webhook</span>
-<span class="pl-smi">app</span>.<span class="pl-en">startWebHook</span>(<span class="pl-s"><span class="pl-pds">'</span>/secret-path<span class="pl-pds">'</span></span>, tlsOptions, <span class="pl-c1">8443</span>)
-
-
-<span class="pl-c">// Http webhook, for nginx/heroku users.</span>
-<span class="pl-smi">app</span>.<span class="pl-en">startWebHook</span>(<span class="pl-s"><span class="pl-pds">'</span>/secret-path<span class="pl-pds">'</span></span>, <span class="pl-c1">null</span>, <span class="pl-c1">5000</span>)
-
-
-<span class="pl-c">// Use webHookCallback() if you want attach telegraf to existing http server</span>
-<span class="pl-c1">require</span>(<span class="pl-s"><span class="pl-pds">'</span>http<span class="pl-pds">'</span></span>)
-  .<span class="pl-en">createServer</span>(<span class="pl-smi">app</span>.<span class="pl-en">webHookCallback</span>(<span class="pl-s"><span class="pl-pds">'</span>/secret-path<span class="pl-pds">'</span></span>))
-  .<span class="pl-en">listen</span>(<span class="pl-c1">3000</span>)
-
-<span class="pl-c1">require</span>(<span class="pl-s"><span class="pl-pds">'</span>https<span class="pl-pds">'</span></span>)
-  .<span class="pl-en">createServer</span>(tlsOptions, <span class="pl-smi">app</span>.<span class="pl-en">webHookCallback</span>(<span class="pl-s"><span class="pl-pds">'</span>/secret-path<span class="pl-pds">'</span></span>))
-  .<span class="pl-en">listen</span>(<span class="pl-c1">8443</span>)
-
-<span class="pl-c">// Connect/Express.js integration</span>
-<span class="pl-k">const</span> <span class="pl-c1">express</span> <span class="pl-k">=</span> <span class="pl-c1">require</span>(<span class="pl-s"><span class="pl-pds">'</span>express<span class="pl-pds">'</span></span>)
-<span class="pl-k">const</span> <span class="pl-c1">expressApp</span> <span class="pl-k">=</span> <span class="pl-en">express</span>()
-
-<span class="pl-smi">expressApp</span>.<span class="pl-en">use</span>(<span class="pl-smi">app</span>.<span class="pl-en">webHookCallback</span>(<span class="pl-s"><span class="pl-pds">'</span>/secret-path<span class="pl-pds">'</span></span>))
-
-<span class="pl-smi">expressApp</span>.<span class="pl-en">get</span>(<span class="pl-s"><span class="pl-pds">'</span>/<span class="pl-pds">'</span></span>, (<span class="pl-smi">req</span>, <span class="pl-smi">res</span>) <span class="pl-k">=&gt;</span> {
-  <span class="pl-smi">res</span>.<span class="pl-c1">send</span>(<span class="pl-s"><span class="pl-pds">'</span>Hello World!<span class="pl-pds">'</span></span>)
-})
-
-<span class="pl-smi">expressApp</span>.<span class="pl-en">listen</span>(<span class="pl-c1">3000</span>, () <span class="pl-k">=&gt;</span> {
-  <span class="pl-en">console</span>.<span class="pl-c1">log</span>(<span class="pl-s"><span class="pl-pds">'</span>Example app listening on port 3000!<span class="pl-pds">'</span></span>)
-})
-</pre></div>
+<p><strong>Note: For persistent sessions you can use any of <a href="https://www.npmjs.com/search?q=telegraf-session"><code>telegraf-session-*</code></a> middleware.</strong></p>
 
 <h3>
 <a id="error-handling" class="anchor" href="#error-handling" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Error Handling</h3>
@@ -222,9 +165,14 @@ It returns a Promise with a then function for running code after completion.</p>
 To perform custom error-handling logic you can set <code>onError</code> handler:</p>
 
 <div class="highlight highlight-source-js"><pre><span class="pl-smi">telegraf</span>.<span class="pl-en">onError</span> <span class="pl-k">=</span> (<span class="pl-smi">err</span>) <span class="pl-k">=&gt;</span> {
-  <span class="pl-smi">log</span>.<span class="pl-en">error</span>(<span class="pl-s"><span class="pl-pds">'</span>server error<span class="pl-pds">'</span></span>, err)
+  <span class="pl-smi">log</span>.<span class="pl-en">error</span>(<span class="pl-s"><span class="pl-pds">'</span>Ooops<span class="pl-pds">'</span></span>, err)
   <span class="pl-k">throw</span> err
 }</pre></div>
+
+<h3>
+<a id="developer-docs" class="anchor" href="#developer-docs" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Developer docs</h3>
+
+<p><a href="https://github.com/telegraf/telegraf/blob/master/docs/api.md">Telegraf API docs</a></p>
 
 <h2>
 <a id="license" class="anchor" href="#license" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>License</h2>
