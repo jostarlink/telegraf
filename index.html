@@ -36,8 +36,8 @@
 <ul>
 <li>Full <a href="https://core.telegram.org/bots/api">Telegram Bot API 2.1</a> support</li>
 <li>Incredibly fast</li>
-<li>Minimum dependencies</li>
 <li>Easy to extend</li>
+<li>Minimum dependencies</li>
 <li><a href="#middlewares">Middlewares, middlewares everywhere</a></li>
 <li><a href="https://core.telegram.org/bots/api#inline-mode">Inline mode</a></li>
 <li>http/https/Connect/express.js webhooks</li>
@@ -51,7 +51,7 @@
 <li><a href="https://github.com/telegraf/telegraf-i18n">Internationalization</a></li>
 <li><a href="https://github.com/telegraf/telegraf-session-redis">Redis powered session</a></li>
 <li><a href="https://github.com/telegraf/telegraf-ratelimit">Rate-limiting</a></li>
-<li><a href="https://github.com/telegraf/telegraf-flow">Chat flow engine</a></li>
+<li><a href="https://github.com/telegraf/telegraf-flow">Stateful chatbots engine</a></li>
 <li><a href="https://github.com/telegraf/telegraf-mixpanel">Powerfull bot stats via Mixpanel</a></li>
 <li><a href="https://github.com/telegraf/telegraf-experiments">Multivariate and A/B testing</a></li>
 <li><a href="https://github.com/telegraf/telegraf-statsd">statsd integration</a></li>
@@ -96,14 +96,11 @@ Context is created per request and contains following props:</p>
   <span class="pl-smi">ctx</span>.<span class="pl-smi">updateType</span>           <span class="pl-c">// Update type(message, inline_query, etc.)</span>
   [<span class="pl-smi">ctx</span>.<span class="pl-smi">updateSubType</span>]      <span class="pl-c">// Update subtype(text, sticker, audio, etc.)</span>
   [<span class="pl-smi">ctx</span>.<span class="pl-smi">message</span>]            <span class="pl-c">// Received message</span>
-  [<span class="pl-smi">ctx</span>.<span class="pl-smi">editedMessage</span>]      <span class="pl-c">// Edited message</span>
   [<span class="pl-smi">ctx</span>.<span class="pl-smi">inlineQuery</span>]        <span class="pl-c">// Received inline query</span>
-  [<span class="pl-smi">ctx</span>.<span class="pl-smi">chosenInlineResult</span>] <span class="pl-c">// Received inline query result</span>
-  [<span class="pl-smi">ctx</span>.<span class="pl-smi">callbackQuery</span>]      <span class="pl-c">// Received callback query</span>
-  [<span class="pl-smi">ctx</span>.<span class="pl-smi">chat</span>]               <span class="pl-c">// Current chat info</span>
-  [<span class="pl-smi">ctx</span>.<span class="pl-smi">from</span>]               <span class="pl-c">// Sender info</span>
-  [<span class="pl-smi">ctx</span>.<span class="pl-smi">match</span>]              <span class="pl-c">// Regex match (available only for `hears` handler)</span>
+  <span class="pl-k">...</span>
 })</pre></div>
+
+<p><a href="https://github.com/telegraf/telegraf/blob/master/docs/api.md#context">Context API docs</a></p>
 
 <h3>
 <a id="cascading" class="anchor" href="#cascading" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Cascading</h3>
@@ -145,11 +142,8 @@ It returns a Promise with a then function for running code after completion.</p>
 <a id="session" class="anchor" href="#session" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Session</h3>
 
 <div class="highlight highlight-source-js"><pre><span class="pl-k">const</span> <span class="pl-c1">app</span> <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-en">Telegraf</span>(<span class="pl-c1">process</span>.<span class="pl-smi">env</span>.<span class="pl-c1">BOT_TOKEN</span>)
-
-<span class="pl-c">// FYI: Session state will be lost on app restart</span>
 <span class="pl-smi">app</span>.<span class="pl-en">use</span>(<span class="pl-smi">Telegraf</span>.<span class="pl-en">memorySession</span>())
-
-<span class="pl-smi">app</span>.<span class="pl-en">on</span>(<span class="pl-s"><span class="pl-pds">'</span>text<span class="pl-pds">'</span></span>, () <span class="pl-k">=&gt;</span> {
+<span class="pl-smi">app</span>.<span class="pl-en">on</span>(<span class="pl-s"><span class="pl-pds">'</span>text<span class="pl-pds">'</span></span>, (<span class="pl-smi">ctx</span>) <span class="pl-k">=&gt;</span> {
   <span class="pl-smi">ctx</span>.<span class="pl-smi">session</span>.<span class="pl-smi">counter</span> <span class="pl-k">=</span> <span class="pl-smi">ctx</span>.<span class="pl-smi">session</span>.<span class="pl-smi">counter</span> <span class="pl-k">||</span> <span class="pl-c1">0</span>
   <span class="pl-smi">ctx</span>.<span class="pl-smi">session</span>.<span class="pl-smi">counter</span><span class="pl-k">++</span>
   <span class="pl-k">return</span> <span class="pl-smi">ctx</span>.<span class="pl-en">reply</span>(<span class="pl-s"><span class="pl-pds">`</span>Message counter:<span class="pl-s1"><span class="pl-pse">${</span><span class="pl-smi">ctx</span>.<span class="pl-smi">session</span>.<span class="pl-smi">counter</span><span class="pl-pse">}</span></span><span class="pl-pds">`</span></span>)
