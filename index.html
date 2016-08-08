@@ -30,12 +30,7 @@
 
       </header>
       <section>
-        <p><a href="https://www.npmjs.com/package/telegraf"><img src="https://img.shields.io/npm/l/telegraf.svg?style=flat-square" alt="npm"></a>
-<a href="https://www.npmjs.com/package/telegraf"><img src="https://img.shields.io/npm/v/telegraf.svg?style=flat-square" alt="NPM Version"></a>
-<a href="https://www.npmjs.com/package/telegraf"><img src="https://img.shields.io/node/v/telegraf.svg?style=flat-square" alt="node"></a>
-<a href="https://travis-ci.org/telegraf/telegraf"><img src="https://img.shields.io/travis/telegraf/telegraf.svg?branch=master&amp;style=flat-square" alt="Build Status"></a></p>
-
-<h2>
+        <h2>
 <a id="features" class="anchor" href="#features" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Features</h2>
 
 <ul>
@@ -117,16 +112,25 @@ It returns a Promise with a then function for running code after completion.</p>
 
 <div class="highlight highlight-source-js"><pre><span class="pl-k">const</span> <span class="pl-c1">app</span> <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-en">Telegraf</span>(<span class="pl-c1">process</span>.<span class="pl-smi">env</span>.<span class="pl-c1">BOT_TOKEN</span>)
 
-<span class="pl-c">// Logger middleware</span>
 <span class="pl-smi">app</span>.<span class="pl-en">use</span>((<span class="pl-smi">ctx</span>, <span class="pl-smi">next</span>) <span class="pl-k">=&gt;</span> {
   <span class="pl-k">const</span> <span class="pl-c1">start</span> <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-en">Date</span>()
   <span class="pl-k">return</span> <span class="pl-en">next</span>().<span class="pl-en">then</span>(() <span class="pl-k">=&gt;</span> {
     <span class="pl-k">const</span> <span class="pl-c1">ms</span> <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-en">Date</span>() <span class="pl-k">-</span> start
-    <span class="pl-en">console</span>.<span class="pl-c1">log</span>(<span class="pl-s"><span class="pl-pds">'</span>response time %sms<span class="pl-pds">'</span></span>, ms)
+    <span class="pl-en">console</span>.<span class="pl-c1">log</span>(<span class="pl-s"><span class="pl-pds">'</span>Response time %sms<span class="pl-pds">'</span></span>, ms)
   })
 })
 
 <span class="pl-smi">app</span>.<span class="pl-en">on</span>(<span class="pl-s"><span class="pl-pds">'</span>text<span class="pl-pds">'</span></span>, (<span class="pl-smi">ctx</span>) <span class="pl-k">=&gt;</span> <span class="pl-smi">ctx</span>.<span class="pl-en">reply</span>(<span class="pl-s"><span class="pl-pds">'</span>Hello World<span class="pl-pds">'</span></span>))</pre></div>
+
+<h4>
+<a id="cascading-with-async-functions-babel-required" class="anchor" href="#cascading-with-async-functions-babel-required" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Cascading with async functions (Babel required)</h4>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-smi">app</span>.<span class="pl-en">use</span>(<span class="pl-k">async</span> (<span class="pl-smi">ctx</span>, <span class="pl-smi">next</span>) <span class="pl-k">=&gt;</span> {
+  <span class="pl-k">const</span> <span class="pl-c1">start</span> <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-en">Date</span>()
+  <span class="pl-k">await</span> <span class="pl-en">next</span>()
+  <span class="pl-k">const</span> <span class="pl-c1">ms</span> <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-en">Date</span>() <span class="pl-k">-</span> start
+  <span class="pl-en">console</span>.<span class="pl-c1">log</span>(<span class="pl-s"><span class="pl-pds">'</span>Response time %sms<span class="pl-pds">'</span></span>, ms)
+})</pre></div>
 
 <h3>
 <a id="state" class="anchor" href="#state" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>State</h3>
