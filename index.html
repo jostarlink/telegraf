@@ -36,28 +36,11 @@
 <ul>
 <li>Full <a href="https://core.telegram.org/bots/api">Telegram Bot API 2.1</a> support</li>
 <li>Incredibly fast</li>
-<li>Easy to extend</li>
+<li><a href="#middleware">Easy to extend</a></li>
 <li>Minimum dependencies</li>
-<li><a href="#middlewares">Middlewares, middlewares everywhere</a></li>
 <li><a href="https://core.telegram.org/bots/api#inline-mode">Inline mode</a></li>
 <li>http/https/Connect/express.js webhooks</li>
 <li>Reply via webhook</li>
-</ul>
-
-<h2>
-<a id="middlewares" class="anchor" href="#middlewares" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Middlewares</h2>
-
-<ul>
-<li><a href="https://github.com/telegraf/telegraf-i18n">Internationalization</a></li>
-<li><a href="https://github.com/telegraf/telegraf-session-redis">Redis powered session</a></li>
-<li><a href="https://github.com/telegraf/telegraf-flow">Stateful chatbots engine</a></li>
-<li><a href="https://github.com/telegraf/telegraf-ratelimit">Rate-limiting</a></li>
-<li><a href="https://github.com/telegraf/telegraf-wit">Natural language processing via wit.ai</a></li>
-<li><a href="https://github.com/telegraf/telegraf-recast">Natural language processing via recast.ai</a></li>
-<li><a href="https://github.com/telegraf/telegraf-experiments">Multivariate and A/B testing</a></li>
-<li><a href="https://github.com/telegraf/telegraf-mixpanel">Powerfull bot stats via Mixpanel</a></li>
-<li><a href="https://github.com/telegraf/telegraf-statsd">statsd integration</a></li>
-<li><a href="https://www.npmjs.com/search?q=telegraf-">and more...</a></li>
 </ul>
 
 <h2>
@@ -93,12 +76,11 @@ that you may have encountered such as Koa, Ruby's Rack, Connect.</p>
 Context is created per request and contains following props:</p>
 
 <div class="highlight highlight-source-js"><pre><span class="pl-smi">app</span>.<span class="pl-en">on</span>(<span class="pl-s"><span class="pl-pds">'</span>message<span class="pl-pds">'</span></span>, (<span class="pl-smi">ctx</span>) <span class="pl-k">=&gt;</span> {
-  <span class="pl-smi">ctx</span>.<span class="pl-smi">telegram</span>             <span class="pl-c">// Telegram instance</span>
-  <span class="pl-smi">ctx</span>.<span class="pl-smi">updateType</span>           <span class="pl-c">// Update type(message, inline_query, etc.)</span>
-  [<span class="pl-smi">ctx</span>.<span class="pl-smi">updateSubType</span>]      <span class="pl-c">// Update subtype(text, sticker, audio, etc.)</span>
-  [<span class="pl-smi">ctx</span>.<span class="pl-smi">message</span>]            <span class="pl-c">// Received message</span>
-  [<span class="pl-smi">ctx</span>.<span class="pl-smi">inlineQuery</span>]        <span class="pl-c">// Received inline query</span>
-  <span class="pl-k">...</span>
+  <span class="pl-smi">ctx</span>.<span class="pl-smi">telegram</span>           <span class="pl-c">// Telegram wrapper instance</span>
+  <span class="pl-smi">ctx</span>.<span class="pl-smi">updateType</span>         <span class="pl-c">// Update type(message, inline_query, etc.)</span>
+  [<span class="pl-smi">ctx</span>.<span class="pl-smi">message</span>]          <span class="pl-c">// Received message</span>
+  [<span class="pl-smi">ctx</span>.<span class="pl-smi">inlineQuery</span>]      <span class="pl-c">// Received inline query</span>
+  [<span class="pl-k">...</span>]                  <span class="pl-c">// See api.doc</span>
 })</pre></div>
 
 <p><a href="https://github.com/telegraf/telegraf/blob/master/docs/api.md#context">Context API docs</a></p>
@@ -131,6 +113,24 @@ It returns a Promise with a then function for running code after completion.</p>
   <span class="pl-k">const</span> <span class="pl-c1">ms</span> <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-en">Date</span>() <span class="pl-k">-</span> start
   <span class="pl-en">console</span>.<span class="pl-c1">log</span>(<span class="pl-s"><span class="pl-pds">'</span>Response time %sms<span class="pl-pds">'</span></span>, ms)
 })</pre></div>
+
+<p><a name="middleware"></a></p>
+
+<h4>
+<a id="known-middleware" class="anchor" href="#known-middleware" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Known middleware</h4>
+
+<ul>
+<li><a href="https://github.com/telegraf/telegraf-i18n">Internationalization</a></li>
+<li><a href="https://github.com/telegraf/telegraf-session-redis">Redis powered session</a></li>
+<li><a href="https://github.com/telegraf/telegraf-flow">Stateful chatbots engine</a></li>
+<li><a href="https://github.com/telegraf/telegraf-ratelimit">Rate-limiting</a></li>
+<li><a href="https://github.com/telegraf/telegraf-wit">Natural language processing via wit.ai</a></li>
+<li><a href="https://github.com/telegraf/telegraf-recast">Natural language processing via recast.ai</a></li>
+<li><a href="https://github.com/telegraf/telegraf-experiments">Multivariate and A/B testing</a></li>
+<li><a href="https://github.com/telegraf/telegraf-mixpanel">Powerfull bot stats via Mixpanel</a></li>
+<li><a href="https://github.com/telegraf/telegraf-statsd">statsd integration</a></li>
+<li><a href="https://www.npmjs.com/search?q=telegraf-">and more...</a></li>
+</ul>
 
 <h3>
 <a id="state" class="anchor" href="#state" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>State</h3>
