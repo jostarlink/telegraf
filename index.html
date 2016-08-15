@@ -165,12 +165,12 @@ It returns a Promise with a then function for running code after completion.</p>
 <a id="error-handling" class="anchor" href="#error-handling" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Error Handling</h3>
 
 <p>By default Telegraf will print all errors to stderr and rethrow error. 
-To perform custom error-handling logic you can set <code>onError</code> handler:</p>
+To perform custom error-handling logic see following snippet:</p>
 
-<div class="highlight highlight-source-js"><pre><span class="pl-smi">telegraf</span>.<span class="pl-en">onError</span> <span class="pl-k">=</span> (<span class="pl-smi">err</span>) <span class="pl-k">=&gt;</span> {
+<div class="highlight highlight-source-js"><pre><span class="pl-smi">telegraf</span>.<span class="pl-en">catch</span>((<span class="pl-smi">err</span>) <span class="pl-k">=&gt;</span> {
   <span class="pl-smi">log</span>.<span class="pl-en">error</span>(<span class="pl-s"><span class="pl-pds">'</span>Ooops<span class="pl-pds">'</span></span>, err)
   <span class="pl-k">throw</span> err
-}</pre></div>
+})</pre></div>
 
 <h3>
 <a id="developer-docs" class="anchor" href="#developer-docs" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Developer docs</h3>
