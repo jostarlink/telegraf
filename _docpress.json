@@ -1,0 +1,795 @@
+{
+  "toc": {
+    "sections": [
+      {
+        "title": "Telegraf",
+        "sections": [
+          {
+            "title": "Quick start",
+            "source": "docs/index.md",
+            "url": "index.html",
+            "slug": "index",
+            "headings": [
+              {
+                "title": "Installation",
+                "depth": 2,
+                "id": "installation",
+                "headings": [
+                  {
+                    "title": "Example",
+                    "depth": 3,
+                    "id": "example"
+                  }
+                ]
+              },
+              {
+                "title": "Known middleware",
+                "depth": 2,
+                "id": "known-middleware"
+              }
+            ]
+          },
+          {
+            "title": "Introduction",
+            "source": "docs/introduction.md",
+            "url": "introduction.html",
+            "slug": "introduction",
+            "headings": [
+              {
+                "title": "Application",
+                "depth": 2,
+                "id": "application"
+              },
+              {
+                "title": "Context",
+                "depth": 2,
+                "id": "context",
+                "headings": [
+                  {
+                    "title": "Cascading",
+                    "depth": 3,
+                    "id": "cascading"
+                  },
+                  {
+                    "title": "State",
+                    "depth": 3,
+                    "id": "state"
+                  },
+                  {
+                    "title": "Session",
+                    "depth": 3,
+                    "id": "session"
+                  },
+                  {
+                    "title": "Update types",
+                    "depth": 3,
+                    "id": "update-types"
+                  },
+                  {
+                    "title": "Webhooks",
+                    "depth": 3,
+                    "id": "webhooks"
+                  },
+                  {
+                    "title": "Files",
+                    "depth": 3,
+                    "id": "files"
+                  },
+                  {
+                    "title": "Error Handling",
+                    "depth": 3,
+                    "id": "error-handling"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "title": "Advanced usage",
+            "source": "docs/routing.md",
+            "url": "routing.html",
+            "slug": "routing",
+            "headings": [
+              {
+                "title": "Command handling in group",
+                "depth": 2,
+                "id": "command-handling-in-group"
+              },
+              {
+                "title": "Composer",
+                "depth": 2,
+                "id": "composer"
+              },
+              {
+                "title": "Router",
+                "depth": 2,
+                "id": "router"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "API Reference",
+        "sections": [
+          {
+            "title": "Telegraf",
+            "source": "docs/telegraf.md",
+            "url": "telegraf.html",
+            "slug": "telegraf",
+            "headings": [
+              {
+                "title": "Constructor",
+                "depth": 3,
+                "id": "constructor"
+              },
+              {
+                "title": "use",
+                "depth": 3,
+                "id": "use"
+              },
+              {
+                "title": "on",
+                "depth": 3,
+                "id": "on"
+              },
+              {
+                "title": "hears",
+                "depth": 3,
+                "id": "hears"
+              },
+              {
+                "title": "command",
+                "depth": 3,
+                "id": "command"
+              },
+              {
+                "title": "action",
+                "depth": 3,
+                "id": "action"
+              },
+              {
+                "title": "startPolling",
+                "depth": 3,
+                "id": "startpolling"
+              },
+              {
+                "title": "startWebHook",
+                "depth": 3,
+                "id": "startwebhook"
+              },
+              {
+                "title": "stop",
+                "depth": 3,
+                "id": "stop"
+              },
+              {
+                "title": "webHookCallback",
+                "depth": 3,
+                "id": "webhookcallback"
+              },
+              {
+                "title": "handleUpdate",
+                "depth": 3,
+                "id": "handleupdate"
+              },
+              {
+                "title": "Telegraf.compose",
+                "depth": 3,
+                "id": "telegraf.compose"
+              },
+              {
+                "title": "Telegraf.mount",
+                "depth": 3,
+                "id": "telegraf.mount"
+              },
+              {
+                "title": "Telegraf.hears",
+                "depth": 3,
+                "id": "telegraf.hears"
+              },
+              {
+                "title": "Telegraf.action",
+                "depth": 3,
+                "id": "telegraf.action"
+              },
+              {
+                "title": "Telegraf.passThru",
+                "depth": 3,
+                "id": "telegraf.passthru"
+              },
+              {
+                "title": "Telegraf.optional",
+                "depth": 3,
+                "id": "telegraf.optional"
+              },
+              {
+                "title": "Telegraf.branch",
+                "depth": 3,
+                "id": "telegraf.branch"
+              }
+            ]
+          },
+          {
+            "title": "Telegram",
+            "source": "docs/telegram.md",
+            "url": "telegram.html",
+            "slug": "telegram",
+            "headings": [
+              {
+                "title": "Constructor",
+                "depth": 3,
+                "id": "constructor"
+              },
+              {
+                "title": "answerCallbackQuery",
+                "depth": 3,
+                "id": "answercallbackquery"
+              },
+              {
+                "title": "answerInlineQuery",
+                "depth": 3,
+                "id": "answerinlinequery"
+              },
+              {
+                "title": "editMessageCaption",
+                "depth": 3,
+                "id": "editmessagecaption"
+              },
+              {
+                "title": "editMessageReplyMarkup",
+                "depth": 3,
+                "id": "editmessagereplymarkup"
+              },
+              {
+                "title": "editMessageText",
+                "depth": 3,
+                "id": "editmessagetext"
+              },
+              {
+                "title": "forwardMessage",
+                "depth": 3,
+                "id": "forwardmessage"
+              },
+              {
+                "title": "sendCopy",
+                "depth": 3,
+                "id": "sendcopy"
+              },
+              {
+                "title": "getChat",
+                "depth": 3,
+                "id": "getchat"
+              },
+              {
+                "title": "getChatAdministrators",
+                "depth": 3,
+                "id": "getchatadministrators"
+              },
+              {
+                "title": "getChatMember",
+                "depth": 3,
+                "id": "getchatmember"
+              },
+              {
+                "title": "getChatMembersCount",
+                "depth": 3,
+                "id": "getchatmemberscount"
+              },
+              {
+                "title": "getFile",
+                "depth": 3,
+                "id": "getfile"
+              },
+              {
+                "title": "getFileLink",
+                "depth": 3,
+                "id": "getfilelink"
+              },
+              {
+                "title": "getMe",
+                "depth": 3,
+                "id": "getme"
+              },
+              {
+                "title": "getUserProfilePhotos",
+                "depth": 3,
+                "id": "getuserprofilephotos"
+              },
+              {
+                "title": "kickChatMember",
+                "depth": 3,
+                "id": "kickchatmember"
+              },
+              {
+                "title": "leaveChat",
+                "depth": 3,
+                "id": "leavechat"
+              },
+              {
+                "title": "removeWebHook",
+                "depth": 3,
+                "id": "removewebhook"
+              },
+              {
+                "title": "sendAudio",
+                "depth": 3,
+                "id": "sendaudio"
+              },
+              {
+                "title": "sendChatAction",
+                "depth": 3,
+                "id": "sendchataction"
+              },
+              {
+                "title": "sendContact",
+                "depth": 3,
+                "id": "sendcontact"
+              },
+              {
+                "title": "sendDocument",
+                "depth": 3,
+                "id": "senddocument"
+              },
+              {
+                "title": "sendLocation",
+                "depth": 3,
+                "id": "sendlocation"
+              },
+              {
+                "title": "sendMessage",
+                "depth": 3,
+                "id": "sendmessage"
+              },
+              {
+                "title": "sendPhoto",
+                "depth": 3,
+                "id": "sendphoto"
+              },
+              {
+                "title": "sendSticker",
+                "depth": 3,
+                "id": "sendsticker"
+              },
+              {
+                "title": "sendVenue",
+                "depth": 3,
+                "id": "sendvenue"
+              },
+              {
+                "title": "sendVideo",
+                "depth": 3,
+                "id": "sendvideo"
+              },
+              {
+                "title": "sendVoice",
+                "depth": 3,
+                "id": "sendvoice"
+              },
+              {
+                "title": "setWebHook",
+                "depth": 3,
+                "id": "setwebhook"
+              },
+              {
+                "title": "unbanChatMember",
+                "depth": 3,
+                "id": "unbanchatmember"
+              }
+            ]
+          },
+          {
+            "title": "Reply markup",
+            "source": "docs/extra.md",
+            "url": "extra.html",
+            "slug": "extra",
+            "headings": [
+              {
+                "title": "Extra",
+                "depth": 3,
+                "id": "extra"
+              },
+              {
+                "title": "Markup",
+                "depth": 3,
+                "id": "markup"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "index": {
+    "index.html": {
+      "source": "docs/index.md",
+      "title": "Quick start",
+      "slug": "index",
+      "headings": [
+        {
+          "title": "Installation",
+          "depth": 2,
+          "id": "installation",
+          "headings": [
+            {
+              "title": "Example",
+              "depth": 3,
+              "id": "example"
+            }
+          ]
+        },
+        {
+          "title": "Known middleware",
+          "depth": 2,
+          "id": "known-middleware"
+        }
+      ]
+    },
+    "introduction.html": {
+      "source": "docs/introduction.md",
+      "title": "Introduction",
+      "slug": "introduction",
+      "headings": [
+        {
+          "title": "Application",
+          "depth": 2,
+          "id": "application"
+        },
+        {
+          "title": "Context",
+          "depth": 2,
+          "id": "context",
+          "headings": [
+            {
+              "title": "Cascading",
+              "depth": 3,
+              "id": "cascading"
+            },
+            {
+              "title": "State",
+              "depth": 3,
+              "id": "state"
+            },
+            {
+              "title": "Session",
+              "depth": 3,
+              "id": "session"
+            },
+            {
+              "title": "Update types",
+              "depth": 3,
+              "id": "update-types"
+            },
+            {
+              "title": "Webhooks",
+              "depth": 3,
+              "id": "webhooks"
+            },
+            {
+              "title": "Files",
+              "depth": 3,
+              "id": "files"
+            },
+            {
+              "title": "Error Handling",
+              "depth": 3,
+              "id": "error-handling"
+            }
+          ]
+        }
+      ]
+    },
+    "routing.html": {
+      "source": "docs/routing.md",
+      "title": "Advanced usage",
+      "slug": "routing",
+      "headings": [
+        {
+          "title": "Command handling in group",
+          "depth": 2,
+          "id": "command-handling-in-group"
+        },
+        {
+          "title": "Composer",
+          "depth": 2,
+          "id": "composer"
+        },
+        {
+          "title": "Router",
+          "depth": 2,
+          "id": "router"
+        }
+      ]
+    },
+    "telegraf.html": {
+      "source": "docs/telegraf.md",
+      "title": "Telegraf",
+      "slug": "telegraf",
+      "headings": [
+        {
+          "title": "Constructor",
+          "depth": 3,
+          "id": "constructor"
+        },
+        {
+          "title": "use",
+          "depth": 3,
+          "id": "use"
+        },
+        {
+          "title": "on",
+          "depth": 3,
+          "id": "on"
+        },
+        {
+          "title": "hears",
+          "depth": 3,
+          "id": "hears"
+        },
+        {
+          "title": "command",
+          "depth": 3,
+          "id": "command"
+        },
+        {
+          "title": "action",
+          "depth": 3,
+          "id": "action"
+        },
+        {
+          "title": "startPolling",
+          "depth": 3,
+          "id": "startpolling"
+        },
+        {
+          "title": "startWebHook",
+          "depth": 3,
+          "id": "startwebhook"
+        },
+        {
+          "title": "stop",
+          "depth": 3,
+          "id": "stop"
+        },
+        {
+          "title": "webHookCallback",
+          "depth": 3,
+          "id": "webhookcallback"
+        },
+        {
+          "title": "handleUpdate",
+          "depth": 3,
+          "id": "handleupdate"
+        },
+        {
+          "title": "Telegraf.compose",
+          "depth": 3,
+          "id": "telegraf.compose"
+        },
+        {
+          "title": "Telegraf.mount",
+          "depth": 3,
+          "id": "telegraf.mount"
+        },
+        {
+          "title": "Telegraf.hears",
+          "depth": 3,
+          "id": "telegraf.hears"
+        },
+        {
+          "title": "Telegraf.action",
+          "depth": 3,
+          "id": "telegraf.action"
+        },
+        {
+          "title": "Telegraf.passThru",
+          "depth": 3,
+          "id": "telegraf.passthru"
+        },
+        {
+          "title": "Telegraf.optional",
+          "depth": 3,
+          "id": "telegraf.optional"
+        },
+        {
+          "title": "Telegraf.branch",
+          "depth": 3,
+          "id": "telegraf.branch"
+        }
+      ]
+    },
+    "telegram.html": {
+      "source": "docs/telegram.md",
+      "title": "Telegram",
+      "slug": "telegram",
+      "headings": [
+        {
+          "title": "Constructor",
+          "depth": 3,
+          "id": "constructor"
+        },
+        {
+          "title": "answerCallbackQuery",
+          "depth": 3,
+          "id": "answercallbackquery"
+        },
+        {
+          "title": "answerInlineQuery",
+          "depth": 3,
+          "id": "answerinlinequery"
+        },
+        {
+          "title": "editMessageCaption",
+          "depth": 3,
+          "id": "editmessagecaption"
+        },
+        {
+          "title": "editMessageReplyMarkup",
+          "depth": 3,
+          "id": "editmessagereplymarkup"
+        },
+        {
+          "title": "editMessageText",
+          "depth": 3,
+          "id": "editmessagetext"
+        },
+        {
+          "title": "forwardMessage",
+          "depth": 3,
+          "id": "forwardmessage"
+        },
+        {
+          "title": "sendCopy",
+          "depth": 3,
+          "id": "sendcopy"
+        },
+        {
+          "title": "getChat",
+          "depth": 3,
+          "id": "getchat"
+        },
+        {
+          "title": "getChatAdministrators",
+          "depth": 3,
+          "id": "getchatadministrators"
+        },
+        {
+          "title": "getChatMember",
+          "depth": 3,
+          "id": "getchatmember"
+        },
+        {
+          "title": "getChatMembersCount",
+          "depth": 3,
+          "id": "getchatmemberscount"
+        },
+        {
+          "title": "getFile",
+          "depth": 3,
+          "id": "getfile"
+        },
+        {
+          "title": "getFileLink",
+          "depth": 3,
+          "id": "getfilelink"
+        },
+        {
+          "title": "getMe",
+          "depth": 3,
+          "id": "getme"
+        },
+        {
+          "title": "getUserProfilePhotos",
+          "depth": 3,
+          "id": "getuserprofilephotos"
+        },
+        {
+          "title": "kickChatMember",
+          "depth": 3,
+          "id": "kickchatmember"
+        },
+        {
+          "title": "leaveChat",
+          "depth": 3,
+          "id": "leavechat"
+        },
+        {
+          "title": "removeWebHook",
+          "depth": 3,
+          "id": "removewebhook"
+        },
+        {
+          "title": "sendAudio",
+          "depth": 3,
+          "id": "sendaudio"
+        },
+        {
+          "title": "sendChatAction",
+          "depth": 3,
+          "id": "sendchataction"
+        },
+        {
+          "title": "sendContact",
+          "depth": 3,
+          "id": "sendcontact"
+        },
+        {
+          "title": "sendDocument",
+          "depth": 3,
+          "id": "senddocument"
+        },
+        {
+          "title": "sendLocation",
+          "depth": 3,
+          "id": "sendlocation"
+        },
+        {
+          "title": "sendMessage",
+          "depth": 3,
+          "id": "sendmessage"
+        },
+        {
+          "title": "sendPhoto",
+          "depth": 3,
+          "id": "sendphoto"
+        },
+        {
+          "title": "sendSticker",
+          "depth": 3,
+          "id": "sendsticker"
+        },
+        {
+          "title": "sendVenue",
+          "depth": 3,
+          "id": "sendvenue"
+        },
+        {
+          "title": "sendVideo",
+          "depth": 3,
+          "id": "sendvideo"
+        },
+        {
+          "title": "sendVoice",
+          "depth": 3,
+          "id": "sendvoice"
+        },
+        {
+          "title": "setWebHook",
+          "depth": 3,
+          "id": "setwebhook"
+        },
+        {
+          "title": "unbanChatMember",
+          "depth": 3,
+          "id": "unbanchatmember"
+        }
+      ]
+    },
+    "extra.html": {
+      "source": "docs/extra.md",
+      "title": "Reply markup",
+      "slug": "extra",
+      "headings": [
+        {
+          "title": "Extra",
+          "depth": 3,
+          "id": "extra"
+        },
+        {
+          "title": "Markup",
+          "depth": 3,
+          "id": "markup"
+        }
+      ]
+    }
+  },
+  "sources": {
+    "docs/index.md": "index.html",
+    "docs/introduction.md": "introduction.html",
+    "docs/routing.md": "routing.html",
+    "docs/telegraf.md": "telegraf.html",
+    "docs/telegram.md": "telegram.html",
+    "docs/extra.md": "extra.html",
+    "docs/style.css": "style.css"
+  }
+}

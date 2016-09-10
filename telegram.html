@@ -1,0 +1,985 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="assets/style.css?t=a44c9e9d">
+    <link rel="stylesheet" href="style.css?t=8572c3ee">
+    <script src="assets/script.js?t=820b7ffa"></script>
+    <title>Telegram</title>
+    <meta name="viewport" content="width=device-width">
+  </head>
+  <body class="-menu-visible">
+    <div class="doc-layout">
+      <div class="toggle menu-toggle js-menu-toggle"></div>
+      <div class="body page-telegram">
+        <div class="header-nav">
+          <div class="right"><a href="https://github.com/telegraf/telegraf" data-title="telegraf/telegraf" class="iconlink">
+              <!-- span.title Open in GitHub--><span class="icon -github"></span></a>
+          </div>
+        </div>
+        <div class="markdown-body"><p>Telegram API wrapper reference</p>
+<pre><code class="lang-js"><span class="pl-k">const</span> { Telegram } = <span class="pl-c1">require</span>(<span class="pl-s">&apos;telegraf&apos;</span>)
+</code></pre>
+<h3 id="constructor">Constructor</h3>
+<p>Initialize new Telegraf app.</p>
+<p><code>telegram.new Telegram(token, options)</code></p>
+<table>
+<thead>
+<tr>
+<th>Param</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>token</td>
+<td><code>string</code></td>
+<td><a href="https://core.telegram.org/bots#3-how-do-i-create-a-bot">Bot Token</a></td>
+</tr>
+<tr>
+<td>options</td>
+<td><code>object</code></td>
+<td>Telegram options</td>
+</tr>
+</tbody>
+</table>
+<p>Telegram options:</p>
+<pre><code class="lang-js">{
+  agent: <span class="pl-c1">null</span> <span class="pl-c">// https.Agent instance, allows custom proxy, certificate, keep alive, etc.</span>
+}
+</code></pre>
+<h3 id="answercallbackquery">answerCallbackQuery</h3>
+<p>Use this method to send answers to callback queries.</p>
+<p><code>telegram.answerCallbackQuery(callbackQueryId, text, showAlert) =&gt; Promise</code></p>
+<table>
+<thead>
+<tr>
+<th>Param</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>callbackQueryId</td>
+<td><code>string</code></td>
+<td>Query id</td>
+</tr>
+<tr>
+<td>[text]</td>
+<td><code>string</code></td>
+<td>Notification text</td>
+</tr>
+<tr>
+<td>[showAlert]</td>
+<td><code>bool</code></td>
+<td>Show alert instead of notification</td>
+</tr>
+</tbody>
+</table>
+<p><sub><a href="https://core.telegram.org/bots/api#answercallbackquery">See Telegram api docs</a></sub></p>
+<h3 id="answerinlinequery">answerInlineQuery</h3>
+<p>Use this method to send answers to an inline query.</p>
+<p><code>telegram.answerInlineQuery(inlineQueryId, results, extra) =&gt; Promise</code></p>
+<table>
+<thead>
+<tr>
+<th>Param</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>inlineQueryId</td>
+<td><code>string</code></td>
+<td>Query id</td>
+</tr>
+<tr>
+<td>results</td>
+<td><code>object[]</code></td>
+<td>Results</td>
+</tr>
+<tr>
+<td>[extra]</td>
+<td><code>object</code></td>
+<td><a href="https://core.telegram.org/bots/api#answerinlinequery">Extra parameters</a></td>
+</tr>
+</tbody>
+</table>
+<h3 id="editmessagecaption">editMessageCaption</h3>
+<p>Use this method to edit captions of messages sent by the bot or via the bot</p>
+<p><code>telegram.editMessageCaption(chatId, messageId, inlineMessageId, caption, extra) =&gt; Promise</code></p>
+<table>
+<thead>
+<tr>
+<th>Param</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>chatId</td>
+<td><code>number</code>|<code>string</code></td>
+<td>Chat id</td>
+</tr>
+<tr>
+<td>messageId</td>
+<td><code>string</code></td>
+<td>Message id</td>
+</tr>
+<tr>
+<td>inlineMessageId</td>
+<td><code>string</code></td>
+<td>Inline message id</td>
+</tr>
+<tr>
+<td>caption</td>
+<td><code>string</code></td>
+<td>Caption</td>
+</tr>
+<tr>
+<td>[extra]</td>
+<td><code>object</code></td>
+<td><a href="https://core.telegram.org/bots/api#editmessagecaption">Extra parameters</a></td>
+</tr>
+</tbody>
+</table>
+<h3 id="editmessagereplymarkup">editMessageReplyMarkup</h3>
+<p>Use this method to edit only the reply markup of messages sent by the bot or via the bot.</p>
+<p><code>telegram.editMessageReplyMarkup(chatId, messageId, inlineMessageId, markup, extra) =&gt; Promise</code></p>
+<table>
+<thead>
+<tr>
+<th>Param</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>chatId</td>
+<td><code>number</code>|<code>string</code></td>
+<td>Chat id</td>
+</tr>
+<tr>
+<td>messageId</td>
+<td><code>string</code></td>
+<td>Message id</td>
+</tr>
+<tr>
+<td>inlineMessageId</td>
+<td><code>string</code></td>
+<td>Inline message id</td>
+</tr>
+<tr>
+<td>markup</td>
+<td><code>object</code></td>
+<td>Keyboard markup</td>
+</tr>
+<tr>
+<td>[extra]</td>
+<td><code>object</code></td>
+<td><a href="https://core.telegram.org/bots/api#editmessagereplymarkup">Extra parameters</a></td>
+</tr>
+</tbody>
+</table>
+<h3 id="editmessagetext">editMessageText</h3>
+<p>Use this method to edit text messages sent by the bot or via the bot.</p>
+<p><code>telegram.editMessageText(chatId, messageId, inlineMessageId, text, extra) =&gt; Promise</code></p>
+<table>
+<thead>
+<tr>
+<th>Param</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>chatId</td>
+<td><code>number</code>|<code>string</code></td>
+<td>Chat id</td>
+</tr>
+<tr>
+<td>messageId</td>
+<td><code>string</code></td>
+<td>Message id</td>
+</tr>
+<tr>
+<td>inlineMessageId</td>
+<td><code>string</code></td>
+<td>Inline message id</td>
+</tr>
+<tr>
+<td>text</td>
+<td><code>string</code></td>
+<td>Message</td>
+</tr>
+<tr>
+<td>[extra]</td>
+<td><code>object</code></td>
+<td><a href="https://core.telegram.org/bots/api#editmessagetext">Extra parameters</a></td>
+</tr>
+</tbody>
+</table>
+<h3 id="forwardmessage">forwardMessage</h3>
+<p>Forwards message.</p>
+<p><code>telegram.forwardMessage(chatId, fromChatId, messageId, extra) =&gt; Promise</code></p>
+<table>
+<thead>
+<tr>
+<th>Param</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>chatId</td>
+<td><code>number</code>|<code>string</code></td>
+<td>Target Chat id</td>
+</tr>
+<tr>
+<td>fromChatId</td>
+<td><code>number</code>|<code>string</code></td>
+<td>Source Chat id</td>
+</tr>
+<tr>
+<td>messageId</td>
+<td><code>number</code></td>
+<td>Message id</td>
+</tr>
+<tr>
+<td>[extra]</td>
+<td><code>object</code></td>
+<td><a href="https://core.telegram.org/bots/api#forwardmessage">Extra parameters</a></td>
+</tr>
+</tbody>
+</table>
+<h3 id="sendcopy">sendCopy</h3>
+<p>Sends message copy.</p>
+<p><code>telegram.sendCopy(chatId, message, extra) =&gt; Promise</code></p>
+<table>
+<thead>
+<tr>
+<th>Param</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>chatId</td>
+<td><code>number</code>|<code>string</code></td>
+<td>Target Chat id</td>
+</tr>
+<tr>
+<td>message</td>
+<td><code>object</code></td>
+<td>Message</td>
+</tr>
+<tr>
+<td>[extra]</td>
+<td><code>object</code></td>
+<td><a href="https://core.telegram.org/bots/api#sendmessage">Extra parameters</a></td>
+</tr>
+</tbody>
+</table>
+<h3 id="getchat">getChat</h3>
+<p>Use this method to get up to date information about the chat (current name of the user for one-on-one conversatio
+ns, current username of a user, group or channel, etc.).</p>
+<p><code>telegram.getChat(chatId) =&gt; Promise</code></p>
+<table>
+<thead>
+<tr>
+<th>Param</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>chatId</td>
+<td><code>number</code>|<code>string</code></td>
+<td>Chat id</td>
+</tr>
+</tbody>
+</table>
+<p><sub><a href="https://core.telegram.org/bots/api#getchat">See Telegram api docs</a></sub></p>
+<h3 id="getchatadministrators">getChatAdministrators</h3>
+<p>Use this method to get a list of administrators in a chat. On success, returns an Array of ChatMember objects that contains information about all chat administrators except other bots. If the chat is a group or a supergroup and no administrators were appointed, only the creator will be returned.</p>
+<p><code>telegram.getChatAdministrators(chatId) =&gt; Promise</code></p>
+<table>
+<thead>
+<tr>
+<th>Param</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>chatId</td>
+<td><code>number</code>|<code>string</code></td>
+<td>Chat id</td>
+</tr>
+</tbody>
+</table>
+<p><sub><a href="https://core.telegram.org/bots/api#getchatadministrators">See Telegram api docs</a></sub></p>
+<h3 id="getchatmember">getChatMember</h3>
+<p>Use this method to get information about a member of a chat.</p>
+<p><code>telegram.getChatMember(chatId) =&gt; Promise</code></p>
+<table>
+<thead>
+<tr>
+<th>Param</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>chatId</td>
+<td><code>number</code>|<code>string</code></td>
+<td>Chat id</td>
+</tr>
+</tbody>
+</table>
+<p><sub><a href="https://core.telegram.org/bots/api#getchatmember">See Telegram api docs</a></sub></p>
+<h3 id="getchatmemberscount">getChatMembersCount</h3>
+<p>Use this method to get the number of members in a chat.</p>
+<p><code>telegram.getChatMembersCount(chatId) =&gt; Promise</code></p>
+<table>
+<thead>
+<tr>
+<th>Param</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>chatId</td>
+<td><code>number</code>|<code>string</code></td>
+<td>Chat id</td>
+</tr>
+</tbody>
+</table>
+<p><sub><a href="https://core.telegram.org/bots/api#getchatmemberscount">See Telegram api docs</a></sub></p>
+<h3 id="getfile">getFile</h3>
+<p>Returns basic info about a file and prepare it for downloading.</p>
+<p><code>telegram.getFile(fileId) =&gt; Promise</code></p>
+<table>
+<thead>
+<tr>
+<th>Param</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>fileId</td>
+<td><code>string</code></td>
+<td>File id</td>
+</tr>
+</tbody>
+</table>
+<p><sub><a href="https://core.telegram.org/bots/api#getfile">See Telegram api docs</a></sub></p>
+<h3 id="getfilelink">getFileLink</h3>
+<p>Returns link to file.</p>
+<p><code>telegram.getFileLink(fileId) =&gt; Promise</code></p>
+<table>
+<thead>
+<tr>
+<th>Param</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>fileId</td>
+<td><code>string</code></td>
+<td>File id</td>
+</tr>
+</tbody>
+</table>
+<p><sub><a href="https://core.telegram.org/bots/api#getFileLink">See Telegram api docs</a></sub></p>
+<h3 id="getme">getMe</h3>
+<p>Returns basic information about the bot.</p>
+<p><code>telegram.getMe() =&gt; Promise</code></p>
+<p><sub><a href="https://core.telegram.org/bots/api#getme">See Telegram api docs</a></sub></p>
+<h3 id="getuserprofilephotos">getUserProfilePhotos</h3>
+<p>Returns profiles photos for provided user.</p>
+<p><code>telegram.getUserProfilePhotos(userId, offset, limit) =&gt; Promise</code></p>
+<table>
+<thead>
+<tr>
+<th>Param</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>userId</td>
+<td><code>number</code></td>
+<td>Chat id</td>
+</tr>
+<tr>
+<td>offset</td>
+<td><code>number</code></td>
+<td>Offset</td>
+</tr>
+<tr>
+<td>limit</td>
+<td><code>number</code></td>
+<td>Limit</td>
+</tr>
+</tbody>
+</table>
+<p><sub><a href="https://core.telegram.org/bots/api#getuserprofilephotos">See Telegram api docs</a></sub></p>
+<h3 id="kickchatmember">kickChatMember</h3>
+<p>Use this method to kick a user from a group or a supergroup.</p>
+<p><code>telegram.kickChatMember(chatId, userId) =&gt; Promise</code></p>
+<table>
+<thead>
+<tr>
+<th>Param</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>chatId</td>
+<td><code>number</code>|<code>string</code></td>
+<td>Chat id</td>
+</tr>
+<tr>
+<td>userId</td>
+<td><code>number</code></td>
+<td>User id</td>
+</tr>
+</tbody>
+</table>
+<p><sub><a href="https://core.telegram.org/bots/api#kickchatmember">See Telegram api docs</a></sub></p>
+<h3 id="leavechat">leaveChat</h3>
+<p>Use this method for your bot to leave a group, supergroup or channel.</p>
+<p><code>telegram.leaveChat(chatId) =&gt; Promise</code></p>
+<table>
+<thead>
+<tr>
+<th>Param</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>chatId</td>
+<td><code>number</code>|<code>string</code></td>
+<td>Chat id</td>
+</tr>
+</tbody>
+</table>
+<p><sub><a href="https://core.telegram.org/bots/api#leavechat">See Telegram api docs</a></sub></p>
+<h3 id="removewebhook">removeWebHook</h3>
+<p>Removes webhook. Shortcut for <code>setWebHook(&apos;&apos;)</code></p>
+<p><code>telegram.removeWebHook() =&gt; Promise</code></p>
+<p><sub><a href="https://core.telegram.org/bots/api#removewebhook">See Telegram api docs</a></sub></p>
+<h3 id="sendaudio">sendAudio</h3>
+<p>Sends audio.</p>
+<p><code>telegram.sendAudio(chatId, audio, extra) =&gt; Promise</code></p>
+<table>
+<thead>
+<tr>
+<th>Param</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>chatId</td>
+<td><code>number</code>|<code>string</code></td>
+<td>Chat id</td>
+</tr>
+<tr>
+<td>audio</td>
+<td><code>File</code></td>
+<td>Document</td>
+</tr>
+<tr>
+<td>[extra]</td>
+<td><code>object</code></td>
+<td><a href="https://core.telegram.org/bots/api#sendaudio">Extra parameters</a></td>
+</tr>
+</tbody>
+</table>
+<h3 id="sendchataction">sendChatAction</h3>
+<p>Sends chat action.</p>
+<p><code>telegram.sendChatAction(chatId, action) =&gt; Promise</code></p>
+<table>
+<thead>
+<tr>
+<th>Param</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>chatId</td>
+<td><code>number</code>|<code>string</code></td>
+<td>Chat id</td>
+</tr>
+<tr>
+<td>action</td>
+<td><code>string</code></td>
+<td><a href="https://core.telegram.org/bots/api#sendchataction">Chat action</a></td>
+</tr>
+</tbody>
+</table>
+<h3 id="sendcontact">sendContact</h3>
+<p>Sends document.</p>
+<p><code>telegram.sendContact(chatId, phoneNumber, firstName, extra) =&gt; Promise</code></p>
+<table>
+<thead>
+<tr>
+<th>Param</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>chatId</td>
+<td><code>number</code>|<code>string</code></td>
+<td>Chat id</td>
+</tr>
+<tr>
+<td>phoneNumber</td>
+<td><code>string</code></td>
+<td>Contact phone number</td>
+</tr>
+<tr>
+<td>firstName</td>
+<td><code>string</code></td>
+<td>Contact first name</td>
+</tr>
+<tr>
+<td>[extra]</td>
+<td><code>object</code></td>
+<td><a href="https://core.telegram.org/bots/api#sendcontact">Extra parameters</a></td>
+</tr>
+</tbody>
+</table>
+<h3 id="senddocument">sendDocument</h3>
+<p>Sends document.</p>
+<p><code>telegram.sendDocument(chatId, doc, extra) =&gt; Promise</code></p>
+<table>
+<thead>
+<tr>
+<th>Param</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>chatId</td>
+<td><code>number</code>|<code>string</code></td>
+<td>Chat id</td>
+</tr>
+<tr>
+<td>doc</td>
+<td><code>File</code></td>
+<td>Document</td>
+</tr>
+<tr>
+<td>[extra]</td>
+<td><code>object</code></td>
+<td><a href="https://core.telegram.org/bots/api#senddocument">Extra parameters</a></td>
+</tr>
+</tbody>
+</table>
+<h3 id="sendlocation">sendLocation</h3>
+<p>Sends location.</p>
+<p><code>telegram.sendLocation(chatId, latitude, longitude, extra) =&gt; Promise</code></p>
+<table>
+<thead>
+<tr>
+<th>Param</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>chatId</td>
+<td><code>number</code>|<code>string</code></td>
+<td>Chat id</td>
+</tr>
+<tr>
+<td>latitude</td>
+<td><code>number</code></td>
+<td>Latitude</td>
+</tr>
+<tr>
+<td>longitude</td>
+<td><code>number</code></td>
+<td>Longitude</td>
+</tr>
+<tr>
+<td>[extra]</td>
+<td><code>object</code></td>
+<td><a href="https://core.telegram.org/bots/api#sendlocation">Extra parameters</a></td>
+</tr>
+</tbody>
+</table>
+<h3 id="sendmessage">sendMessage</h3>
+<p>Sends text message.</p>
+<p><code>telegram.sendMessage(chatId, text, extra) =&gt; Promise</code></p>
+<table>
+<thead>
+<tr>
+<th>Param</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>chatId</td>
+<td><code>number</code>|<code>string</code></td>
+<td>Chat id</td>
+</tr>
+<tr>
+<td>text</td>
+<td><code>string</code></td>
+<td>Message</td>
+</tr>
+<tr>
+<td>[extra]</td>
+<td><code>object</code></td>
+<td><a href="https://core.telegram.org/bots/api#sendmessage">Extra parameters</a></td>
+</tr>
+</tbody>
+</table>
+<h3 id="sendphoto">sendPhoto</h3>
+<p>Sends photo.</p>
+<p><code>telegram.sendPhoto(chatId, photo, extra) =&gt; Promise</code></p>
+<table>
+<thead>
+<tr>
+<th>Param</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>chatId</td>
+<td><code>number</code>|<code>string</code></td>
+<td>Chat id</td>
+</tr>
+<tr>
+<td>photo</td>
+<td><code>File</code></td>
+<td>Photo</td>
+</tr>
+<tr>
+<td>[extra]</td>
+<td><code>object</code></td>
+<td><a href="https://core.telegram.org/bots/api#sendphoto">Extra parameters</a></td>
+</tr>
+</tbody>
+</table>
+<h3 id="sendsticker">sendSticker</h3>
+<p>Sends sticker.</p>
+<p><code>telegram.sendSticker(chatId, sticker, extra) =&gt; Promise</code></p>
+<table>
+<thead>
+<tr>
+<th>Param</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>chatId</td>
+<td><code>number</code>|<code>string</code></td>
+<td>Chat id</td>
+</tr>
+<tr>
+<td>sticker</td>
+<td><code>File</code></td>
+<td>Document</td>
+</tr>
+<tr>
+<td>[extra]</td>
+<td><code>object</code></td>
+<td><a href="https://core.telegram.org/bots/api#sendsticker">Extra parameters</a></td>
+</tr>
+</tbody>
+</table>
+<h3 id="sendvenue">sendVenue</h3>
+<p>Sends venue information.</p>
+<p><code>telegram.sendVenue(chatId, latitude, longitude, title, address, extra) =&gt; Promise</code></p>
+<table>
+<thead>
+<tr>
+<th>Param</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>chatId</td>
+<td><code>number</code>|<code>string</code></td>
+<td>Chat id</td>
+</tr>
+<tr>
+<td>latitude</td>
+<td><code>number</code></td>
+<td>Latitude</td>
+</tr>
+<tr>
+<td>longitude</td>
+<td><code>number</code></td>
+<td>Longitude</td>
+</tr>
+<tr>
+<td>title</td>
+<td><code>string</code></td>
+<td>Venue title</td>
+</tr>
+<tr>
+<td>address</td>
+<td><code>string</code></td>
+<td>Venue address</td>
+</tr>
+<tr>
+<td>[extra]</td>
+<td><code>object</code></td>
+<td><a href="https://core.telegram.org/bots/api#sendvenue">Extra parameters</a></td>
+</tr>
+</tbody>
+</table>
+<h3 id="sendvideo">sendVideo</h3>
+<p>Sends video.</p>
+<p><code>telegram.sendVideo(chatId, video, extra) =&gt; Promise</code></p>
+<table>
+<thead>
+<tr>
+<th>Param</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>chatId</td>
+<td><code>number</code>|<code>string</code></td>
+<td>Chat id</td>
+</tr>
+<tr>
+<td>video</td>
+<td><code>File</code></td>
+<td>Document</td>
+</tr>
+<tr>
+<td>[extra]</td>
+<td><code>object</code></td>
+<td><a href="https://core.telegram.org/bots/api#sendvideo">Extra parameters</a></td>
+</tr>
+</tbody>
+</table>
+<h3 id="sendvoice">sendVoice</h3>
+<p>Sends voice.</p>
+<p><code>telegram.sendVoice(chatId, voice, extra) =&gt; Promise</code></p>
+<table>
+<thead>
+<tr>
+<th>Param</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>chatId</td>
+<td><code>number</code>|<code>string</code></td>
+<td>Chat id</td>
+</tr>
+<tr>
+<td>voice</td>
+<td><code>File</code></td>
+<td>Document</td>
+</tr>
+<tr>
+<td>[extra]</td>
+<td><code>object</code></td>
+<td><a href="https://core.telegram.org/bots/api#sendvoice">Extra parameters</a></td>
+</tr>
+</tbody>
+</table>
+<h3 id="setwebhook">setWebHook</h3>
+<p>Specifies an url to receive incoming updates via an outgoing webhook.</p>
+<p><code>telegram.setWebHook(url, [cert]) =&gt; Promise</code></p>
+<table>
+<thead>
+<tr>
+<th>Param</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>url</td>
+<td><code>string</code></td>
+<td>Public url for webhook</td>
+</tr>
+<tr>
+<td>[cert]</td>
+<td><code>File</code></td>
+<td>SSL public certificate</td>
+</tr>
+</tbody>
+</table>
+<p><sub><a href="https://core.telegram.org/bots/api#setwebhook">See Telegram api docs</a></sub></p>
+<h3 id="unbanchatmember">unbanChatMember</h3>
+<p>Use this method to unban a previously kicked user in a supergroup.</p>
+<p><code>telegram.unbanChatMember(chatId, userId) =&gt; Promise</code></p>
+<table>
+<thead>
+<tr>
+<th>Param</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>chatId</td>
+<td><code>number</code>|<code>string</code></td>
+<td>Chat id</td>
+</tr>
+<tr>
+<td>userId</td>
+<td><code>number</code></td>
+<td>User id</td>
+</tr>
+</tbody>
+</table>
+<p><sub><a href="https://core.telegram.org/bots/api#unbanchatmember">See Telegram api docs</a></sub></p>
+
+        </div>
+        <div class="footer-nav">
+          <div class="left"><a href="telegraf.html"><span class="title">Telegraf</span></a></div>
+          <div class="right"><a href="extra.html"><span class="label">Next: </span><span class="title">Reply markup</span></a></div>
+        </div>
+      </div>
+      <div class="menu toc-menu">
+        <li class="menu-item -level-0 -parent">
+          <ul class="submenu">
+            <li class="menu-item -level-1 -parent"><span class="title">Telegraf</span>
+              <ul class="submenu">
+                <li class="menu-item -level-2"><a href="index.html" class="link title  link-index">Quick start</a>
+                </li>
+                <li class="menu-item -level-2"><a href="introduction.html" class="link title  link-introduction">Introduction</a>
+                </li>
+                <li class="menu-item -level-2"><a href="routing.html" class="link title  link-routing">Advanced usage</a>
+                </li>
+              </ul>
+            </li>
+            <li class="menu-item -level-1 -parent"><span class="title">API Reference</span>
+              <ul class="submenu">
+                <li class="menu-item -level-2"><a href="telegraf.html" class="link title  link-telegraf">Telegraf</a>
+                </li>
+                <li class="menu-item -level-2"><a href="telegram.html" class="link title -active link-telegram">Telegram</a>
+                  <ul class="headings heading-list">
+                    <li class="heading-item -depth-3"><a href="#constructor" class="hlink link-constructor">Constructor</a>
+                    </li>
+                    <li class="heading-item -depth-3"><a href="#answercallbackquery" class="hlink link-answercallbackquery">answerCallbackQuery</a>
+                    </li>
+                    <li class="heading-item -depth-3"><a href="#answerinlinequery" class="hlink link-answerinlinequery">answerInlineQuery</a>
+                    </li>
+                    <li class="heading-item -depth-3"><a href="#editmessagecaption" class="hlink link-editmessagecaption">editMessageCaption</a>
+                    </li>
+                    <li class="heading-item -depth-3"><a href="#editmessagereplymarkup" class="hlink link-editmessagereplymarkup">editMessageReplyMarkup</a>
+                    </li>
+                    <li class="heading-item -depth-3"><a href="#editmessagetext" class="hlink link-editmessagetext">editMessageText</a>
+                    </li>
+                    <li class="heading-item -depth-3"><a href="#forwardmessage" class="hlink link-forwardmessage">forwardMessage</a>
+                    </li>
+                    <li class="heading-item -depth-3"><a href="#sendcopy" class="hlink link-sendcopy">sendCopy</a>
+                    </li>
+                    <li class="heading-item -depth-3"><a href="#getchat" class="hlink link-getchat">getChat</a>
+                    </li>
+                    <li class="heading-item -depth-3"><a href="#getchatadministrators" class="hlink link-getchatadministrators">getChatAdministrators</a>
+                    </li>
+                    <li class="heading-item -depth-3"><a href="#getchatmember" class="hlink link-getchatmember">getChatMember</a>
+                    </li>
+                    <li class="heading-item -depth-3"><a href="#getchatmemberscount" class="hlink link-getchatmemberscount">getChatMembersCount</a>
+                    </li>
+                    <li class="heading-item -depth-3"><a href="#getfile" class="hlink link-getfile">getFile</a>
+                    </li>
+                    <li class="heading-item -depth-3"><a href="#getfilelink" class="hlink link-getfilelink">getFileLink</a>
+                    </li>
+                    <li class="heading-item -depth-3"><a href="#getme" class="hlink link-getme">getMe</a>
+                    </li>
+                    <li class="heading-item -depth-3"><a href="#getuserprofilephotos" class="hlink link-getuserprofilephotos">getUserProfilePhotos</a>
+                    </li>
+                    <li class="heading-item -depth-3"><a href="#kickchatmember" class="hlink link-kickchatmember">kickChatMember</a>
+                    </li>
+                    <li class="heading-item -depth-3"><a href="#leavechat" class="hlink link-leavechat">leaveChat</a>
+                    </li>
+                    <li class="heading-item -depth-3"><a href="#removewebhook" class="hlink link-removewebhook">removeWebHook</a>
+                    </li>
+                    <li class="heading-item -depth-3"><a href="#sendaudio" class="hlink link-sendaudio">sendAudio</a>
+                    </li>
+                    <li class="heading-item -depth-3"><a href="#sendchataction" class="hlink link-sendchataction">sendChatAction</a>
+                    </li>
+                    <li class="heading-item -depth-3"><a href="#sendcontact" class="hlink link-sendcontact">sendContact</a>
+                    </li>
+                    <li class="heading-item -depth-3"><a href="#senddocument" class="hlink link-senddocument">sendDocument</a>
+                    </li>
+                    <li class="heading-item -depth-3"><a href="#sendlocation" class="hlink link-sendlocation">sendLocation</a>
+                    </li>
+                    <li class="heading-item -depth-3"><a href="#sendmessage" class="hlink link-sendmessage">sendMessage</a>
+                    </li>
+                    <li class="heading-item -depth-3"><a href="#sendphoto" class="hlink link-sendphoto">sendPhoto</a>
+                    </li>
+                    <li class="heading-item -depth-3"><a href="#sendsticker" class="hlink link-sendsticker">sendSticker</a>
+                    </li>
+                    <li class="heading-item -depth-3"><a href="#sendvenue" class="hlink link-sendvenue">sendVenue</a>
+                    </li>
+                    <li class="heading-item -depth-3"><a href="#sendvideo" class="hlink link-sendvideo">sendVideo</a>
+                    </li>
+                    <li class="heading-item -depth-3"><a href="#sendvoice" class="hlink link-sendvoice">sendVoice</a>
+                    </li>
+                    <li class="heading-item -depth-3"><a href="#setwebhook" class="hlink link-setwebhook">setWebHook</a>
+                    </li>
+                    <li class="heading-item -depth-3"><a href="#unbanchatmember" class="hlink link-unbanchatmember">unbanChatMember</a>
+                    </li>
+                  </ul>
+                </li>
+                <li class="menu-item -level-2"><a href="extra.html" class="link title  link-extra">Reply markup</a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+      </div>
+    </div>
+  </body>
+</html>

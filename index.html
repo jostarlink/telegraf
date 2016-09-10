@@ -1,124 +1,49 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
   <head>
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <title>Telegraf by telegraf</title>
-
-    <link rel="stylesheet" href="stylesheets/styles.css">
-    <link rel="stylesheet" href="stylesheets/github-light.css">
-    <script src="javascripts/scale.fix.js"></script>
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-    <!--[if lt IE 9]>
-    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
+    <link rel="stylesheet" href="assets/style.css?t=a44c9e9d">
+    <link rel="stylesheet" href="style.css?t=8572c3ee">
+    <script src="assets/script.js?t=820b7ffa"></script>
+    <title>Quick start</title>
+    <meta name="viewport" content="width=device-width">
   </head>
-  <body>
-    <div class="wrapper">
-      <header>
-        <h1 class="header">Telegraf</h1>
-        <p class="header">📢 Telegram bot framework for Node.js</p>
-
-        <ul>
-          <li class="download"><a class="buttons" href="https://github.com/telegraf/telegraf/zipball/master">Download ZIP</a></li>
-          <li class="download"><a class="buttons" href="https://github.com/telegraf/telegraf/tarball/master">Download TAR</a></li>
-          <li><a class="buttons github" href="https://github.com/telegraf/telegraf">View On GitHub</a></li>
-        </ul>
-
-        <p class="header">This project is maintained by <a class="header name" href="https://github.com/telegraf">telegraf</a></p>
-
-
-      </header>
-      <section>
-        <h2>
-<a id="features" class="anchor" href="#features" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Features</h2>
-
+  <body class="-menu-visible">
+    <div class="doc-layout">
+      <div class="toggle menu-toggle js-menu-toggle"></div>
+      <div class="body page-index">
+        <div class="header-nav">
+          <div class="right"><a href="https://github.com/telegraf/telegraf" data-title="telegraf/telegraf" class="iconlink">
+              <!-- span.title Open in GitHub--><span class="icon -github"></span></a>
+          </div>
+        </div>
+        <div class="markdown-body"><h1 class="massive-header -with-tagline" id="telegraf">Telegraf</h1>
+<blockquote>
+<p>Telegram bot framework for Node.js</p>
+</blockquote>
 <ul>
 <li>Full <a href="https://core.telegram.org/bots/api">Telegram Bot API 2.1</a> support</li>
 <li>Incredibly fast</li>
-<li><a href="#middleware">Easy to extend</a></li>
+<li>Easy to extend</li>
+<li>Keyboard helpers</li>
+<li><a href="#middleware">Community middleware</a></li>
 <li>Minimum dependencies</li>
 <li><a href="https://core.telegram.org/bots/api#inline-mode">Inline mode</a></li>
 <li>http/https/Connect/express.js webhooks</li>
 <li>Reply via webhook</li>
 </ul>
+<h2 id="installation">Installation</h2>
+<pre><code class="lang-js">$ npm install telegraf --save
+</code></pre>
+<h3 id="example">Example</h3>
+<pre><code class="lang-js"><span class="pl-k">const</span> Telegraf = <span class="pl-c1">require</span>(<span class="pl-s">&apos;telegraf&apos;</span>)
 
-<h2>
-<a id="installation" class="anchor" href="#installation" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Installation</h2>
-
-<div class="highlight highlight-source-js"><pre>$ npm install telegraf</pre></div>
-
-<h2>
-<a id="examples" class="anchor" href="#examples" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Examples</h2>
-
-<div class="highlight highlight-source-js"><pre><span class="pl-k">const</span> <span class="pl-c1">Telegraf</span> <span class="pl-k">=</span> <span class="pl-c1">require</span>(<span class="pl-s"><span class="pl-pds">'</span>telegraf<span class="pl-pds">'</span></span>)
-
-<span class="pl-k">const</span> <span class="pl-c1">app</span> <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-en">Telegraf</span>(<span class="pl-c1">process</span>.<span class="pl-smi">env</span>.<span class="pl-c1">BOT_TOKEN</span>)
-<span class="pl-smi">app</span>.<span class="pl-en">on</span>(<span class="pl-s"><span class="pl-pds">'</span>message<span class="pl-pds">'</span></span>, (<span class="pl-smi">ctx</span>) <span class="pl-k">=&gt;</span> <span class="pl-smi">ctx</span>.<span class="pl-en">reply</span>(<span class="pl-s"><span class="pl-pds">'</span>42<span class="pl-pds">'</span></span>))
-<span class="pl-smi">app</span>.<span class="pl-en">startPolling</span>()</pre></div>
-
-<p>There are some other <a href="https://github.com/telegraf/telegraf/blob/master/examples">examples</a>.</p>
-
-<h2>
-<a id="api" class="anchor" href="#api" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>API</h2>
-
-<h3>
-<a id="application" class="anchor" href="#application" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Application</h3>
-
-<p>A Telegraf application is an object containing an array of middlewares which are composed 
-and executed in a stack-like manner upon request. Is similar to many other middleware systems 
-that you may have encountered such as Koa, Ruby's Rack, Connect.</p>
-
-<h3>
-<a id="context" class="anchor" href="#context" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Context</h3>
-
-<p>A Telegraf Context encapsulates telegram message.
-Context is created per request and contains following props:</p>
-
-<div class="highlight highlight-source-js"><pre><span class="pl-smi">app</span>.<span class="pl-en">on</span>(<span class="pl-s"><span class="pl-pds">'</span>message<span class="pl-pds">'</span></span>, (<span class="pl-smi">ctx</span>) <span class="pl-k">=&gt;</span> {
-  <span class="pl-smi">ctx</span>.<span class="pl-smi">telegram</span>           <span class="pl-c">// Telegram wrapper instance</span>
-  <span class="pl-smi">ctx</span>.<span class="pl-smi">updateType</span>         <span class="pl-c">// Update type(message, inline_query, etc.)</span>
-  [<span class="pl-smi">ctx</span>.<span class="pl-smi">message</span>]          <span class="pl-c">// Received message</span>
-  [<span class="pl-smi">ctx</span>.<span class="pl-smi">inlineQuery</span>]      <span class="pl-c">// Received inline query</span>
-  [<span class="pl-k">...</span>]                  <span class="pl-c">// See api.doc</span>
-})</pre></div>
-
-<p><a href="https://github.com/telegraf/telegraf/blob/master/docs/api.md#context">Context API docs</a></p>
-
-<h3>
-<a id="cascading" class="anchor" href="#cascading" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Cascading</h3>
-
-<p>Middleware normally takes two parameters (ctx, next), <code>ctx</code> is the context for one Telegram message,
-<code>next</code> is a function that is invoked to execute the downstream middleware. 
-It returns a Promise with a then function for running code after completion.</p>
-
-<div class="highlight highlight-source-js"><pre><span class="pl-k">const</span> <span class="pl-c1">app</span> <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-en">Telegraf</span>(<span class="pl-c1">process</span>.<span class="pl-smi">env</span>.<span class="pl-c1">BOT_TOKEN</span>)
-
-<span class="pl-smi">app</span>.<span class="pl-en">use</span>((<span class="pl-smi">ctx</span>, <span class="pl-smi">next</span>) <span class="pl-k">=&gt;</span> {
-  <span class="pl-k">const</span> <span class="pl-c1">start</span> <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-en">Date</span>()
-  <span class="pl-k">return</span> <span class="pl-en">next</span>().<span class="pl-en">then</span>(() <span class="pl-k">=&gt;</span> {
-    <span class="pl-k">const</span> <span class="pl-c1">ms</span> <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-en">Date</span>() <span class="pl-k">-</span> start
-    <span class="pl-en">console</span>.<span class="pl-c1">log</span>(<span class="pl-s"><span class="pl-pds">'</span>Response time %sms<span class="pl-pds">'</span></span>, ms)
-  })
-})
-
-<span class="pl-smi">app</span>.<span class="pl-en">on</span>(<span class="pl-s"><span class="pl-pds">'</span>text<span class="pl-pds">'</span></span>, (<span class="pl-smi">ctx</span>) <span class="pl-k">=&gt;</span> <span class="pl-smi">ctx</span>.<span class="pl-en">reply</span>(<span class="pl-s"><span class="pl-pds">'</span>Hello World<span class="pl-pds">'</span></span>))</pre></div>
-
-<h4>
-<a id="cascading-with-async-functions-babel-required" class="anchor" href="#cascading-with-async-functions-babel-required" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Cascading with async functions (Babel required)</h4>
-
-<div class="highlight highlight-source-js"><pre><span class="pl-smi">app</span>.<span class="pl-en">use</span>(<span class="pl-k">async</span> (<span class="pl-smi">ctx</span>, <span class="pl-smi">next</span>) <span class="pl-k">=&gt;</span> {
-  <span class="pl-k">const</span> <span class="pl-c1">start</span> <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-en">Date</span>()
-  <span class="pl-k">await</span> <span class="pl-en">next</span>()
-  <span class="pl-k">const</span> <span class="pl-c1">ms</span> <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-en">Date</span>() <span class="pl-k">-</span> start
-  <span class="pl-en">console</span>.<span class="pl-c1">log</span>(<span class="pl-s"><span class="pl-pds">'</span>Response time %sms<span class="pl-pds">'</span></span>, ms)
-})</pre></div>
-
-<p><a name="middleware"></a></p>
-
-<h4>
-<a id="known-middleware" class="anchor" href="#known-middleware" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Known middleware</h4>
-
+<span class="pl-k">const</span> app = <span class="pl-k">new</span> Telegraf(process.env.BOT_TOKEN)
+app.on(<span class="pl-s">&apos;message&apos;</span>, (ctx) =&gt; ctx.reply(<span class="pl-s">&apos;42&apos;</span>))
+app.startPolling()
+</code></pre>
+<p>There are some other <a href="https://github.com/telegraf/telegraf/tree/master/examples">examples</a></p>
+<h2 id="known-middleware">Known middleware</h2>
 <ul>
 <li><a href="https://github.com/telegraf/telegraf-i18n">Internationalization</a></li>
 <li><a href="https://github.com/telegraf/telegraf-session-redis">Redis powered session</a></li>
@@ -132,81 +57,47 @@ It returns a Promise with a then function for running code after completion.</p>
 <li><a href="https://www.npmjs.com/search?q=telegraf-">and more...</a></li>
 </ul>
 
-<h3>
-<a id="state" class="anchor" href="#state" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>State</h3>
-
-<p>The recommended namespace to share information between middlewares.</p>
-
-<div class="highlight highlight-source-js"><pre><span class="pl-k">const</span> <span class="pl-c1">app</span> <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-en">Telegraf</span>(<span class="pl-c1">process</span>.<span class="pl-smi">env</span>.<span class="pl-c1">BOT_TOKEN</span>)
-
-<span class="pl-smi">app</span>.<span class="pl-en">use</span>((<span class="pl-smi">ctx</span>, <span class="pl-smi">next</span>) <span class="pl-k">=&gt;</span> {
-  <span class="pl-smi">ctx</span>.<span class="pl-smi">state</span>.<span class="pl-smi">role</span> <span class="pl-k">=</span> <span class="pl-en">getUserRole</span>(<span class="pl-smi">ctx</span>.<span class="pl-smi">message</span>) 
-  <span class="pl-k">return</span> <span class="pl-en">next</span>()
-})
-
-<span class="pl-smi">app</span>.<span class="pl-en">on</span>(<span class="pl-s"><span class="pl-pds">'</span>text<span class="pl-pds">'</span></span>, (<span class="pl-smi">ctx</span>) <span class="pl-k">=&gt;</span> {
-  <span class="pl-k">return</span> <span class="pl-smi">ctx</span>.<span class="pl-en">reply</span>(<span class="pl-s"><span class="pl-pds">`</span>Hello <span class="pl-s1"><span class="pl-pse">${</span><span class="pl-smi">ctx</span>.<span class="pl-smi">state</span>.<span class="pl-smi">role</span><span class="pl-pse">}</span></span><span class="pl-pds">`</span></span>)
-})</pre></div>
-
-<h3>
-<a id="session" class="anchor" href="#session" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Session</h3>
-
-<div class="highlight highlight-source-js"><pre><span class="pl-k">const</span> <span class="pl-c1">app</span> <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-en">Telegraf</span>(<span class="pl-c1">process</span>.<span class="pl-smi">env</span>.<span class="pl-c1">BOT_TOKEN</span>)
-<span class="pl-smi">app</span>.<span class="pl-en">use</span>(<span class="pl-smi">Telegraf</span>.<span class="pl-en">memorySession</span>())
-<span class="pl-smi">app</span>.<span class="pl-en">on</span>(<span class="pl-s"><span class="pl-pds">'</span>text<span class="pl-pds">'</span></span>, (<span class="pl-smi">ctx</span>) <span class="pl-k">=&gt;</span> {
-  <span class="pl-smi">ctx</span>.<span class="pl-smi">session</span>.<span class="pl-smi">counter</span> <span class="pl-k">=</span> <span class="pl-smi">ctx</span>.<span class="pl-smi">session</span>.<span class="pl-smi">counter</span> <span class="pl-k">||</span> <span class="pl-c1">0</span>
-  <span class="pl-smi">ctx</span>.<span class="pl-smi">session</span>.<span class="pl-smi">counter</span><span class="pl-k">++</span>
-  <span class="pl-k">return</span> <span class="pl-smi">ctx</span>.<span class="pl-en">reply</span>(<span class="pl-s"><span class="pl-pds">`</span>Message counter:<span class="pl-s1"><span class="pl-pse">${</span><span class="pl-smi">ctx</span>.<span class="pl-smi">session</span>.<span class="pl-smi">counter</span><span class="pl-pse">}</span></span><span class="pl-pds">`</span></span>)
-})</pre></div>
-
-<p><strong>Note: For persistent sessions you can use any of <a href="https://www.npmjs.com/search?q=telegraf-session"><code>telegraf-session-*</code></a> middleware.</strong></p>
-
-<h3>
-<a id="error-handling" class="anchor" href="#error-handling" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Error Handling</h3>
-
-<p>By default Telegraf will print all errors to stderr and rethrow error. 
-To perform custom error-handling logic see following snippet:</p>
-
-<div class="highlight highlight-source-js"><pre><span class="pl-smi">telegraf</span>.<span class="pl-en">catch</span>((<span class="pl-smi">err</span>) <span class="pl-k">=&gt;</span> {
-  <span class="pl-smi">log</span>.<span class="pl-en">error</span>(<span class="pl-s"><span class="pl-pds">'</span>Ooops<span class="pl-pds">'</span></span>, err)
-  <span class="pl-k">throw</span> err
-})</pre></div>
-
-<h3>
-<a id="developer-docs" class="anchor" href="#developer-docs" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Developer docs</h3>
-
-<p><a href="https://github.com/telegraf/telegraf/blob/master/docs/api.md">Telegraf API docs</a></p>
-
-<h2>
-<a id="license" class="anchor" href="#license" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>License</h2>
-
-<p>The MIT License (MIT)</p>
-
-<p>Copyright (c) 2016 Telegraf</p>
-
-<p>Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:</p>
-
-<p>The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.</p>
-
-<p>THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.</p>
-      </section>
-      <footer>
-        <p><small>Hosted on <a href="https://pages.github.com">GitHub Pages</a> using the Dinky theme</small></p>
-      </footer>
+        </div>
+        <div class="footer-nav">
+          <div class="right"><a href="introduction.html"><span class="label">Next: </span><span class="title">Introduction</span></a></div>
+        </div>
+      </div>
+      <div class="menu toc-menu">
+        <li class="menu-item -level-0 -parent">
+          <ul class="submenu">
+            <li class="menu-item -level-1 -parent"><span class="title">Telegraf</span>
+              <ul class="submenu">
+                <li class="menu-item -level-2"><a href="index.html" class="link title -active link-index">Quick start</a>
+                  <ul class="headings heading-list">
+                    <li class="heading-item -depth-2"><a href="#installation" class="hlink link-installation">Installation</a>
+                      <ul class="heading-list -depth-2">
+                        <li class="heading-item -depth-3"><a href="#example" class="hlink link-example">Example</a>
+                        </li>
+                      </ul>
+                    </li>
+                    <li class="heading-item -depth-2"><a href="#known-middleware" class="hlink link-known-middleware">Known middleware</a>
+                    </li>
+                  </ul>
+                </li>
+                <li class="menu-item -level-2"><a href="introduction.html" class="link title  link-introduction">Introduction</a>
+                </li>
+                <li class="menu-item -level-2"><a href="routing.html" class="link title  link-routing">Advanced usage</a>
+                </li>
+              </ul>
+            </li>
+            <li class="menu-item -level-1 -parent"><span class="title">API Reference</span>
+              <ul class="submenu">
+                <li class="menu-item -level-2"><a href="telegraf.html" class="link title  link-telegraf">Telegraf</a>
+                </li>
+                <li class="menu-item -level-2"><a href="telegram.html" class="link title  link-telegram">Telegram</a>
+                </li>
+                <li class="menu-item -level-2"><a href="extra.html" class="link title  link-extra">Reply markup</a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+      </div>
     </div>
-    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
-		
   </body>
 </html>

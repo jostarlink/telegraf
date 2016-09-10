@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="assets/style.css?t=a44c9e9d">
+    <link rel="stylesheet" href="style.css?t=8572c3ee">
+    <script src="assets/script.js?t=820b7ffa"></script>
+    <title>Advanced usage</title>
+    <meta name="viewport" content="width=device-width">
+  </head>
+  <body class="-menu-visible">
+    <div class="doc-layout">
+      <div class="toggle menu-toggle js-menu-toggle"></div>
+      <div class="body page-routing">
+        <div class="header-nav">
+          <div class="right"><a href="https://github.com/telegraf/telegraf" data-title="telegraf/telegraf" class="iconlink">
+              <!-- span.title Open in GitHub--><span class="icon -github"></span></a>
+          </div>
+        </div>
+        <div class="markdown-body"><h2 id="command-handling-in-group">Command handling in group</h2>
+<p>For handling group/supergroup commands <code>/start@your_bot</code> you need to provide bot username.</p>
+<pre><code class="lang-js">
+<span class="pl-c">// Provide with options</span>
+<span class="pl-k">const</span> app = <span class="pl-k">new</span> Telegraf(process.env.BOT_TOKEN, {username: <span class="pl-s">&apos;your_bot&apos;</span>})
+
+<span class="pl-c">// Or you can get username from Telegram server</span>
+<span class="pl-k">const</span> app = <span class="pl-k">new</span> Telegraf(process.env.BOT_TOKEN)
+
+app.telegram.getMe().then((botInfo) =&gt; {
+  <span class="pl-k">this</span>.options.username = botInfo.username
+})
+
+app.command(<span class="pl-s">&apos;start&apos;</span>, (ctx) =&gt; ctx.reply(<span class="pl-s">&apos;Hello World&apos;</span>))
+</code></pre>
+<h2 id="composer">Composer</h2>
+<p><a href="https://github.com/telegraf/telegraf-flow/blob/master/lib/flows/default.js">Example</a></p>
+<h2 id="router">Router</h2>
+<p><a href="https://github.com/telegraf/telegraf/tree/develop/examples/custom-router-bot.js">Example</a></p>
+
+        </div>
+        <div class="footer-nav">
+          <div class="left"><a href="introduction.html"><span class="title">Introduction</span></a></div>
+          <div class="right"><a href="telegraf.html"><span class="label">Next: </span><span class="title">Telegraf</span></a></div>
+        </div>
+      </div>
+      <div class="menu toc-menu">
+        <li class="menu-item -level-0 -parent">
+          <ul class="submenu">
+            <li class="menu-item -level-1 -parent"><span class="title">Telegraf</span>
+              <ul class="submenu">
+                <li class="menu-item -level-2"><a href="index.html" class="link title  link-index">Quick start</a>
+                </li>
+                <li class="menu-item -level-2"><a href="introduction.html" class="link title  link-introduction">Introduction</a>
+                </li>
+                <li class="menu-item -level-2"><a href="routing.html" class="link title -active link-routing">Advanced usage</a>
+                  <ul class="headings heading-list">
+                    <li class="heading-item -depth-2"><a href="#command-handling-in-group" class="hlink link-command-handling-in-group">Command handling in group</a>
+                    </li>
+                    <li class="heading-item -depth-2"><a href="#composer" class="hlink link-composer">Composer</a>
+                    </li>
+                    <li class="heading-item -depth-2"><a href="#router" class="hlink link-router">Router</a>
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+            <li class="menu-item -level-1 -parent"><span class="title">API Reference</span>
+              <ul class="submenu">
+                <li class="menu-item -level-2"><a href="telegraf.html" class="link title  link-telegraf">Telegraf</a>
+                </li>
+                <li class="menu-item -level-2"><a href="telegram.html" class="link title  link-telegram">Telegram</a>
+                </li>
+                <li class="menu-item -level-2"><a href="extra.html" class="link title  link-extra">Reply markup</a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+      </div>
+    </div>
+  </body>
+</html>

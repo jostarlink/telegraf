@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="assets/style.css?t=a44c9e9d">
+    <link rel="stylesheet" href="style.css?t=8572c3ee">
+    <script src="assets/script.js?t=820b7ffa"></script>
+    <title>Telegraf</title>
+    <meta name="viewport" content="width=device-width">
+  </head>
+  <body class="-menu-visible">
+    <div class="doc-layout">
+      <div class="toggle menu-toggle js-menu-toggle"></div>
+      <div class="body page-telegraf">
+        <div class="header-nav">
+          <div class="right"><a href="https://github.com/telegraf/telegraf" data-title="telegraf/telegraf" class="iconlink">
+              <!-- span.title Open in GitHub--><span class="icon -github"></span></a>
+          </div>
+        </div>
+        <div class="markdown-body"><p>Telegraf API reference</p>
+<pre><code class="lang-js"><span class="pl-k">const</span> Telegraf = <span class="pl-c1">require</span>(<span class="pl-s">&apos;telegraf&apos;</span>)
+</code></pre>
+<h3 id="constructor">Constructor</h3>
+<p>Initialize new Telegraf app.</p>
+<p><code>new Telegraf(token, options)</code></p>
+<table>
+<thead>
+<tr>
+<th>Param</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>token</td>
+<td><code>string</code></td>
+<td><a href="https://core.telegram.org/bots#3-how-do-i-create-a-bot">Bot Token</a></td>
+</tr>
+<tr>
+<td>options</td>
+<td><code>object</code></td>
+<td>Telegraf options</td>
+</tr>
+</tbody>
+</table>
+<p>Telegraf options:</p>
+<pre><code class="lang-js">{
+  telegram: {      <span class="pl-c">// Telegram options</span>
+    agent: <span class="pl-c1">null</span>    <span class="pl-c">// https.Agent instance, allows custom proxy, certificate, keep alive, etc.</span>
+  },
+  username: <span class="pl-s">&apos;&apos;</span>     <span class="pl-c">// Bot username (optional)  </span>
+}
+</code></pre>
+<h3 id="use">use</h3>
+<p>Registers a middleware.</p>
+<p><code>telegraf.use(middleware)</code></p>
+<table>
+<thead>
+<tr>
+<th>Param</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>middleware</td>
+<td><code>function</code></td>
+<td>Middleware function</td>
+</tr>
+</tbody>
+</table>
+<h3 id="on">on</h3>
+<p>Registers middleware for provided update type.</p>
+<p><code>telegraf.on(updateTypes, middleware, [middleware...])</code></p>
+<table>
+<thead>
+<tr>
+<th>Param</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>updateTypes</td>
+<td><code>string</code>|<code>string[]</code></td>
+<td>Update type</td>
+</tr>
+<tr>
+<td>middleware</td>
+<td><code>function</code></td>
+<td>Middleware</td>
+</tr>
+</tbody>
+</table>
+<h3 id="hears">hears</h3>
+<p>Registers middleware for handling <code>text</code> messages with regular expressions.</p>
+<p><code>telegraf.hears(triggers, middleware, [middleware...])</code></p>
+<table>
+<thead>
+<tr>
+<th>Param</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>triggers</td>
+<td><code>string[]</code>|<code>RegEx[]</code></td>
+<td>Triggers</td>
+</tr>
+<tr>
+<td>middleware</td>
+<td><code>function</code></td>
+<td>Middleware</td>
+</tr>
+</tbody>
+</table>
+<h3 id="command">command</h3>
+<p>Command handling.</p>
+<p><code>telegraf.command(commands, middleware, [middleware...])</code></p>
+<table>
+<thead>
+<tr>
+<th>Param</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>triggers</td>
+<td><code>string[]</code></td>
+<td>Commands</td>
+</tr>
+<tr>
+<td>middleware</td>
+<td><code>function</code></td>
+<td>Middleware</td>
+</tr>
+</tbody>
+</table>
+<h3 id="action">action</h3>
+<p>Registers middleware for handling <code>callback_data</code> actions with regular expressions.</p>
+<p><code>telegraf.action(triggers, middleware, [middleware...])</code></p>
+<table>
+<thead>
+<tr>
+<th>Param</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>triggers</td>
+<td><code>string[]</code>|<code>RegEx[]</code></td>
+<td>Triggers</td>
+</tr>
+<tr>
+<td>middleware</td>
+<td><code>function</code></td>
+<td>Middleware</td>
+</tr>
+</tbody>
+</table>
+<h3 id="startpolling">startPolling</h3>
+<p>Start poll updates.</p>
+<p><code>telegraf.startPolling(timeout, limit)</code></p>
+<table>
+<thead>
+<tr>
+<th>Param</th>
+<th>Type</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>timeout</td>
+<td><code>number</code></td>
+<td>30</td>
+<td>Poll timeout in seconds</td>
+</tr>
+<tr>
+<td>limit</td>
+<td><code>number</code></td>
+<td>100</td>
+<td>Limits the number of updates to be retrieved</td>
+</tr>
+</tbody>
+</table>
+<h3 id="startwebhook">startWebHook</h3>
+<p>Start listening @ <code>https://host:port/webHookPath</code> for Telegram calls.</p>
+<p><code>telegraf.startWebHook(webHookPath, tlsOptions, port, [host])</code></p>
+<table>
+<thead>
+<tr>
+<th>Param</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>webHookPath</td>
+<td><code>string</code></td>
+<td>Webhook url path (see Telegraf.setWebHook)</td>
+</tr>
+<tr>
+<td>tlsOptions</td>
+<td><code>object</code></td>
+<td>(Optional) <a href="https://nodejs.org/api/tls.html#tls_tls_createserver_options_secureconnectionlistener">TLS server options</a>. Pass null to use http</td>
+</tr>
+<tr>
+<td>port</td>
+<td><code>number</code></td>
+<td>Port number</td>
+</tr>
+<tr>
+<td>[host]</td>
+<td><code>string</code></td>
+<td>(Optional) Hostname</td>
+</tr>
+</tbody>
+</table>
+<h3 id="stop">stop</h3>
+<p>Stop WebHook and polling</p>
+<p><code>telegraf.stop()</code></p>
+<h3 id="webhookcallback">webHookCallback</h3>
+<p>Return a callback function suitable for the http[s].createServer() method to handle a request.
+You may also use this callback function to mount your telegraf app in a Koa/Connect/Express app.</p>
+<p><code>telegraf.webHookCallback(webHookPath) =&gt; Function</code></p>
+<table>
+<thead>
+<tr>
+<th>Param</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>webHookPath</td>
+<td><code>string</code></td>
+<td>Webhook url path (see Telegraf.setWebHook)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="handleupdate">handleUpdate</h3>
+<p>Handle raw Telegram update.
+In case you use centralized webhook server, queue, etc.</p>
+<p><code>telegraf.handleUpdate(rawUpdate, [webHookResponse])</code></p>
+<table>
+<thead>
+<tr>
+<th>Param</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>rawUpdate</td>
+<td><code>object</code></td>
+<td>Telegram update payload</td>
+</tr>
+<tr>
+<td>[webHookResponse]</td>
+<td><code>object</code></td>
+<td>(Optional) <a href="https://nodejs.org/api/http.html#http_class_http_serverresponse">http.ServerResponse</a></td>
+</tr>
+</tbody>
+</table>
+<h3 id="telegraf.compose">Telegraf.compose</h3>
+<p>Compose <code>middlewares</code> returning a fully valid middleware comprised of all those which are passed.</p>
+<p><code>Telegraf.compose(middlewares) =&gt; function</code></p>
+<table>
+<thead>
+<tr>
+<th>Param</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>middlewares</td>
+<td><code>function[]</code></td>
+<td>Array of middlewares</td>
+</tr>
+</tbody>
+</table>
+<h3 id="telegraf.mount">Telegraf.mount</h3>
+<p>Generates middleware for handling provided [pdate types.</p>
+<p><code>Telegraf.mount(updateTypes, middleware) =&gt; function</code></p>
+<table>
+<thead>
+<tr>
+<th>Param</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>updateTypes</td>
+<td><code>string</code>|<code>string[]</code></td>
+<td>Update type</td>
+</tr>
+<tr>
+<td>middleware</td>
+<td><code>function</code></td>
+<td>middleware</td>
+</tr>
+</tbody>
+</table>
+<h3 id="telegraf.hears">Telegraf.hears</h3>
+<p>Generates middleware for handling <code>text</code> messages with regular expressions.</p>
+<p><code>Telegraf.hears(triggers, middleware) =&gt; function</code></p>
+<table>
+<thead>
+<tr>
+<th>Param</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>triggers</td>
+<td><code>string[]</code>|<code>RegEx[]</code>|<code>Function[]</code></td>
+<td>Triggers</td>
+</tr>
+<tr>
+<td>handler</td>
+<td><code>function</code></td>
+<td>Handler</td>
+</tr>
+</tbody>
+</table>
+<h3 id="telegraf.action">Telegraf.action</h3>
+<p>Generates middleware for handling <code>callbackQuery</code> data with regular expressions.</p>
+<p><code>Telegraf.action(triggers, middleware) =&gt; function</code></p>
+<table>
+<thead>
+<tr>
+<th>Param</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>triggers</td>
+<td><code>string[]</code>|<code>RegEx[]</code>|<code>Function[]</code></td>
+<td>Triggers</td>
+</tr>
+<tr>
+<td>handler</td>
+<td><code>function</code></td>
+<td>Handler</td>
+</tr>
+</tbody>
+</table>
+<h3 id="telegraf.passthru">Telegraf.passThru</h3>
+<p>Generates pass thru middleware.</p>
+<p><code>Telegraf.passThru() =&gt; function</code></p>
+<h3 id="telegraf.optional">Telegraf.optional</h3>
+<p>Generates optional middleware.</p>
+<p><code>Telegraf.optional(test, middleware) =&gt; function</code></p>
+<table>
+<thead>
+<tr>
+<th>Param</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>test</td>
+<td><code>truthy</code>|<code>function</code></td>
+<td>Value or predicate <code>(ctx) =&gt; bool</code></td>
+</tr>
+<tr>
+<td>middleware</td>
+<td><code>function</code></td>
+<td>middleware</td>
+</tr>
+</tbody>
+</table>
+<h3 id="telegraf.branch">Telegraf.branch</h3>
+<p>Generates branch middleware.</p>
+<p><code>Telegraf.branch(test, trueMiddleware, falseMiddleware) =&gt; function</code></p>
+<table>
+<thead>
+<tr>
+<th>Param</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>test</td>
+<td><code>truthy</code>|<code>function</code></td>
+<td>Value or predicate <code>(ctx) =&gt; bool</code></td>
+</tr>
+<tr>
+<td>trueMiddleware</td>
+<td><code>function</code></td>
+<td>true action  middleware</td>
+</tr>
+<tr>
+<td>falseMiddleware</td>
+<td><code>function</code></td>
+<td>false action middleware</td>
+</tr>
+</tbody>
+</table>
+
+        </div>
+        <div class="footer-nav">
+          <div class="left"><a href="routing.html"><span class="title">Advanced usage</span></a></div>
+          <div class="right"><a href="telegram.html"><span class="label">Next: </span><span class="title">Telegram</span></a></div>
+        </div>
+      </div>
+      <div class="menu toc-menu">
+        <li class="menu-item -level-0 -parent">
+          <ul class="submenu">
+            <li class="menu-item -level-1 -parent"><span class="title">Telegraf</span>
+              <ul class="submenu">
+                <li class="menu-item -level-2"><a href="index.html" class="link title  link-index">Quick start</a>
+                </li>
+                <li class="menu-item -level-2"><a href="introduction.html" class="link title  link-introduction">Introduction</a>
+                </li>
+                <li class="menu-item -level-2"><a href="routing.html" class="link title  link-routing">Advanced usage</a>
+                </li>
+              </ul>
+            </li>
+            <li class="menu-item -level-1 -parent"><span class="title">API Reference</span>
+              <ul class="submenu">
+                <li class="menu-item -level-2"><a href="telegraf.html" class="link title -active link-telegraf">Telegraf</a>
+                  <ul class="headings heading-list">
+                    <li class="heading-item -depth-3"><a href="#constructor" class="hlink link-constructor">Constructor</a>
+                    </li>
+                    <li class="heading-item -depth-3"><a href="#use" class="hlink link-use">use</a>
+                    </li>
+                    <li class="heading-item -depth-3"><a href="#on" class="hlink link-on">on</a>
+                    </li>
+                    <li class="heading-item -depth-3"><a href="#hears" class="hlink link-hears">hears</a>
+                    </li>
+                    <li class="heading-item -depth-3"><a href="#command" class="hlink link-command">command</a>
+                    </li>
+                    <li class="heading-item -depth-3"><a href="#action" class="hlink link-action">action</a>
+                    </li>
+                    <li class="heading-item -depth-3"><a href="#startpolling" class="hlink link-startpolling">startPolling</a>
+                    </li>
+                    <li class="heading-item -depth-3"><a href="#startwebhook" class="hlink link-startwebhook">startWebHook</a>
+                    </li>
+                    <li class="heading-item -depth-3"><a href="#stop" class="hlink link-stop">stop</a>
+                    </li>
+                    <li class="heading-item -depth-3"><a href="#webhookcallback" class="hlink link-webhookcallback">webHookCallback</a>
+                    </li>
+                    <li class="heading-item -depth-3"><a href="#handleupdate" class="hlink link-handleupdate">handleUpdate</a>
+                    </li>
+                    <li class="heading-item -depth-3"><a href="#telegraf.compose" class="hlink link-telegraf.compose">Telegraf.compose</a>
+                    </li>
+                    <li class="heading-item -depth-3"><a href="#telegraf.mount" class="hlink link-telegraf.mount">Telegraf.mount</a>
+                    </li>
+                    <li class="heading-item -depth-3"><a href="#telegraf.hears" class="hlink link-telegraf.hears">Telegraf.hears</a>
+                    </li>
+                    <li class="heading-item -depth-3"><a href="#telegraf.action" class="hlink link-telegraf.action">Telegraf.action</a>
+                    </li>
+                    <li class="heading-item -depth-3"><a href="#telegraf.passthru" class="hlink link-telegraf.passthru">Telegraf.passThru</a>
+                    </li>
+                    <li class="heading-item -depth-3"><a href="#telegraf.optional" class="hlink link-telegraf.optional">Telegraf.optional</a>
+                    </li>
+                    <li class="heading-item -depth-3"><a href="#telegraf.branch" class="hlink link-telegraf.branch">Telegraf.branch</a>
+                    </li>
+                  </ul>
+                </li>
+                <li class="menu-item -level-2"><a href="telegram.html" class="link title  link-telegram">Telegram</a>
+                </li>
+                <li class="menu-item -level-2"><a href="extra.html" class="link title  link-extra">Reply markup</a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+      </div>
+    </div>
+  </body>
+</html>
