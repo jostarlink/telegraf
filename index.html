@@ -42,12 +42,13 @@ These accounts serve as an interface for code running somewhere on your server.<
 you first have to <a href="https://core.telegram.org/bots">get a bot account</a>
 by <a href="https://core.telegram.org/bots#6-botfather">chatting with BotFather</a>.</p>
 <p>BotFather will give you a <strong>token</strong>, something like <code>123456789:AbCdfGhIJKlmNoQQRsTUVwxyZ</code>.
-With the token in hand, you can start developing your bot account.</p>
+With the token in hand, you can start developing your bot.</p>
 <h3 id="example">Example</h3>
 <pre><code class="lang-js"><span class="pl-k">const</span> Telegraf = <span class="pl-c1">require</span>(<span class="pl-s">&apos;telegraf&apos;</span>)
 
 <span class="pl-k">const</span> app = <span class="pl-k">new</span> Telegraf(process.env.BOT_TOKEN)
-app.on(<span class="pl-s">&apos;message&apos;</span>, (ctx) =&gt; ctx.reply(<span class="pl-s">&apos;42&apos;</span>))
+app.command(<span class="pl-s">&apos;start&apos;</span>, (ctx) =&gt; ctx.reply(<span class="pl-s">&apos;Hey&apos;</span>))
+app.on(<span class="pl-s">&apos;sticker&apos;</span>, (ctx) =&gt; ctx.reply(<span class="pl-s">&apos;&#x1F44D;&apos;</span>))
 app.startPolling()
 </code></pre>
 <p>There&apos;s some cool <a href="https://github.com/telegraf/telegraf/tree/master/examples">examples</a></p>
