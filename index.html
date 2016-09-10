@@ -19,8 +19,12 @@
         </div>
         <div class="markdown-body"><h1 class="massive-header -with-tagline" id="telegraf">Telegraf</h1>
 <blockquote>
-<p>Telegram bot framework for Node.js</p>
+<p>Modern Telegram bot framework for Node.js</p>
 </blockquote>
+<p>Bots are special <a href="https://telegram.org">Telegram</a> accounts designed to handle messages automatically.
+Users can interact with bots by sending them command messages in private or group chats.
+These accounts serve as an interface for code running somewhere on your server.</p>
+<h3 id="features">Features</h3>
 <ul>
 <li>Full <a href="https://core.telegram.org/bots/api">Telegram Bot API 2.1</a> support</li>
 <li><a href="https://core.telegram.org/bots/api#inline-mode">Inline mode</a></li>
@@ -33,6 +37,12 @@
 <h2 id="installation">Installation</h2>
 <pre><code class="lang-js">$ npm install telegraf --save
 </code></pre>
+<h2 id="telegram-token">Telegram token</h2>
+<p>To use the <a href="https://core.telegram.org/bots/api">Telegram Bot API</a>,
+you first have to <a href="https://core.telegram.org/bots">get a bot account</a>
+by <a href="https://core.telegram.org/bots#6-botfather">chatting with BotFather</a>.</p>
+<p>BotFather will give you a <strong>token</strong>, something like <code>123456789:AbCdfGhIJKlmNoQQRsTUVwxyZ</code>.
+With the token in hand, you can start using telepot to access the bot account.</p>
 <h3 id="example">Example</h3>
 <pre><code class="lang-js"><span class="pl-k">const</span> Telegraf = <span class="pl-c1">require</span>(<span class="pl-s">&apos;telegraf&apos;</span>)
 
@@ -54,7 +64,11 @@ app.startPolling()
               <ul class="submenu">
                 <li class="menu-item -level-2"><a href="index.html" class="link title -active link-index">Home</a>
                   <ul class="headings heading-list">
+                    <li class="heading-item -depth-3"><a href="#features" class="hlink link-features">Features</a>
+                    </li>
                     <li class="heading-item -depth-2"><a href="#installation" class="hlink link-installation">Installation</a>
+                    </li>
+                    <li class="heading-item -depth-2"><a href="#telegram-token" class="hlink link-telegram-token">Telegram token</a>
                       <ul class="heading-list -depth-2">
                         <li class="heading-item -depth-3"><a href="#example" class="hlink link-example">Example</a>
                         </li>

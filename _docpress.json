@@ -11,9 +11,19 @@
             "slug": "index",
             "headings": [
               {
+                "title": "Features",
+                "depth": 3,
+                "id": "features"
+              },
+              {
                 "title": "Installation",
                 "depth": 2,
-                "id": "installation",
+                "id": "installation"
+              },
+              {
+                "title": "Telegram token",
+                "depth": 2,
+                "id": "telegram-token",
                 "headings": [
                   {
                     "title": "Example",
@@ -408,9 +418,19 @@
       "slug": "index",
       "headings": [
         {
+          "title": "Features",
+          "depth": 3,
+          "id": "features"
+        },
+        {
           "title": "Installation",
           "depth": 2,
-          "id": "installation",
+          "id": "installation"
+        },
+        {
+          "title": "Telegram token",
+          "depth": 2,
+          "id": "telegram-token",
           "headings": [
             {
               "title": "Example",
