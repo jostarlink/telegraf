@@ -5,7 +5,7 @@
         "title": "Telegraf",
         "sections": [
           {
-            "title": "Quick start",
+            "title": "Home",
             "source": "docs/index.md",
             "url": "index.html",
             "slug": "index",
@@ -21,11 +21,6 @@
                     "id": "example"
                   }
                 ]
-              },
-              {
-                "title": "Known middleware",
-                "depth": 2,
-                "id": "known-middleware"
               }
             ]
           },
@@ -41,15 +36,20 @@
                 "id": "application"
               },
               {
+                "title": "Middleware",
+                "depth": 2,
+                "id": "middleware"
+              },
+              {
+                "title": "Error handling",
+                "depth": 2,
+                "id": "error-handling"
+              },
+              {
                 "title": "Context",
                 "depth": 2,
                 "id": "context",
                 "headings": [
-                  {
-                    "title": "Cascading",
-                    "depth": 3,
-                    "id": "cascading"
-                  },
                   {
                     "title": "State",
                     "depth": 3,
@@ -69,26 +69,22 @@
                     "title": "Webhooks",
                     "depth": 3,
                     "id": "webhooks"
-                  },
-                  {
-                    "title": "Files",
-                    "depth": 3,
-                    "id": "files"
-                  },
-                  {
-                    "title": "Error Handling",
-                    "depth": 3,
-                    "id": "error-handling"
                   }
                 ]
               }
             ]
           },
           {
+            "title": "ctx",
+            "source": "docs/context.md",
+            "url": "context.html",
+            "slug": "context"
+          },
+          {
             "title": "Advanced usage",
-            "source": "docs/routing.md",
-            "url": "routing.html",
-            "slug": "routing",
+            "source": "docs/advanced.md",
+            "url": "advanced.html",
+            "slug": "advanced",
             "headings": [
               {
                 "title": "Command handling in group",
@@ -207,6 +203,11 @@
                 "title": "Telegraf.branch",
                 "depth": 3,
                 "id": "telegraf.branch"
+              },
+              {
+                "title": "Working with files",
+                "depth": 3,
+                "id": "working-with-files"
               }
             ]
           },
@@ -403,7 +404,7 @@
   "index": {
     "index.html": {
       "source": "docs/index.md",
-      "title": "Quick start",
+      "title": "Home",
       "slug": "index",
       "headings": [
         {
@@ -417,11 +418,6 @@
               "id": "example"
             }
           ]
-        },
-        {
-          "title": "Known middleware",
-          "depth": 2,
-          "id": "known-middleware"
         }
       ]
     },
@@ -436,15 +432,20 @@
           "id": "application"
         },
         {
+          "title": "Middleware",
+          "depth": 2,
+          "id": "middleware"
+        },
+        {
+          "title": "Error handling",
+          "depth": 2,
+          "id": "error-handling"
+        },
+        {
           "title": "Context",
           "depth": 2,
           "id": "context",
           "headings": [
-            {
-              "title": "Cascading",
-              "depth": 3,
-              "id": "cascading"
-            },
             {
               "title": "State",
               "depth": 3,
@@ -464,25 +465,20 @@
               "title": "Webhooks",
               "depth": 3,
               "id": "webhooks"
-            },
-            {
-              "title": "Files",
-              "depth": 3,
-              "id": "files"
-            },
-            {
-              "title": "Error Handling",
-              "depth": 3,
-              "id": "error-handling"
             }
           ]
         }
       ]
     },
-    "routing.html": {
-      "source": "docs/routing.md",
+    "context.html": {
+      "source": "docs/context.md",
+      "title": "ctx",
+      "slug": "context"
+    },
+    "advanced.html": {
+      "source": "docs/advanced.md",
       "title": "Advanced usage",
-      "slug": "routing",
+      "slug": "advanced",
       "headings": [
         {
           "title": "Command handling in group",
@@ -595,6 +591,11 @@
           "title": "Telegraf.branch",
           "depth": 3,
           "id": "telegraf.branch"
+        },
+        {
+          "title": "Working with files",
+          "depth": 3,
+          "id": "working-with-files"
         }
       ]
     },
@@ -786,7 +787,8 @@
   "sources": {
     "docs/index.md": "index.html",
     "docs/introduction.md": "introduction.html",
-    "docs/routing.md": "routing.html",
+    "docs/context.md": "context.html",
+    "docs/advanced.md": "advanced.html",
     "docs/telegraf.md": "telegraf.html",
     "docs/telegram.md": "telegram.html",
     "docs/extra.md": "extra.html",

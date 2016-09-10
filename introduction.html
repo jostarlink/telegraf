@@ -21,118 +21,7 @@
 <p>A Telegraf application is an object containing an array of middlewares which are composed
 and executed in a stack-like manner upon request. Is similar to many other middleware systems
 that you may have encountered such as Koa, Ruby&apos;s Rack, Connect.</p>
-<h2 id="context">Context</h2>
-<p>A Telegraf Context encapsulates telegram message.
-Context is created per request and contains following props:</p>
-<pre><code class="lang-js">app.use((ctx) =&gt; {
-  ctx.telegram             <span class="pl-c">// Telegram instance</span>
-  ctx.updateType           <span class="pl-c">// Update type (message, inline_query, etc.)</span>
-  [ctx.updateSubType]      <span class="pl-c">// Update subtype (text, sticker, audio, etc.)</span>
-  [ctx.me]                 <span class="pl-c">// Bot username</span>
-  [ctx.message]            <span class="pl-c">// Received message</span>
-  [ctx.editedMessage]      <span class="pl-c">// Edited message</span>
-  [ctx.inlineQuery]        <span class="pl-c">// Received inline query</span>
-  [ctx.chosenInlineResult] <span class="pl-c">// Received inline query result</span>
-  [ctx.callbackQuery]      <span class="pl-c">// Received callback query</span>
-  [ctx.chat]               <span class="pl-c">// Current chat info</span>
-  [ctx.from]               <span class="pl-c">// Sender info</span>
-  [ctx.match]              <span class="pl-c">// Regex match (available only for `hears`, `command`, `action` handlers)</span>
-})
-</code></pre>
-<h4 id="how-to-extend-context">How to extend context</h4>
-<p>The recommended way to extend application context:</p>
-<pre><code class="lang-js"><span class="pl-k">const</span> app = <span class="pl-k">new</span> Telegraf(process.env.BOT_TOKEN)
-
-app.context.db = {
-  getScores: () =&gt; { <span class="pl-k">return</span> <span class="hljs-number">42</span> }
-}
-
-app.on(<span class="pl-s">&apos;text&apos;</span>, (ctx) =&gt; {
-  <span class="pl-k">const</span> scores = ctx.db.getScores(ctx.message.from.username)
-  <span class="pl-k">return</span> ctx.reply(<span class="pl-s">`<span class="hljs-subst">${ctx.message.from.username}</span>: <span class="hljs-subst">${score}</span>`</span>)
-})
-</code></pre>
-<h4 id="shortcuts">Shortcuts</h4>
-<p>Context shortcuts for <strong>message</strong> update:</p>
-<pre><code class="lang-js">ctx.getChat() -&gt; ctx.telegram.getChat()
-ctx.getChatAdministrators() -&gt; ctx.telegram.getChatAdministrators()
-ctx.getChatMember() -&gt; ctx.telegram.getChatMember()
-ctx.getChatMembersCount() -&gt; ctx.telegram.getChatMembersCount()
-ctx.leaveChat() -&gt; ctx.telegram.leaveChat()
-ctx.reply() -&gt; ctx.telegram.sendMessage()
-ctx.replyWithMarkdown() -&gt; ctx.telegram.sendMessage()
-ctx.replyWithHTML() -&gt; ctx.telegram.sendMessage()
-ctx.replyWithAudio() -&gt; ctx.telegram.sendAudio()
-ctx.replyWithChatAction() -&gt; ctx.telegram.sendChatAction()
-ctx.replyWithDocument() -&gt; ctx.telegram.sendDocument()
-ctx.replyWithLocation() -&gt; ctx.telegram.sendLocation()
-ctx.replyWithPhoto() -&gt; ctx.telegram.sendPhoto()
-ctx.replyWithSticker() -&gt; ctx.telegram.sendSticker()
-ctx.replyWithVideo() -&gt; ctx.telegram.sendVideo()
-ctx.replyWithVoice() -&gt; ctx.telegram.sendVoice()
-</code></pre>
-<p>Context shortcuts for <strong>callback_query</strong> update:</p>
-<pre><code class="lang-js">ctx.answerCallbackQuery() -&gt; ctx.telegram.answerCallbackQuery()
-ctx.editMessageText() -&gt; ctx.telegram.editMessageText()
-ctx.editMessageCaption() -&gt; ctx.telegram.editMessageCaption()
-ctx.editMessageReplyMarkup() -&gt; ctx.telegram.editMessageReplyMarkup()
-ctx.getChat() -&gt; ctx.telegram.getChat()
-ctx.getChatAdministrators() -&gt; ctx.telegram.getChatAdministrators()
-ctx.getChatMember() -&gt; ctx.telegram.getChatMember()
-ctx.getChatMembersCount() -&gt; ctx.telegram.getChatMembersCount()
-ctx.leaveChat() -&gt; ctx.telegram.leaveChat()
-ctx.reply() -&gt; ctx.telegram.sendMessage()
-ctx.replyWithMarkdown() -&gt; ctx.telegram.sendMessage()
-ctx.replyWithHTML() -&gt; ctx.telegram.sendMessage()
-ctx.replyWithAudio() -&gt; ctx.telegram.sendAudio()
-ctx.replyWithChatAction() -&gt; ctx.telegram.sendChatAction()
-ctx.replyWithDocument() -&gt; ctx.telegram.sendDocument()
-ctx.replyWithLocation() -&gt; ctx.telegram.sendLocation()
-ctx.replyWithPhoto() -&gt; ctx.telegram.sendPhoto()
-ctx.replyWithSticker() -&gt; ctx.telegram.sendSticker()
-ctx.replyWithVideo() -&gt; ctx.telegram.sendVideo()
-ctx.replyWithVoice() -&gt; ctx.telegram.sendVoice()
-</code></pre>
-<p>Context shortcuts for <strong>inline_query</strong> update:</p>
-<pre><code class="lang-js">ctx.answerInlineQuery() -&gt; ctx.telegram.answerInlineQuery()
-</code></pre>
-<h4 id="example">Example</h4>
-<pre><code class="lang-js"><span class="pl-k">const</span> bot = <span class="pl-k">new</span> Telegraf(process.env.BOT_TOKEN)
-
-bot.on(<span class="pl-s">&apos;text&apos;</span>, (ctx) =&gt; {
-  <span class="pl-c">// Simple usage </span>
-  ctx.telegram.sendMessage(ctx.message.chat.id, <span class="pl-s">`Hello <span class="hljs-subst">${ctx.state.role}</span>`</span>)
-  
-  <span class="pl-c">// Using shortcut</span>
-  ctx.reply(<span class="pl-s">`Hello <span class="hljs-subst">${ctx.state.role}</span>`</span>)
-})
-
-bot.on(<span class="pl-s">&apos;/quit&apos;</span>, (ctx) =&gt; {
-  <span class="pl-c">// Simple usage </span>
-  ctx.telegram.leaveChat(ctx.message.chat.id)
-  
-  <span class="pl-c">// Using shortcut</span>
-  ctx.leaveChat()
-})
-
-bot.on(<span class="pl-s">&apos;callback_query&apos;</span>, (ctx) =&gt; {
-  <span class="pl-c">// Simple usage </span>
-  ctx.telegram.answerCallbackQuery(ctx.callbackQuery.id)
-  
-  <span class="pl-c">// Using shortcut</span>
-  ctx.answerCallbackQuery()
-})
-
-bot.on(<span class="pl-s">&apos;inline_query&apos;</span>, (ctx) =&gt; {
-  <span class="pl-k">const</span> result = []
-  <span class="pl-c">// Simple usage </span>
-  ctx.telegram.answerInlineQuery(ctx.inlineQuery.id, result)
-  
-  <span class="pl-c">// Using shortcut</span>
-  ctx.answerInlineQuery(result)
-})
-</code></pre>
-<h3 id="cascading">Cascading</h3>
+<h2 id="middleware">Middleware</h2>
 <p>Middleware normally takes two parameters (ctx, next), <code>ctx</code> is the context for one Telegram message,
 <code>next</code> is a function that is invoked to execute the downstream middleware.
 It returns a Promise with a then function for running code after completion.</p>
@@ -156,10 +45,36 @@ app.on(<span class="pl-s">&apos;text&apos;</span>, (ctx) =&gt; ctx.reply(<span c
   <span class="pl-c1">console</span>.log(<span class="pl-s">&apos;Response time %sms&apos;</span>, ms)
 })
 </code></pre>
+<h4 id="known-middleware">Known middleware</h4>
+<ul>
+<li><a href="https://github.com/telegraf/telegraf-i18n">Internationalization</a></li>
+<li><a href="https://github.com/telegraf/telegraf-session-redis">Redis powered session</a></li>
+<li><a href="https://github.com/telegraf/telegraf-flow">Stateful chatbots engine</a></li>
+<li><a href="https://github.com/telegraf/telegraf-ratelimit">Rate-limiting</a></li>
+<li><a href="https://github.com/telegraf/telegraf-wit">Natural language processing via wit.ai</a></li>
+<li><a href="https://github.com/telegraf/telegraf-recast">Natural language processing via recast.ai</a></li>
+<li><a href="https://github.com/telegraf/telegraf-experiments">Multivariate and A/B testing</a></li>
+<li><a href="https://github.com/telegraf/telegraf-mixpanel">Powerfull bot stats via Mixpanel</a></li>
+<li><a href="https://github.com/telegraf/telegraf-statsd">statsd integration</a></li>
+<li><a href="https://www.npmjs.com/search?q=telegraf-">and more...</a></li>
+</ul>
+<h2 id="error-handling">Error handling</h2>
+<p>By default Telegraf will print all errors to stderr and rethrow error.</p>
+<p>To perform custom error-handling logic see following snippet:</p>
+<pre><code class="lang-js"><span class="pl-k">const</span> app = <span class="pl-k">new</span> Telegraf(process.env.BOT_TOKEN)
+
+app.catch((err) =&gt; <span class="pl-c1">console</span>.log(<span class="pl-s">&apos;Ooops&apos;</span>, err))
+</code></pre>
+<h2 id="context">Context</h2>
+<p>A Telegraf context encapsulates telegram update.</p>
+<pre><code class="lang-js">app.use((ctx) =&gt; ctx.reply(<span class="pl-s">&apos;Hey there!&apos;</span>))
+</code></pre>
+<p><a href="context.html">Context documentation</a></p>
 <h3 id="state">State</h3>
 <p>The recommended namespace to share information between middlewares.</p>
 <pre><code class="lang-js"><span class="pl-k">const</span> app = <span class="pl-k">new</span> Telegraf(process.env.BOT_TOKEN)
 
+<span class="pl-c">// Auth middleware</span>
 app.use((ctx, next) =&gt; {
   ctx.state.role = getUserRole(ctx.message) 
   <span class="pl-k">return</span> next()
@@ -257,58 +172,11 @@ expressApp.listen(<span class="hljs-number">3000</span>, () =&gt; {
 })
 
 </code></pre>
-<h3 id="files">Files</h3>
-<p>Supported file sources:</p>
-<ul>
-<li><code>Existing file_id</code></li>
-<li><code>File path</code></li>
-<li><code>Url</code></li>
-<li><code>Buffer</code></li>
-<li><code>ReadStream</code></li>
-</ul>
-<p>Also you can provide optional name of file as <code>filename</code>.</p>
-<pre><code class="lang-js">
-  <span class="pl-c">// resend existing file by file_id</span>
-  telegram.sendSticker(<span class="pl-s">&apos;chatId&apos;</span>, <span class="pl-s">&apos;123123jkbhj6b&apos;</span>)
-
-  <span class="pl-c">// send file</span>
-  telegram.sendVideo(<span class="pl-s">&apos;chatId&apos;</span>, {
-    source: <span class="pl-s">&apos;/path/to/video.mp4&apos;</span>
-  })
-
-   <span class="pl-c">// send stream</span>
-  telegram.sendVideo(<span class="pl-s">&apos;chatId&apos;</span>, {
-    source: fs.createReadStream(<span class="pl-s">&apos;/path/to/video.mp4&apos;</span>)
-  })
-  
-  <span class="pl-c">// send buffer</span>
-  telegram.sendVoice(<span class="pl-s">&apos;chatId&apos;</span>, {
-    source: <span class="pl-k">new</span> Buffer()
-  })
-
-  <span class="pl-c">// send url</span>
-  telegram.sendPhoto(<span class="pl-s">&apos;chatId&apos;</span>, {
-    url: <span class="pl-s">&apos;http://lorempixel.com/400/200/cats/&apos;</span>,
-    filename: <span class="pl-s">&apos;kitten.jpg&apos;</span>
-  })
-</code></pre>
-<p><em>FYI: Telegram servers detect content type using file extension (May 2016).</em></p>
-<p><sub><a href="https://core.telegram.org/bots/api#file">Related Telegram api docs</a></sub></p>
-<h3 id="error-handling">Error Handling</h3>
-<p>By default Telegraf will print all errors to stderr and rethrow error.
-To perform custom error-handling logic see following snippet:</p>
-<pre><code class="lang-js"><span class="pl-k">const</span> app = <span class="pl-k">new</span> Telegraf(process.env.BOT_TOKEN)
-
-app.catch((err) =&gt; {
-  log.error(<span class="pl-s">&apos;Ooops&apos;</span>, err)
-  <span class="pl-k">throw</span> err
-})
-</code></pre>
 
         </div>
         <div class="footer-nav">
-          <div class="left"><a href="index.html"><span class="title">Quick start</span></a></div>
-          <div class="right"><a href="routing.html"><span class="label">Next: </span><span class="title">Advanced usage</span></a></div>
+          <div class="left"><a href="index.html"><span class="title">Home</span></a></div>
+          <div class="right"><a href="context.html"><span class="label">Next: </span><span class="title">ctx</span></a></div>
         </div>
       </div>
       <div class="menu toc-menu">
@@ -316,16 +184,18 @@ app.catch((err) =&gt; {
           <ul class="submenu">
             <li class="menu-item -level-1 -parent"><span class="title">Telegraf</span>
               <ul class="submenu">
-                <li class="menu-item -level-2"><a href="index.html" class="link title  link-index">Quick start</a>
+                <li class="menu-item -level-2"><a href="index.html" class="link title  link-index">Home</a>
                 </li>
                 <li class="menu-item -level-2"><a href="introduction.html" class="link title -active link-introduction">Introduction</a>
                   <ul class="headings heading-list">
                     <li class="heading-item -depth-2"><a href="#application" class="hlink link-application">Application</a>
                     </li>
+                    <li class="heading-item -depth-2"><a href="#middleware" class="hlink link-middleware">Middleware</a>
+                    </li>
+                    <li class="heading-item -depth-2"><a href="#error-handling" class="hlink link-error-handling">Error handling</a>
+                    </li>
                     <li class="heading-item -depth-2"><a href="#context" class="hlink link-context">Context</a>
                       <ul class="heading-list -depth-2">
-                        <li class="heading-item -depth-3"><a href="#cascading" class="hlink link-cascading">Cascading</a>
-                        </li>
                         <li class="heading-item -depth-3"><a href="#state" class="hlink link-state">State</a>
                         </li>
                         <li class="heading-item -depth-3"><a href="#session" class="hlink link-session">Session</a>
@@ -334,15 +204,13 @@ app.catch((err) =&gt; {
                         </li>
                         <li class="heading-item -depth-3"><a href="#webhooks" class="hlink link-webhooks">Webhooks</a>
                         </li>
-                        <li class="heading-item -depth-3"><a href="#files" class="hlink link-files">Files</a>
-                        </li>
-                        <li class="heading-item -depth-3"><a href="#error-handling" class="hlink link-error-handling">Error Handling</a>
-                        </li>
                       </ul>
                     </li>
                   </ul>
                 </li>
-                <li class="menu-item -level-2"><a href="routing.html" class="link title  link-routing">Advanced usage</a>
+                <li class="menu-item -level-2"><a href="context.html" class="link title  link-context">ctx</a>
+                </li>
+                <li class="menu-item -level-2"><a href="advanced.html" class="link title  link-advanced">Advanced usage</a>
                 </li>
               </ul>
             </li>

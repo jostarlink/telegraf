@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="assets/style.css?t=a44c9e9d">
+    <link rel="stylesheet" href="style.css?t=8572c3ee">
+    <script src="assets/script.js?t=820b7ffa"></script>
+    <title>ctx</title>
+    <meta name="viewport" content="width=device-width">
+  </head>
+  <body class="-menu-visible">
+    <div class="doc-layout">
+      <div class="toggle menu-toggle js-menu-toggle"></div>
+      <div class="body page-context">
+        <div class="header-nav">
+          <div class="right"><a href="https://github.com/telegraf/telegraf" data-title="telegraf/telegraf" class="iconlink">
+              <!-- span.title Open in GitHub--><span class="icon -github"></span></a>
+          </div>
+        </div>
+        <div class="markdown-body"><p>A Telegraf Context encapsulates telegram message.
+Context is created per request and contains following props:</p>
+<pre><code class="lang-js">app.use((ctx) =&gt; {
+  ctx.telegram             <span class="pl-c">// Telegram instance</span>
+  ctx.updateType           <span class="pl-c">// Update type (message, inline_query, etc.)</span>
+  [ctx.updateSubType]      <span class="pl-c">// Update subtype (text, sticker, audio, etc.)</span>
+  [ctx.me]                 <span class="pl-c">// Bot username</span>
+  [ctx.message]            <span class="pl-c">// Received message</span>
+  [ctx.editedMessage]      <span class="pl-c">// Edited message</span>
+  [ctx.inlineQuery]        <span class="pl-c">// Received inline query</span>
+  [ctx.chosenInlineResult] <span class="pl-c">// Received inline query result</span>
+  [ctx.callbackQuery]      <span class="pl-c">// Received callback query</span>
+  [ctx.chat]               <span class="pl-c">// Current chat info</span>
+  [ctx.from]               <span class="pl-c">// Sender info</span>
+  [ctx.match]              <span class="pl-c">// Regex match (available only for `hears`, `command`, `action` handlers)</span>
+})
+</code></pre>
+<h4 id="how-to-extend-context">How to extend context</h4>
+<p>The recommended way to extend application context:</p>
+<pre><code class="lang-js"><span class="pl-k">const</span> app = <span class="pl-k">new</span> Telegraf(process.env.BOT_TOKEN)
+
+app.context.db = {
+  getScores: () =&gt; { <span class="pl-k">return</span> <span class="hljs-number">42</span> }
+}
+
+app.on(<span class="pl-s">&apos;text&apos;</span>, (ctx) =&gt; {
+  <span class="pl-k">const</span> scores = ctx.db.getScores(ctx.message.from.username)
+  <span class="pl-k">return</span> ctx.reply(<span class="pl-s">`<span class="hljs-subst">${ctx.message.from.username}</span>: <span class="hljs-subst">${score}</span>`</span>)
+})
+</code></pre>
+<h4 id="shortcuts">Shortcuts</h4>
+<p>Context shortcuts for <strong>message</strong> update:</p>
+<pre><code class="lang-js">ctx.getChat() -&gt; ctx.telegram.getChat()
+ctx.getChatAdministrators() -&gt; ctx.telegram.getChatAdministrators()
+ctx.getChatMember() -&gt; ctx.telegram.getChatMember()
+ctx.getChatMembersCount() -&gt; ctx.telegram.getChatMembersCount()
+ctx.leaveChat() -&gt; ctx.telegram.leaveChat()
+ctx.reply() -&gt; ctx.telegram.sendMessage()
+ctx.replyWithMarkdown() -&gt; ctx.telegram.sendMessage()
+ctx.replyWithHTML() -&gt; ctx.telegram.sendMessage()
+ctx.replyWithAudio() -&gt; ctx.telegram.sendAudio()
+ctx.replyWithChatAction() -&gt; ctx.telegram.sendChatAction()
+ctx.replyWithDocument() -&gt; ctx.telegram.sendDocument()
+ctx.replyWithLocation() -&gt; ctx.telegram.sendLocation()
+ctx.replyWithPhoto() -&gt; ctx.telegram.sendPhoto()
+ctx.replyWithSticker() -&gt; ctx.telegram.sendSticker()
+ctx.replyWithVideo() -&gt; ctx.telegram.sendVideo()
+ctx.replyWithVoice() -&gt; ctx.telegram.sendVoice()
+</code></pre>
+<p>Context shortcuts for <strong>callback_query</strong> update:</p>
+<pre><code class="lang-js">ctx.answerCallbackQuery() -&gt; ctx.telegram.answerCallbackQuery()
+ctx.editMessageText() -&gt; ctx.telegram.editMessageText()
+ctx.editMessageCaption() -&gt; ctx.telegram.editMessageCaption()
+ctx.editMessageReplyMarkup() -&gt; ctx.telegram.editMessageReplyMarkup()
+ctx.getChat() -&gt; ctx.telegram.getChat()
+ctx.getChatAdministrators() -&gt; ctx.telegram.getChatAdministrators()
+ctx.getChatMember() -&gt; ctx.telegram.getChatMember()
+ctx.getChatMembersCount() -&gt; ctx.telegram.getChatMembersCount()
+ctx.leaveChat() -&gt; ctx.telegram.leaveChat()
+ctx.reply() -&gt; ctx.telegram.sendMessage()
+ctx.replyWithMarkdown() -&gt; ctx.telegram.sendMessage()
+ctx.replyWithHTML() -&gt; ctx.telegram.sendMessage()
+ctx.replyWithAudio() -&gt; ctx.telegram.sendAudio()
+ctx.replyWithChatAction() -&gt; ctx.telegram.sendChatAction()
+ctx.replyWithDocument() -&gt; ctx.telegram.sendDocument()
+ctx.replyWithLocation() -&gt; ctx.telegram.sendLocation()
+ctx.replyWithPhoto() -&gt; ctx.telegram.sendPhoto()
+ctx.replyWithSticker() -&gt; ctx.telegram.sendSticker()
+ctx.replyWithVideo() -&gt; ctx.telegram.sendVideo()
+ctx.replyWithVoice() -&gt; ctx.telegram.sendVoice()
+</code></pre>
+<p>Context shortcuts for <strong>inline_query</strong> update:</p>
+<pre><code class="lang-js">ctx.answerInlineQuery() -&gt; ctx.telegram.answerInlineQuery()
+</code></pre>
+<h4 id="example">Example</h4>
+<pre><code class="lang-js"><span class="pl-k">const</span> bot = <span class="pl-k">new</span> Telegraf(process.env.BOT_TOKEN)
+
+bot.on(<span class="pl-s">&apos;text&apos;</span>, (ctx) =&gt; {
+  <span class="pl-c">// Simple usage </span>
+  ctx.telegram.sendMessage(ctx.message.chat.id, <span class="pl-s">`Hello <span class="hljs-subst">${ctx.state.role}</span>`</span>)
+  
+  <span class="pl-c">// Using shortcut</span>
+  ctx.reply(<span class="pl-s">`Hello <span class="hljs-subst">${ctx.state.role}</span>`</span>)
+})
+
+bot.on(<span class="pl-s">&apos;/quit&apos;</span>, (ctx) =&gt; {
+  <span class="pl-c">// Simple usage </span>
+  ctx.telegram.leaveChat(ctx.message.chat.id)
+  
+  <span class="pl-c">// Using shortcut</span>
+  ctx.leaveChat()
+})
+
+bot.on(<span class="pl-s">&apos;callback_query&apos;</span>, (ctx) =&gt; {
+  <span class="pl-c">// Simple usage </span>
+  ctx.telegram.answerCallbackQuery(ctx.callbackQuery.id)
+  
+  <span class="pl-c">// Using shortcut</span>
+  ctx.answerCallbackQuery()
+})
+
+bot.on(<span class="pl-s">&apos;inline_query&apos;</span>, (ctx) =&gt; {
+  <span class="pl-k">const</span> result = []
+  <span class="pl-c">// Simple usage </span>
+  ctx.telegram.answerInlineQuery(ctx.inlineQuery.id, result)
+  
+  <span class="pl-c">// Using shortcut</span>
+  ctx.answerInlineQuery(result)
+})
+</code></pre>
+
+        </div>
+        <div class="footer-nav">
+          <div class="left"><a href="introduction.html"><span class="title">Introduction</span></a></div>
+          <div class="right"><a href="advanced.html"><span class="label">Next: </span><span class="title">Advanced usage</span></a></div>
+        </div>
+      </div>
+      <div class="menu toc-menu">
+        <li class="menu-item -level-0 -parent">
+          <ul class="submenu">
+            <li class="menu-item -level-1 -parent"><span class="title">Telegraf</span>
+              <ul class="submenu">
+                <li class="menu-item -level-2"><a href="index.html" class="link title  link-index">Home</a>
+                </li>
+                <li class="menu-item -level-2"><a href="introduction.html" class="link title  link-introduction">Introduction</a>
+                </li>
+                <li class="menu-item -level-2"><a href="context.html" class="link title -active link-context">ctx</a>
+                </li>
+                <li class="menu-item -level-2"><a href="advanced.html" class="link title  link-advanced">Advanced usage</a>
+                </li>
+              </ul>
+            </li>
+            <li class="menu-item -level-1 -parent"><span class="title">API Reference</span>
+              <ul class="submenu">
+                <li class="menu-item -level-2"><a href="telegraf.html" class="link title  link-telegraf">Telegraf</a>
+                </li>
+                <li class="menu-item -level-2"><a href="telegram.html" class="link title  link-telegram">Telegram</a>
+                </li>
+                <li class="menu-item -level-2"><a href="extra.html" class="link title  link-extra">Reply markup</a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+      </div>
+    </div>
+  </body>
+</html>

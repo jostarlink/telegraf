@@ -5,7 +5,7 @@
     <link rel="stylesheet" href="assets/style.css?t=a44c9e9d">
     <link rel="stylesheet" href="style.css?t=8572c3ee">
     <script src="assets/script.js?t=820b7ffa"></script>
-    <title>Quick start</title>
+    <title>Home</title>
     <meta name="viewport" content="width=device-width">
   </head>
   <body class="-menu-visible">
@@ -23,14 +23,12 @@
 </blockquote>
 <ul>
 <li>Full <a href="https://core.telegram.org/bots/api">Telegram Bot API 2.1</a> support</li>
+<li><a href="https://core.telegram.org/bots/api#inline-mode">Inline mode</a></li>
 <li>Incredibly fast</li>
 <li>Easy to extend</li>
 <li>Keyboard helpers</li>
-<li><a href="#middleware">Community middleware</a></li>
 <li>Minimum dependencies</li>
-<li><a href="https://core.telegram.org/bots/api#inline-mode">Inline mode</a></li>
 <li>http/https/Connect/express.js webhooks</li>
-<li>Reply via webhook</li>
 </ul>
 <h2 id="installation">Installation</h2>
 <pre><code class="lang-js">$ npm install telegraf --save
@@ -42,20 +40,7 @@
 app.on(<span class="pl-s">&apos;message&apos;</span>, (ctx) =&gt; ctx.reply(<span class="pl-s">&apos;42&apos;</span>))
 app.startPolling()
 </code></pre>
-<p>There are some other <a href="https://github.com/telegraf/telegraf/tree/master/examples">examples</a></p>
-<h2 id="known-middleware">Known middleware</h2>
-<ul>
-<li><a href="https://github.com/telegraf/telegraf-i18n">Internationalization</a></li>
-<li><a href="https://github.com/telegraf/telegraf-session-redis">Redis powered session</a></li>
-<li><a href="https://github.com/telegraf/telegraf-flow">Stateful chatbots engine</a></li>
-<li><a href="https://github.com/telegraf/telegraf-ratelimit">Rate-limiting</a></li>
-<li><a href="https://github.com/telegraf/telegraf-wit">Natural language processing via wit.ai</a></li>
-<li><a href="https://github.com/telegraf/telegraf-recast">Natural language processing via recast.ai</a></li>
-<li><a href="https://github.com/telegraf/telegraf-experiments">Multivariate and A/B testing</a></li>
-<li><a href="https://github.com/telegraf/telegraf-mixpanel">Powerfull bot stats via Mixpanel</a></li>
-<li><a href="https://github.com/telegraf/telegraf-statsd">statsd integration</a></li>
-<li><a href="https://www.npmjs.com/search?q=telegraf-">and more...</a></li>
-</ul>
+<p>There&apos;s some cool <a href="https://github.com/telegraf/telegraf/tree/master/examples">examples</a></p>
 
         </div>
         <div class="footer-nav">
@@ -67,7 +52,7 @@ app.startPolling()
           <ul class="submenu">
             <li class="menu-item -level-1 -parent"><span class="title">Telegraf</span>
               <ul class="submenu">
-                <li class="menu-item -level-2"><a href="index.html" class="link title -active link-index">Quick start</a>
+                <li class="menu-item -level-2"><a href="index.html" class="link title -active link-index">Home</a>
                   <ul class="headings heading-list">
                     <li class="heading-item -depth-2"><a href="#installation" class="hlink link-installation">Installation</a>
                       <ul class="heading-list -depth-2">
@@ -75,13 +60,13 @@ app.startPolling()
                         </li>
                       </ul>
                     </li>
-                    <li class="heading-item -depth-2"><a href="#known-middleware" class="hlink link-known-middleware">Known middleware</a>
-                    </li>
                   </ul>
                 </li>
                 <li class="menu-item -level-2"><a href="introduction.html" class="link title  link-introduction">Introduction</a>
                 </li>
-                <li class="menu-item -level-2"><a href="routing.html" class="link title  link-routing">Advanced usage</a>
+                <li class="menu-item -level-2"><a href="context.html" class="link title  link-context">ctx</a>
+                </li>
+                <li class="menu-item -level-2"><a href="advanced.html" class="link title  link-advanced">Advanced usage</a>
                 </li>
               </ul>
             </li>
