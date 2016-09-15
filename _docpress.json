@@ -12,7 +12,7 @@
             "headings": [
               {
                 "title": "Features",
-                "depth": 3,
+                "depth": 2,
                 "id": "features"
               },
               {
@@ -23,14 +23,12 @@
               {
                 "title": "Telegram token",
                 "depth": 2,
-                "id": "telegram-token",
-                "headings": [
-                  {
-                    "title": "Example",
-                    "depth": 3,
-                    "id": "example"
-                  }
-                ]
+                "id": "telegram-token"
+              },
+              {
+                "title": "Example",
+                "depth": 2,
+                "id": "example"
               }
             ]
           },
@@ -58,29 +56,27 @@
               {
                 "title": "Context",
                 "depth": 2,
-                "id": "context",
-                "headings": [
-                  {
-                    "title": "State",
-                    "depth": 3,
-                    "id": "state"
-                  },
-                  {
-                    "title": "Session",
-                    "depth": 3,
-                    "id": "session"
-                  },
-                  {
-                    "title": "Update types",
-                    "depth": 3,
-                    "id": "update-types"
-                  },
-                  {
-                    "title": "Webhooks",
-                    "depth": 3,
-                    "id": "webhooks"
-                  }
-                ]
+                "id": "context"
+              },
+              {
+                "title": "State",
+                "depth": 2,
+                "id": "state"
+              },
+              {
+                "title": "Session",
+                "depth": 2,
+                "id": "session"
+              },
+              {
+                "title": "Update types",
+                "depth": 2,
+                "id": "update-types"
+              },
+              {
+                "title": "Webhooks",
+                "depth": 2,
+                "id": "webhooks"
               }
             ]
           },
@@ -419,7 +415,7 @@
       "headings": [
         {
           "title": "Features",
-          "depth": 3,
+          "depth": 2,
           "id": "features"
         },
         {
@@ -430,14 +426,12 @@
         {
           "title": "Telegram token",
           "depth": 2,
-          "id": "telegram-token",
-          "headings": [
-            {
-              "title": "Example",
-              "depth": 3,
-              "id": "example"
-            }
-          ]
+          "id": "telegram-token"
+        },
+        {
+          "title": "Example",
+          "depth": 2,
+          "id": "example"
         }
       ]
     },
@@ -464,29 +458,27 @@
         {
           "title": "Context",
           "depth": 2,
-          "id": "context",
-          "headings": [
-            {
-              "title": "State",
-              "depth": 3,
-              "id": "state"
-            },
-            {
-              "title": "Session",
-              "depth": 3,
-              "id": "session"
-            },
-            {
-              "title": "Update types",
-              "depth": 3,
-              "id": "update-types"
-            },
-            {
-              "title": "Webhooks",
-              "depth": 3,
-              "id": "webhooks"
-            }
-          ]
+          "id": "context"
+        },
+        {
+          "title": "State",
+          "depth": 2,
+          "id": "state"
+        },
+        {
+          "title": "Session",
+          "depth": 2,
+          "id": "session"
+        },
+        {
+          "title": "Update types",
+          "depth": 2,
+          "id": "update-types"
+        },
+        {
+          "title": "Webhooks",
+          "depth": 2,
+          "id": "webhooks"
         }
       ]
     },

@@ -17,12 +17,17 @@
               <!-- span.title Open in GitHub--><span class="icon -github"></span></a>
           </div>
         </div>
-        <div class="markdown-body"><h2 id="application">Application</h2>
+        <div class="markdown-body"><h1 id="introduction">Introduction</h1>
+<h2 id="application">Application</h2>
 <p>A Telegraf application is an object containing an array of middlewares which are composed
 and executed in a stack-like manner upon request. Is similar to many other middleware systems
 that you may have encountered such as Koa, Ruby&apos;s Rack, Connect.</p>
 <h2 id="middleware">Middleware</h2>
-<p>Middleware normally takes two parameters (ctx, next), <code>ctx</code> is the context for one Telegram message,
+<p>Middleware is an essential part of any modern framework.
+It allows you to modify requests and responses as they pass between the Telegram and your bot.</p>
+<p>You can imagine middleware as a chain of logic connection your bot to the Telegram request.</p>
+<p>Middleware normally takes two parameters (ctx, next),
+<code>ctx</code> is the context for one Telegram message,
 <code>next</code> is a function that is invoked to execute the downstream middleware.
 It returns a Promise with a then function for running code after completion.</p>
 <pre><code class="lang-js"><span class="pl-k">const</span> app = <span class="pl-k">new</span> Telegraf(process.env.BOT_TOKEN)
@@ -63,14 +68,19 @@ app.on(<span class="pl-s">&apos;text&apos;</span>, (ctx) =&gt; ctx.reply(<span c
 <p>To perform custom error-handling logic see following snippet:</p>
 <pre><code class="lang-js"><span class="pl-k">const</span> app = <span class="pl-k">new</span> Telegraf(process.env.BOT_TOKEN)
 
-app.catch((err) =&gt; <span class="pl-c1">console</span>.log(<span class="pl-s">&apos;Ooops&apos;</span>, err))
+app.catch((err) =&gt; {
+  <span class="pl-c1">console</span>.log(<span class="pl-s">&apos;Ooops&apos;</span>, err)
+})
 </code></pre>
 <h2 id="context">Context</h2>
 <p>A Telegraf context encapsulates telegram update.</p>
-<pre><code class="lang-js">app.use((ctx) =&gt; ctx.reply(<span class="pl-s">&apos;Hey there!&apos;</span>))
+<pre><code class="lang-js">app.on(<span class="pl-s">&apos;sticker&apos;</span>, (ctx) =&gt; { 
+  <span class="pl-c1">console</span>.log(ctx.message.sticker)
+  <span class="pl-k">return</span> ctx.reply(<span class="pl-s">&apos;Hey there!&apos;</span>)
+})
 </code></pre>
 <p><a href="context.html">Context documentation</a></p>
-<h3 id="state">State</h3>
+<h2 id="state">State</h2>
 <p>The recommended namespace to share information between middlewares.</p>
 <pre><code class="lang-js"><span class="pl-k">const</span> app = <span class="pl-k">new</span> Telegraf(process.env.BOT_TOKEN)
 
@@ -84,7 +94,7 @@ app.on(<span class="pl-s">&apos;text&apos;</span>, (ctx) =&gt; {
   <span class="pl-k">return</span> ctx.reply(<span class="pl-s">`Hello <span class="hljs-subst">${ctx.state.role}</span>`</span>)
 })
 </code></pre>
-<h3 id="session">Session</h3>
+<h2 id="session">Session</h2>
 <pre><code class="lang-js"><span class="pl-k">const</span> app = <span class="pl-k">new</span> Telegraf(process.env.BOT_TOKEN)
 
 app.use(Telegraf.memorySession())
@@ -96,7 +106,7 @@ app.on(<span class="pl-s">&apos;text&apos;</span>, (ctx) =&gt; {
 })
 </code></pre>
 <p><strong>Note: For persistent sessions you can use any of <a href="https://www.npmjs.com/search?q=telegraf-session"><code>telegraf-session-*</code></a> middleware.</strong></p>
-<h3 id="update-types">Update types</h3>
+<h2 id="update-types">Update types</h2>
 <p>Supported update types:</p>
 <ul>
 <li><code>message</code></li>
@@ -121,7 +131,7 @@ telegraf.on([<span class="pl-s">&apos;sticker&apos;</span>, <span class="pl-s">&
 
 </code></pre>
 <p><sub><a href="https://core.telegram.org/bots/api#message">Related Telegram api docs</a></sub></p>
-<h3 id="webhooks">Webhooks</h3>
+<h2 id="webhooks">Webhooks</h2>
 <pre><code class="lang-js">
 <span class="pl-k">const</span> app = <span class="pl-k">new</span> Telegraf(process.env.BOT_TOKEN)
 
@@ -195,16 +205,14 @@ expressApp.listen(<span class="hljs-number">3000</span>, () =&gt; {
                     <li class="heading-item -depth-2"><a href="#error-handling" class="hlink link-error-handling">Error handling</a>
                     </li>
                     <li class="heading-item -depth-2"><a href="#context" class="hlink link-context">Context</a>
-                      <ul class="heading-list -depth-2">
-                        <li class="heading-item -depth-3"><a href="#state" class="hlink link-state">State</a>
-                        </li>
-                        <li class="heading-item -depth-3"><a href="#session" class="hlink link-session">Session</a>
-                        </li>
-                        <li class="heading-item -depth-3"><a href="#update-types" class="hlink link-update-types">Update types</a>
-                        </li>
-                        <li class="heading-item -depth-3"><a href="#webhooks" class="hlink link-webhooks">Webhooks</a>
-                        </li>
-                      </ul>
+                    </li>
+                    <li class="heading-item -depth-2"><a href="#state" class="hlink link-state">State</a>
+                    </li>
+                    <li class="heading-item -depth-2"><a href="#session" class="hlink link-session">Session</a>
+                    </li>
+                    <li class="heading-item -depth-2"><a href="#update-types" class="hlink link-update-types">Update types</a>
+                    </li>
+                    <li class="heading-item -depth-2"><a href="#webhooks" class="hlink link-webhooks">Webhooks</a>
                     </li>
                   </ul>
                 </li>
