@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <link rel="stylesheet" href="assets/style.css?t=a44c9e9d">
-    <link rel="stylesheet" href="style.css?t=8572c3ee">
+    <link rel="stylesheet" href="docs.css?t=add5de89">
     <script src="assets/script.js?t=820b7ffa"></script>
     <title>Telegraf</title>
     <meta name="viewport" content="width=device-width">
@@ -97,7 +97,7 @@
 </tbody>
 </table>
 <h3 id="hears">hears</h3>
-<p>Registers middleware for handling <code>text</code> messages with regular expressions.</p>
+<p>Registers middleware for handling <code>text</code> messages.</p>
 <p><code>telegraf.hears(triggers, middleware, [middleware...])</code></p>
 <table>
 <thead>
@@ -110,7 +110,7 @@
 <tbody>
 <tr>
 <td>triggers</td>
-<td><code>string[]</code>|<code>RegEx[]</code></td>
+<td><code>string[]</code>|<code>RegEx[]|Function</code></td>
 <td>Triggers</td>
 </tr>
 <tr>
@@ -161,6 +161,25 @@
 <td><code>string[]</code>|<code>RegEx[]</code></td>
 <td>Triggers</td>
 </tr>
+<tr>
+<td>middleware</td>
+<td><code>function</code></td>
+<td>Middleware</td>
+</tr>
+</tbody>
+</table>
+<h3 id="gamequery">gameQuery</h3>
+<p>Registers middleware for handling <code>callback_data</code> actions with game query.</p>
+<p><code>telegraf.gameQuery(middleware, [middleware...])</code></p>
+<table>
+<thead>
+<tr>
+<th>Param</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
 <tr>
 <td>middleware</td>
 <td><code>function</code></td>
@@ -297,7 +316,7 @@ In case you use centralized webhook server, queue, etc.</p>
 </tbody>
 </table>
 <h3 id="telegraf.mount">Telegraf.mount</h3>
-<p>Generates middleware for handling provided [pdate types.</p>
+<p>Generates middleware for handling provided update types.</p>
 <p><code>Telegraf.mount(updateTypes, middleware) =&gt; function</code></p>
 <table>
 <thead>
@@ -498,6 +517,8 @@ In case you use centralized webhook server, queue, etc.</p>
                     <li class="heading-item -depth-3"><a href="#command" class="hlink link-command">command</a>
                     </li>
                     <li class="heading-item -depth-3"><a href="#action" class="hlink link-action">action</a>
+                    </li>
+                    <li class="heading-item -depth-3"><a href="#gamequery" class="hlink link-gamequery">gameQuery</a>
                     </li>
                     <li class="heading-item -depth-3"><a href="#startpolling" class="hlink link-startpolling">startPolling</a>
                     </li>

@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <link rel="stylesheet" href="assets/style.css?t=a44c9e9d">
-    <link rel="stylesheet" href="style.css?t=8572c3ee">
+    <link rel="stylesheet" href="docs.css?t=add5de89">
     <script src="assets/script.js?t=820b7ffa"></script>
     <title>Telegram</title>
     <meta name="viewport" content="width=device-width">
@@ -52,7 +52,7 @@
 </code></pre>
 <h3 id="answercallbackquery">answerCallbackQuery</h3>
 <p>Use this method to send answers to callback queries.</p>
-<p><code>telegram.answerCallbackQuery(callbackQueryId, text, showAlert) =&gt; Promise</code></p>
+<p><code>telegram.answerCallbackQuery(callbackQueryId, text, url showAlert) =&gt; Promise</code></p>
 <table>
 <thead>
 <tr>
@@ -69,6 +69,11 @@
 </tr>
 <tr>
 <td>[text]</td>
+<td><code>string</code></td>
+<td>Notification text</td>
+</tr>
+<tr>
+<td>[url]</td>
 <td><code>string</code></td>
 <td>Notification text</td>
 </tr>
@@ -289,6 +294,9 @@
 </tr>
 </tbody>
 </table>
+<h3 id="getwebhookinfo">getWebhookInfo</h3>
+<p>Use this method to get current webhook status. Requires no parameters. On success, returns a WebhookInfo object. If the bot is using getUpdates, will return an object with the url field empty.</p>
+<p><code>telegram.getWebhookInfo() =&gt; Promise</code></p>
 <h3 id="getchat">getChat</h3>
 <p>Use this method to get up to date information about the chat (current name of the user for one-on-one conversatio
 ns, current username of a user, group or channel, etc.).</p>
@@ -330,6 +338,86 @@ ns, current username of a user, group or channel, etc.).</p>
 </tbody>
 </table>
 <p><sub><a href="https://core.telegram.org/bots/api#getchatadministrators">See Telegram api docs</a></sub></p>
+<h3 id="setgamescore">setGameScore</h3>
+<p>Use this method to set the score of the specified user in a game. On success, if the message was sent by the bot, returns the edited Message, otherwise returns True. Returns an error, if the new score is not greater than the user&apos;s current score in the chat.</p>
+<p><code>telegram.setGameScore(userId, score, inlineMessageId, chatId, messageId, editMessage) =&gt; Promise</code></p>
+<table>
+<thead>
+<tr>
+<th>Param</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>userId</td>
+<td><code>number</code>\</td>
+<td>Target User id</td>
+</tr>
+<tr>
+<td>score</td>
+<td><code>number</code>\</td>
+<td>Target User id</td>
+</tr>
+<tr>
+<td>inlineMessageId</td>
+<td><code>string</code></td>
+<td>Inline message id(optional)</td>
+</tr>
+<tr>
+<td>chatId</td>
+<td><code>number</code>|<code>string</code></td>
+<td>Target Chat id(optional)</td>
+</tr>
+<tr>
+<td>messageId</td>
+<td><code>number</code>|<code>string</code></td>
+<td>Message id(optional)</td>
+</tr>
+<tr>
+<td>editMessage</td>
+<td><code>boolean</code></td>
+<td>edit target message(optional)</td>
+</tr>
+</tbody>
+</table>
+<p><sub><a href="https://core.telegram.org/bots/api#setgamescore">See Telegram api docs</a></sub></p>
+<h3 id="getgamehighscores">getGameHighScores</h3>
+<p>Use this method to get data for high score tables. Will return the score of the specified user and several of his neighbors in a game. On success, returns an Array of GameHighScore objects.</p>
+<p><code>telegram.getGameHighScores(userId, inlineMessageId, chatId, messageId) =&gt; Promise</code></p>
+<table>
+<thead>
+<tr>
+<th>Param</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>userId</td>
+<td><code>number</code>\</td>
+<td>Target User id</td>
+</tr>
+<tr>
+<td>inlineMessageId</td>
+<td><code>string</code></td>
+<td>Inline message id(optional)</td>
+</tr>
+<tr>
+<td>chatId</td>
+<td><code>number</code>|<code>string</code></td>
+<td>Target Chat id(optional)</td>
+</tr>
+<tr>
+<td>messageId</td>
+<td><code>number</code>|<code>string</code></td>
+<td>Message id(optional)</td>
+</tr>
+</tbody>
+</table>
+<p><sub><a href="https://core.telegram.org/bots/api#getgamehighscores">See Telegram api docs</a></sub></p>
 <h3 id="getchatmember">getChatMember</h3>
 <p>Use this method to get information about a member of a chat.</p>
 <p><code>telegram.getChatMember(chatId) =&gt; Promise</code></p>
@@ -519,6 +607,35 @@ ns, current username of a user, group or channel, etc.).</p>
 <td>[extra]</td>
 <td><code>object</code></td>
 <td><a href="https://core.telegram.org/bots/api#sendaudio">Extra parameters</a></td>
+</tr>
+</tbody>
+</table>
+<h3 id="sendgame">sendGame</h3>
+<p>Sends game.</p>
+<p><code>telegram.sendGame(chatId, gameName, extra) =&gt; Promise</code></p>
+<table>
+<thead>
+<tr>
+<th>Param</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>chatId</td>
+<td><code>number</code>|<code>string</code></td>
+<td>Chat id</td>
+</tr>
+<tr>
+<td>gameName</td>
+<td><code>String</code></td>
+<td>Game short name</td>
+</tr>
+<tr>
+<td>[extra]</td>
+<td><code>object</code></td>
+<td><a href="https://core.telegram.org/bots/api#sendgame">Extra parameters</a></td>
 </tr>
 </tbody>
 </table>
@@ -926,9 +1043,15 @@ ns, current username of a user, group or channel, etc.).</p>
                     </li>
                     <li class="heading-item -depth-3"><a href="#sendcopy" class="hlink link-sendcopy">sendCopy</a>
                     </li>
+                    <li class="heading-item -depth-3"><a href="#getwebhookinfo" class="hlink link-getwebhookinfo">getWebhookInfo</a>
+                    </li>
                     <li class="heading-item -depth-3"><a href="#getchat" class="hlink link-getchat">getChat</a>
                     </li>
                     <li class="heading-item -depth-3"><a href="#getchatadministrators" class="hlink link-getchatadministrators">getChatAdministrators</a>
+                    </li>
+                    <li class="heading-item -depth-3"><a href="#setgamescore" class="hlink link-setgamescore">setGameScore</a>
+                    </li>
+                    <li class="heading-item -depth-3"><a href="#getgamehighscores" class="hlink link-getgamehighscores">getGameHighScores</a>
                     </li>
                     <li class="heading-item -depth-3"><a href="#getchatmember" class="hlink link-getchatmember">getChatMember</a>
                     </li>
@@ -949,6 +1072,8 @@ ns, current username of a user, group or channel, etc.).</p>
                     <li class="heading-item -depth-3"><a href="#removewebhook" class="hlink link-removewebhook">removeWebHook</a>
                     </li>
                     <li class="heading-item -depth-3"><a href="#sendaudio" class="hlink link-sendaudio">sendAudio</a>
+                    </li>
+                    <li class="heading-item -depth-3"><a href="#sendgame" class="hlink link-sendgame">sendGame</a>
                     </li>
                     <li class="heading-item -depth-3"><a href="#sendchataction" class="hlink link-sendchataction">sendChatAction</a>
                     </li>

@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <link rel="stylesheet" href="assets/style.css?t=a44c9e9d">
-    <link rel="stylesheet" href="style.css?t=8572c3ee">
+    <link rel="stylesheet" href="docs.css?t=add5de89">
     <script src="assets/script.js?t=820b7ffa"></script>
     <title>Introduction</title>
     <meta name="viewport" content="width=device-width">
@@ -26,8 +26,7 @@ that you may have encountered such as Koa, Ruby&apos;s Rack, Connect.</p>
 <p>Middleware is an essential part of any modern framework.
 It allows you to modify requests and responses as they pass between the Telegram and your bot.</p>
 <p>You can imagine middleware as a chain of logic connection your bot to the Telegram request.</p>
-<p>Middleware normally takes two parameters (ctx, next),
-<code>ctx</code> is the context for one Telegram message,
+<p>Middleware normally takes two parameters (ctx, next), <code>ctx</code> is the context for one Telegram message,
 <code>next</code> is a function that is invoked to execute the downstream middleware.
 It returns a Promise with a then function for running code after completion.</p>
 <pre><code class="lang-js"><span class="pl-k">const</span> app = <span class="pl-k">new</span> Telegraf(process.env.BOT_TOKEN)
@@ -65,7 +64,7 @@ app.on(<span class="pl-s">&apos;text&apos;</span>, (ctx) =&gt; ctx.reply(<span c
 </ul>
 <h2 id="error-handling">Error handling</h2>
 <p>By default Telegraf will print all errors to stderr and rethrow error.</p>
-<p>To perform custom error-handling logic see following snippet:</p>
+<p>To perform custom error-handling logic use following snippet:</p>
 <pre><code class="lang-js"><span class="pl-k">const</span> app = <span class="pl-k">new</span> Telegraf(process.env.BOT_TOKEN)
 
 app.catch((err) =&gt; {
@@ -116,14 +115,17 @@ app.on(<span class="pl-s">&apos;text&apos;</span>, (ctx) =&gt; {
 <li><code>chosen_inline_result</code></li>
 </ul>
 <p>Available update sub-types:
-<code>text</code>, <code>audio</code>, <code>document</code>, <code>photo</code>, <code>sticker</code>, <code>video</code>, <code>voice</code>, <code>contact</code>, <code>location</code>, <code>venue</code>, <code>new_chat_member</code>, <code>left_chat_member</code>, <code>new_chat_title</code>, <code>new_chat_photo</code>, <code>delete_chat_photo</code>, <code>group_chat_created</code>, <code>supergroup_chat_created</code>, <code>channel_chat_created</code>, <code>migrate_to_chat_id</code>, <code>migrate_from_chat_id</code>, <code>pinned_message</code>.</p>
+<code>text</code>, <code>audio</code>, <code>document</code>, <code>photo</code>, <code>sticker</code>, <code>video</code>, <code>voice</code>, <code>contact</code>, <code>location</code>,
+<code>venue</code>, <code>new_chat_member</code>, <code>left_chat_member</code>, <code>new_chat_title</code>, <code>new_chat_photo</code>,
+<code>delete_chat_photo</code>, <code>group_chat_created</code>, <code>supergroup_chat_created</code>, <code>channel_chat_created</code>,
+<code>migrate_to_chat_id</code>, <code>migrate_from_chat_id</code>, <code>pinned_message</code>, <code>game</code>.</p>
 <pre><code class="lang-js">
 <span class="pl-c">// Handle message update</span>
 telegraf.on(<span class="pl-s">&apos;message&apos;</span>, (ctx) =&gt;  {
   <span class="pl-k">return</span> ctx.reply(<span class="pl-s">&apos;Hey there!&apos;</span>)
 })
 
-<span class="pl-c">// Handle sticker update</span>
+<span class="pl-c">// Handle sticker or photo update</span>
 telegraf.on([<span class="pl-s">&apos;sticker&apos;</span>, <span class="pl-s">&apos;photo&apos;</span>], (ctx) =&gt;  {
   <span class="pl-c1">console</span>.log(ctx.message)
   <span class="pl-k">return</span> ctx.reply(<span class="pl-s">&apos;Cool!&apos;</span>)

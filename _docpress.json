@@ -151,6 +151,11 @@
                 "id": "action"
               },
               {
+                "title": "gameQuery",
+                "depth": 3,
+                "id": "gamequery"
+              },
+              {
                 "title": "startPolling",
                 "depth": 3,
                 "id": "startpolling"
@@ -264,6 +269,11 @@
                 "id": "sendcopy"
               },
               {
+                "title": "getWebhookInfo",
+                "depth": 3,
+                "id": "getwebhookinfo"
+              },
+              {
                 "title": "getChat",
                 "depth": 3,
                 "id": "getchat"
@@ -272,6 +282,16 @@
                 "title": "getChatAdministrators",
                 "depth": 3,
                 "id": "getchatadministrators"
+              },
+              {
+                "title": "setGameScore",
+                "depth": 3,
+                "id": "setgamescore"
+              },
+              {
+                "title": "getGameHighScores",
+                "depth": 3,
+                "id": "getgamehighscores"
               },
               {
                 "title": "getChatMember",
@@ -322,6 +342,11 @@
                 "title": "sendAudio",
                 "depth": 3,
                 "id": "sendaudio"
+              },
+              {
+                "title": "sendGame",
+                "depth": 3,
+                "id": "sendgame"
               },
               {
                 "title": "sendChatAction",
@@ -545,6 +570,11 @@
           "id": "action"
         },
         {
+          "title": "gameQuery",
+          "depth": 3,
+          "id": "gamequery"
+        },
+        {
           "title": "startPolling",
           "depth": 3,
           "id": "startpolling"
@@ -657,6 +687,11 @@
           "id": "sendcopy"
         },
         {
+          "title": "getWebhookInfo",
+          "depth": 3,
+          "id": "getwebhookinfo"
+        },
+        {
           "title": "getChat",
           "depth": 3,
           "id": "getchat"
@@ -665,6 +700,16 @@
           "title": "getChatAdministrators",
           "depth": 3,
           "id": "getchatadministrators"
+        },
+        {
+          "title": "setGameScore",
+          "depth": 3,
+          "id": "setgamescore"
+        },
+        {
+          "title": "getGameHighScores",
+          "depth": 3,
+          "id": "getgamehighscores"
         },
         {
           "title": "getChatMember",
@@ -715,6 +760,11 @@
           "title": "sendAudio",
           "depth": 3,
           "id": "sendaudio"
+        },
+        {
+          "title": "sendGame",
+          "depth": 3,
+          "id": "sendgame"
         },
         {
           "title": "sendChatAction",
@@ -804,6 +854,6 @@
     "docs/telegraf.md": "telegraf.html",
     "docs/telegram.md": "telegram.html",
     "docs/extra.md": "extra.html",
-    "docs/style.css": "style.css"
+    "docs/docs.css": "docs.css"
   }
 }
