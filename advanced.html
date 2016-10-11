@@ -28,7 +28,7 @@
 <span class="pl-k">const</span> app = <span class="pl-k">new</span> Telegraf(process.env.BOT_TOKEN)
 
 app.telegram.getMe().then((botInfo) =&gt; {
-  <span class="pl-k">this</span>.options.username = botInfo.username
+  app.options.username = botInfo.username
 })
 
 app.command(<span class="pl-s">&apos;start&apos;</span>, (ctx) =&gt; ctx.reply(<span class="pl-s">&apos;Hello World&apos;</span>))
