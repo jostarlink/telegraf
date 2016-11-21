@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <link rel="stylesheet" href="assets/style.css?t=d358ee59">
-    <link rel="stylesheet" href="docs.css?t=b946031b">
+    <link rel="stylesheet" href="docs.css?t=4f015f21">
     <script src="assets/script.js?t=42463e55"></script>
     <title>Telegram - Telegraf</title>
     <meta name="viewport" content="width=device-width">
@@ -445,7 +445,7 @@ ns, current username of a user, group or channel, etc.).</p>
 <p><sub><a href="https://core.telegram.org/bots/api#getchatadministrators">See Telegram api docs</a></sub></p>
 <h3 id="setgamescore">setGameScore</h3>
 <p>Use this method to set the score of the specified user in a game. On success, if the message was sent by the bot, returns the edited Message, otherwise returns True. Returns an error, if the new score is not greater than the user&apos;s current score in the chat.</p>
-<p><code>telegram.setGameScore(userId, score, inlineMessageId, chatId, messageId, editMessage) =&gt; Promise</code></p>
+<p><code>telegram.setGameScore(userId, score, inlineMessageId, chatId, messageId, editMessage, force) =&gt; Promise</code></p>
 <table>
 <thead>
 <tr>
@@ -483,7 +483,12 @@ ns, current username of a user, group or channel, etc.).</p>
 <tr>
 <td>editMessage</td>
 <td><code>boolean</code></td>
-<td>edit target message(optional)</td>
+<td>edit target message, default value is True</td>
+</tr>
+<tr>
+<td>force</td>
+<td><code>boolean</code></td>
+<td>Pass True, if the high score is allowed to decrease. This can be useful when fixing mistakes or banning cheaters(optional)</td>
 </tr>
 </tbody>
 </table>
