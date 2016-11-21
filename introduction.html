@@ -2,18 +2,62 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <link rel="stylesheet" href="assets/style.css?t=a44c9e9d">
-    <link rel="stylesheet" href="docs.css?t=add5de89">
-    <script src="assets/script.js?t=820b7ffa"></script>
-    <title>Introduction</title>
+    <link rel="stylesheet" href="assets/style.css?t=d358ee59">
+    <link rel="stylesheet" href="docs.css?t=b946031b">
+    <script src="assets/script.js?t=42463e55"></script>
+    <title>Introduction - Telegraf</title>
     <meta name="viewport" content="width=device-width">
   </head>
   <body class="-menu-visible">
     <div class="doc-layout">
       <div class="toggle menu-toggle js-menu-toggle"></div>
+      <div class="menu toc-menu">
+        <li class="menu-item -level-0 -parent">
+          <ul class="submenu">
+            <li class="menu-item -level-1 -parent"><a class="link title  link-index" href="index.html">Telegraf</a>
+              <ul class="submenu">
+                <li class="menu-item -level-2"><a class="link title -active link-introduction" href="introduction.html">Introduction</a>
+                  <ul class="headings heading-list">
+                    <li class="heading-item -depth-2"><a class="hlink link-application" href="#application">Application</a>
+                    </li>
+                    <li class="heading-item -depth-2"><a class="hlink link-middleware" href="#middleware">Middleware</a>
+                    </li>
+                    <li class="heading-item -depth-2"><a class="hlink link-error-handling" href="#error-handling">Error handling</a>
+                    </li>
+                    <li class="heading-item -depth-2"><a class="hlink link-context" href="#context">Context</a>
+                    </li>
+                    <li class="heading-item -depth-2"><a class="hlink link-state" href="#state">State</a>
+                    </li>
+                    <li class="heading-item -depth-2"><a class="hlink link-session" href="#session">Session</a>
+                    </li>
+                    <li class="heading-item -depth-2"><a class="hlink link-update-types" href="#update-types">Update types</a>
+                    </li>
+                    <li class="heading-item -depth-2"><a class="hlink link-webhooks" href="#webhooks">Webhooks</a>
+                    </li>
+                  </ul>
+                </li>
+                <li class="menu-item -level-2"><a class="link title  link-context" href="context.html">Context</a>
+                </li>
+                <li class="menu-item -level-2"><a class="link title  link-advanced" href="advanced.html">Advanced usage</a>
+                </li>
+              </ul>
+            </li>
+            <li class="menu-item -level-1 -parent"><span class="title">API Reference</span>
+              <ul class="submenu">
+                <li class="menu-item -level-2"><a class="link title  link-telegraf" href="telegraf.html">Telegraf</a>
+                </li>
+                <li class="menu-item -level-2"><a class="link title  link-telegram" href="telegram.html">Telegram</a>
+                </li>
+                <li class="menu-item -level-2"><a class="link title  link-extra" href="extra.html">Reply markup</a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+      </div>
       <div class="body page-introduction">
         <div class="header-nav">
-          <div class="right"><a href="https://github.com/telegraf/telegraf" data-title="telegraf/telegraf" class="iconlink">
+          <div class="right"><a class="iconlink" href="https://github.com/telegraf/telegraf" data-title="telegraf/telegraf">
               <!-- span.title Open in GitHub--><span class="icon -github"></span></a>
           </div>
         </div>
@@ -31,9 +75,9 @@ It allows you to modify requests and responses as they pass between the Telegram
 It returns a Promise with a then function for running code after completion.</p>
 <pre><code class="lang-js"><span class="pl-k">const</span> app = <span class="pl-k">new</span> Telegraf(process.env.BOT_TOKEN)
 
-app.use((ctx, next) =&gt; {
+app.use(<span class="hljs-function">(<span class="hljs-params">ctx, next</span>) =&gt;</span> {
   <span class="pl-k">const</span> start = <span class="pl-k">new</span> <span class="pl-c1">Date</span>()
-  <span class="pl-k">return</span> next().then(() =&gt; {
+  <span class="pl-k">return</span> next().then(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
     <span class="pl-k">const</span> ms = <span class="pl-k">new</span> <span class="pl-c1">Date</span>() - start
     <span class="pl-c1">console</span>.log(<span class="pl-s">&apos;Response time %sms&apos;</span>, ms)
   })
@@ -67,7 +111,7 @@ app.on(<span class="pl-s">&apos;text&apos;</span>, (ctx) =&gt; ctx.reply(<span c
 <p>To perform custom error-handling logic use following snippet:</p>
 <pre><code class="lang-js"><span class="pl-k">const</span> app = <span class="pl-k">new</span> Telegraf(process.env.BOT_TOKEN)
 
-app.catch((err) =&gt; {
+app.catch(<span class="hljs-function">(<span class="hljs-params">err</span>) =&gt;</span> {
   <span class="pl-c1">console</span>.log(<span class="pl-s">&apos;Ooops&apos;</span>, err)
 })
 </code></pre>
@@ -84,7 +128,7 @@ app.catch((err) =&gt; {
 <pre><code class="lang-js"><span class="pl-k">const</span> app = <span class="pl-k">new</span> Telegraf(process.env.BOT_TOKEN)
 
 <span class="pl-c">// Auth middleware</span>
-app.use((ctx, next) =&gt; {
+app.use(<span class="hljs-function">(<span class="hljs-params">ctx, next</span>) =&gt;</span> {
   ctx.state.role = getUserRole(ctx.message) 
   <span class="pl-k">return</span> next()
 })
@@ -104,7 +148,7 @@ app.on(<span class="pl-s">&apos;text&apos;</span>, (ctx) =&gt; {
   <span class="pl-k">return</span> ctx.reply(<span class="pl-s">`Message counter:<span class="hljs-subst">${ctx.session.counter}</span>`</span>)
 })
 </code></pre>
-<p><strong>Note: For persistent sessions you can use any of <a href="https://www.npmjs.com/search?q=telegraf-session"><code>telegraf-session-*</code></a> middleware.</strong></p>
+<p><strong>Note: For persistent sessions you might use any of <a href="https://www.npmjs.com/search?q=telegraf-session"><code>telegraf-session-*</code></a> middleware.</strong></p>
 <h2 id="update-types">Update types</h2>
 <p>Supported update types:</p>
 <ul>
@@ -113,6 +157,8 @@ app.on(<span class="pl-s">&apos;text&apos;</span>, (ctx) =&gt; {
 <li><code>callback_query</code></li>
 <li><code>inline_query</code></li>
 <li><code>chosen_inline_result</code></li>
+<li><code>channel_post</code></li>
+<li><code>edited_channel_post</code></li>
 </ul>
 <p>Available update sub-types:
 <code>text</code>, <code>audio</code>, <code>document</code>, <code>photo</code>, <code>sticker</code>, <code>video</code>, <code>voice</code>, <code>contact</code>, <code>location</code>,
@@ -139,9 +185,9 @@ telegraf.on([<span class="pl-s">&apos;sticker&apos;</span>, <span class="pl-s">&
 
 <span class="pl-c">// TLS options</span>
 <span class="pl-k">const</span> tlsOptions = {
-  key:  fs.readFileSync(<span class="pl-s">&apos;server-key.pem&apos;</span>),
-  cert: fs.readFileSync(<span class="pl-s">&apos;server-cert.pem&apos;</span>),
-  ca: [ 
+  <span class="hljs-attr">key</span>:  fs.readFileSync(<span class="pl-s">&apos;server-key.pem&apos;</span>),
+  <span class="hljs-attr">cert</span>: fs.readFileSync(<span class="pl-s">&apos;server-cert.pem&apos;</span>),
+  <span class="hljs-attr">ca</span>: [ 
     <span class="pl-c">// This is necessary only if the client uses the self-signed certificate.</span>
     fs.readFileSync(<span class="pl-s">&apos;client-cert.pem&apos;</span>) 
   ]
@@ -149,7 +195,7 @@ telegraf.on([<span class="pl-s">&apos;sticker&apos;</span>, <span class="pl-s">&
 
 <span class="pl-c">// Set telegram webhook</span>
 app.telegram.setWebHook(<span class="pl-s">&apos;https://server.tld:8443/secret-path&apos;</span>, {
-  content: <span class="pl-s">&apos;server-cert.pem&apos;</span>
+  <span class="hljs-attr">content</span>: <span class="pl-s">&apos;server-cert.pem&apos;</span>
 })
 
 <span class="pl-c">// Start https webhook</span>
@@ -187,55 +233,9 @@ expressApp.listen(<span class="hljs-number">3000</span>, () =&gt; {
 
         </div>
         <div class="footer-nav">
-          <div class="left"><a href="index.html"><span class="title">Home</span></a></div>
-          <div class="right"><a href="context.html"><span class="label">Next: </span><span class="title">ctx</span></a></div>
+          <div class="left"><a href="index.html"><span class="title">Telegraf</span></a></div>
+          <div class="right"><a href="context.html"><span class="label">Next: </span><span class="title">Context</span></a></div>
         </div>
-      </div>
-      <div class="menu toc-menu">
-        <li class="menu-item -level-0 -parent">
-          <ul class="submenu">
-            <li class="menu-item -level-1 -parent"><span class="title">Telegraf</span>
-              <ul class="submenu">
-                <li class="menu-item -level-2"><a href="index.html" class="link title  link-index">Home</a>
-                </li>
-                <li class="menu-item -level-2"><a href="introduction.html" class="link title -active link-introduction">Introduction</a>
-                  <ul class="headings heading-list">
-                    <li class="heading-item -depth-2"><a href="#application" class="hlink link-application">Application</a>
-                    </li>
-                    <li class="heading-item -depth-2"><a href="#middleware" class="hlink link-middleware">Middleware</a>
-                    </li>
-                    <li class="heading-item -depth-2"><a href="#error-handling" class="hlink link-error-handling">Error handling</a>
-                    </li>
-                    <li class="heading-item -depth-2"><a href="#context" class="hlink link-context">Context</a>
-                    </li>
-                    <li class="heading-item -depth-2"><a href="#state" class="hlink link-state">State</a>
-                    </li>
-                    <li class="heading-item -depth-2"><a href="#session" class="hlink link-session">Session</a>
-                    </li>
-                    <li class="heading-item -depth-2"><a href="#update-types" class="hlink link-update-types">Update types</a>
-                    </li>
-                    <li class="heading-item -depth-2"><a href="#webhooks" class="hlink link-webhooks">Webhooks</a>
-                    </li>
-                  </ul>
-                </li>
-                <li class="menu-item -level-2"><a href="context.html" class="link title  link-context">ctx</a>
-                </li>
-                <li class="menu-item -level-2"><a href="advanced.html" class="link title  link-advanced">Advanced usage</a>
-                </li>
-              </ul>
-            </li>
-            <li class="menu-item -level-1 -parent"><span class="title">API Reference</span>
-              <ul class="submenu">
-                <li class="menu-item -level-2"><a href="telegraf.html" class="link title  link-telegraf">Telegraf</a>
-                </li>
-                <li class="menu-item -level-2"><a href="telegram.html" class="link title  link-telegram">Telegram</a>
-                </li>
-                <li class="menu-item -level-2"><a href="extra.html" class="link title  link-extra">Reply markup</a>
-                </li>
-              </ul>
-            </li>
-          </ul>
-        </li>
       </div>
     </div>
   </body>

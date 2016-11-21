@@ -3,35 +3,32 @@
     "sections": [
       {
         "title": "Telegraf",
-        "sections": [
+        "source": "docs/index.md",
+        "url": "index.html",
+        "slug": "index",
+        "headings": [
           {
-            "title": "Home",
-            "source": "docs/index.md",
-            "url": "index.html",
-            "slug": "index",
-            "headings": [
-              {
-                "title": "Features",
-                "depth": 2,
-                "id": "features"
-              },
-              {
-                "title": "Installation",
-                "depth": 2,
-                "id": "installation"
-              },
-              {
-                "title": "Telegram token",
-                "depth": 2,
-                "id": "telegram-token"
-              },
-              {
-                "title": "Example",
-                "depth": 2,
-                "id": "example"
-              }
-            ]
+            "title": "Features",
+            "depth": 2,
+            "id": "features"
           },
+          {
+            "title": "Installation",
+            "depth": 2,
+            "id": "installation"
+          },
+          {
+            "title": "Telegram token",
+            "depth": 2,
+            "id": "telegram-token"
+          },
+          {
+            "title": "Example",
+            "depth": 2,
+            "id": "example"
+          }
+        ],
+        "sections": [
           {
             "title": "Introduction",
             "source": "docs/introduction.md",
@@ -81,10 +78,22 @@
             ]
           },
           {
-            "title": "ctx",
+            "title": "Context",
             "source": "docs/context.md",
             "url": "context.html",
-            "slug": "context"
+            "slug": "context",
+            "headings": [
+              {
+                "title": "How to extend context",
+                "depth": 2,
+                "id": "how-to-extend-context"
+              },
+              {
+                "title": "Shortcuts",
+                "depth": 2,
+                "id": "shortcuts"
+              }
+            ]
           },
           {
             "title": "Advanced usage",
@@ -435,7 +444,8 @@
   "index": {
     "index.html": {
       "source": "docs/index.md",
-      "title": "Home",
+      "title": "Telegraf",
+      "pageTitle": "Telegraf",
       "slug": "index",
       "headings": [
         {
@@ -462,7 +472,8 @@
     },
     "introduction.html": {
       "source": "docs/introduction.md",
-      "title": "Introduction",
+      "title": "Introduction - Telegraf",
+      "pageTitle": "Introduction",
       "slug": "introduction",
       "headings": [
         {
@@ -509,12 +520,26 @@
     },
     "context.html": {
       "source": "docs/context.md",
-      "title": "ctx",
-      "slug": "context"
+      "title": "Context - Telegraf",
+      "pageTitle": "Context",
+      "slug": "context",
+      "headings": [
+        {
+          "title": "How to extend context",
+          "depth": 2,
+          "id": "how-to-extend-context"
+        },
+        {
+          "title": "Shortcuts",
+          "depth": 2,
+          "id": "shortcuts"
+        }
+      ]
     },
     "advanced.html": {
       "source": "docs/advanced.md",
-      "title": "Advanced usage",
+      "title": "Advanced usage - Telegraf",
+      "pageTitle": "Advanced usage",
       "slug": "advanced",
       "headings": [
         {
@@ -537,6 +562,7 @@
     "telegraf.html": {
       "source": "docs/telegraf.md",
       "title": "Telegraf",
+      "pageTitle": "Telegraf",
       "slug": "telegraf",
       "headings": [
         {
@@ -643,7 +669,8 @@
     },
     "telegram.html": {
       "source": "docs/telegram.md",
-      "title": "Telegram",
+      "title": "Telegram - Telegraf",
+      "pageTitle": "Telegram",
       "slug": "telegram",
       "headings": [
         {
@@ -830,7 +857,8 @@
     },
     "extra.html": {
       "source": "docs/extra.md",
-      "title": "Reply markup",
+      "title": "Reply markup - Telegraf",
+      "pageTitle": "Reply markup",
       "slug": "extra",
       "headings": [
         {
@@ -854,6 +882,7 @@
     "docs/telegraf.md": "telegraf.html",
     "docs/telegram.md": "telegram.html",
     "docs/extra.md": "extra.html",
-    "docs/docs.css": "docs.css"
+    "docs/docs.css": "docs.css",
+    "docs/telegraf.png": "telegraf.png"
   }
 }
