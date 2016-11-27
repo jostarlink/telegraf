@@ -127,10 +127,10 @@ test.cb('should share state', (t) => {
   const app = new Telegraf()
   app.on('message', (ctx, next) => {
     ctx.state.answer = 41
-    return next()
+    return next(ctx)
   }, (ctx, next) => {
     ctx.state.answer++
-    return next()
+    return next(ctx)
   }, (ctx) => {
     ctx.state.answer.should.be.equal(42)
     t.end()

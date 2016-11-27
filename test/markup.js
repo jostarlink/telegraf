@@ -3,16 +3,6 @@ const test = require('ava')
 const Telegraf = require('../')
 const { Markup } = Telegraf
 
-test('should generate hideKeyboard markup (Deprecated)', (t) => {
-  const markup = Object.assign({}, Markup.hideKeyboard())
-  markup.should.deepEqual({remove_keyboard: true})
-})
-
-test('should generate hideKeyboard markup (Deprecated)', (t) => {
-  const markup = Object.assign({}, new Markup().hideKeyboard())
-  markup.should.deepEqual({remove_keyboard: true})
-})
-
 test('should generate removeKeyboard markup', (t) => {
   const markup = Object.assign({}, Markup.removeKeyboard())
   markup.should.deepEqual({remove_keyboard: true})

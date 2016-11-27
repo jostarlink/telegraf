@@ -22,7 +22,7 @@ const app = new Telegraf(process.env.BOT_TOKEN)
 
 app.use((ctx, next) => {
   const start = new Date()
-  return next().then(() => {
+  return next(ctx).then(() => {
     const ms = new Date() - start
     console.log('Response time %sms', ms)
   })
@@ -36,7 +36,7 @@ app.on('text', (ctx) => ctx.reply('Hello World'))
 ```js
 app.use(async (ctx, next) => {
   const start = new Date()
-  await next()
+  await next(ctx)
   const ms = new Date() - start
   console.log('Response time %sms', ms)
 })
@@ -93,7 +93,7 @@ const app = new Telegraf(process.env.BOT_TOKEN)
 // Auth middleware
 app.use((ctx, next) => {
   ctx.state.role = getUserRole(ctx.message) 
-  return next()
+  return next(ctx)
 })
 
 app.on('text', (ctx) => {

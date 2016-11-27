@@ -7,7 +7,7 @@ const downloadPhotoMiddleware = (ctx, next) => {
   return bot.getFileLink(ctx.message.photo[0].file_id)
     .then((link) => {
       ctx.state.fileLink = link
-      return next()
+      return next(ctx)
     })
 }
 

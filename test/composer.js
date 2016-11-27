@@ -103,8 +103,8 @@ test.cb('should throw error then "next()" called twice', (t) => {
     t.end()
   })
   app.use((ctx, next) => {
-    next()
-    return next()
+    next(ctx)
+    return next(ctx)
   })
   app.handleUpdate({message: Object.assign({text: 'hello'}, baseMessage)})
 })
@@ -125,7 +125,7 @@ test.cb('should support Composer instance as middleware', (t) => {
   })
   app.use((ctx, next) => {
     ctx.state.foo = 'bar'
-    return next()
+    return next(ctx)
   }, composer)
   app.handleUpdate({message: Object.assign({text: 'hello'}, baseMessage)})
 })
@@ -280,7 +280,7 @@ test.cb('Composer.lazy should work with fn', (t) => {
 
 test.cb('Composer.lazy should work with fn', (t) => {
   const app = new Telegraf()
-  app.use(Composer.lazy((ctx) => (_, next) => next()))
+  app.use(Composer.lazy((ctx) => (_, next) => next(ctx)))
   app.use((ctx) => t.end())
   app.handleUpdate({message: Object.assign({text: 'hello world'}, baseMessage)})
 })

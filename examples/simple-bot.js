@@ -8,7 +8,7 @@ bot.use(memorySession())
 // Register logger middleware
 bot.use((ctx, next) => {
   const start = new Date()
-  return next().then(() => {
+  return next(ctx).then(() => {
     const ms = new Date() - start
     console.log('response time %sms', ms)
   })
@@ -19,11 +19,11 @@ const sayYoMiddleware = (ctx, next) => ctx.reply('yo').then(next)
 // Random location on some text messages
 bot.on('text', (ctx, next) => {
   if (Math.random() > 0.2) {
-    return next()
+    return next(ctx)
   }
   return Promise.all([
     ctx.replyWithLocation((Math.random() * 180) - 90, (Math.random() * 180) - 90),
-    next()
+    next(ctx)
   ])
 })
 
