@@ -53,11 +53,11 @@ Registers middleware for provided update type.
 
 Registers middleware for handling `text` messages.
 
-`telegraf.hears(triggers, middleware, [middleware...])`
+`telegraf.hears(match, middleware, [middleware...])`
 
 | Param | Type | Description |
 | --- | --- | --- |
-| triggers | `string[]`\|`RegEx[]|Function` | Triggers |
+| match | `string[]`\|`RegEx[]|Function` | Match function |
 | middleware | `function` | Middleware |
 
 ### command
@@ -68,18 +68,18 @@ Command handling.
 
 | Param | Type | Description |
 | --- | --- | --- |
-| triggers | `string[]` | Commands |
+| match | `string[]` | Commands |
 | middleware | `function` | Middleware |
 
 ### action
 
 Registers middleware for handling `callback_data` actions with regular expressions.
 
-`telegraf.action(triggers, middleware, [middleware...])`
+`telegraf.action(match, middleware, [middleware...])`
 
 | Param | Type | Description |
 | --- | --- | --- |
-| triggers | `string[]`\|`RegEx[]` | Triggers |
+| match | `string[]`\|`RegEx[]` | Match function |
 | middleware | `function` | Middleware |
 
 
@@ -113,7 +113,7 @@ Start listening @ `https://host:port/webhookPath` for Telegram calls.
 
 | Param | Type | Description |
 | ---  | --- | --- |
-| webhookPath | `string` | Webhook url path (see Telegraf.setWebHook) |
+| webhookPath | `string` | Webhook url path (see Telegraf.setWebhook) |
 | tlsOptions | `object` | (Optional) [TLS server options](https://nodejs.org/api/tls.html#tls_tls_createserver_options_secureconnectionlistener). Pass null to use http |
 | port | `number` | Port number |
 | [host] | `string` | (Optional) Hostname |
@@ -133,7 +133,7 @@ You may also use this callback function to mount your telegraf app in a Koa/Conn
 
 | Param | Type | Description |
 | ---  | --- | --- |
-| webhookPath | `string` | Webhook url path (see Telegraf.setWebHook) |
+| webhookPath | `string` | Webhook url path (see Telegraf.setWebhook) |
 
 ### handleUpdate
 
@@ -172,22 +172,22 @@ Generates middleware for handling provided update types.
 
 Generates middleware for handling `text` messages with regular expressions.
 
-`Telegraf.hears(triggers, middleware) => function`
+`Telegraf.hears(match, middleware) => function`
 
 | Param | Type | Description |
 | --- | --- | --- |
-| triggers | `string[]`\|`RegEx[]`\|`Function[]` | Triggers |
+| match | `string[]`\|`RegEx[]`\|`Function[]` | Match function |
 | handler | `function` | Handler |
 
 ### Telegraf.action
 
 Generates middleware for handling `callbackQuery` data with regular expressions.
 
-`Telegraf.action(triggers, middleware) => function`
+`Telegraf.action(match, middleware) => function`
 
 | Param | Type | Description |
 | --- | --- | --- |
-| triggers | `string[]`\|`RegEx[]`\|`Function[]` | Triggers |
+| match | `string[]`\|`RegEx[]`\|`Function[]` | Match function |
 | handler | `function` | Handler |
 
 ### Telegraf.passThru
@@ -206,22 +206,22 @@ Generates safe version of pass thru middleware.
 
 Generates optional middleware.
 
-`Telegraf.optional(test, middleware) => function`
+`Telegraf.optional(match, middleware) => function`
 
 | Param | Type | Description |
 | --- | --- | --- |
-| test | `truthy`\|`function` | Value or predicate `(ctx) => bool` |
+| match | `truthy`\|`function` | Value or predicate `(ctx) => bool` |
 | middleware | `function` | middleware |
 
 ### Telegraf.branch
 
 Generates branch middleware.
 
-`Telegraf.branch(test, trueMiddleware, falseMiddleware) => function`
+`Telegraf.branch(match, trueMiddleware, falseMiddleware) => function`
 
 | Param | Type | Description |
 | --- | --- | --- |
-| test | `truthy`\|`function` | Value or predicate `(ctx) => bool` |
+| match | `truthy`\|`function` | Value or predicate `(ctx) => bool` |
 | trueMiddleware | `function` | true action  middleware |
 | falseMiddleware | `function` | false action middleware |
 
