@@ -97,12 +97,13 @@ Registers middleware for handling `callback_data` actions with game query.
 
 Start poll updates.
 
-`telegraf.startPolling(timeout, limit)`
+`telegraf.startPolling(timeout, limit, allowedUpdates)`
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
 | timeout | `number` | 30 | Poll timeout in seconds |
 | limit | `number` | 100 | Limits the number of updates to be retrieved |
+| allowedUpdates | `string[]` | null | List the types of updates you want your bot to receive |
 
 ### startWebhook
 
@@ -119,7 +120,7 @@ Start listening @ `https://host:port/webhookPath` for Telegram calls.
 
 ### stop
 
-Stop WebHook and polling
+Stop Webhook and polling
 
 `telegraf.stop()`
 

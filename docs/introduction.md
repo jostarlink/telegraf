@@ -168,16 +168,16 @@ const tlsOptions = {
 }
 
 // Set telegram webhook
-app.telegram.setWebHook('https://server.tld:8443/secret-path', {
+app.telegram.setWebhook('https://server.tld:8443/secret-path', {
   content: 'server-cert.pem'
 })
 
 // Start https webhook
-app.startWebHook('/secret-path', tlsOptions, 8443)
+app.startWebhook('/secret-path', tlsOptions, 8443)
 
 
 // Http webhook, for nginx/heroku users.
-app.startWebHook('/secret-path', null, 5000)
+app.startWebhook('/secret-path', null, 5000)
 
 
 // Use webhookCallback() if you want to attach telegraf to existing http server
