@@ -72,7 +72,7 @@
                     </li>
                     <li class="heading-item -depth-3"><a class="hlink link-leavechat" href="#leavechat">leaveChat</a>
                     </li>
-                    <li class="heading-item -depth-3"><a class="hlink link-removewebhook" href="#removewebhook">removeWebHook</a>
+                    <li class="heading-item -depth-3"><a class="hlink link-deletewebhook" href="#deletewebhook">deleteWebhook</a>
                     </li>
                     <li class="heading-item -depth-3"><a class="hlink link-sendaudio" href="#sendaudio">sendAudio</a>
                     </li>
@@ -98,7 +98,7 @@
                     </li>
                     <li class="heading-item -depth-3"><a class="hlink link-sendvoice" href="#sendvoice">sendVoice</a>
                     </li>
-                    <li class="heading-item -depth-3"><a class="hlink link-setwebhook" href="#setwebhook">setWebHook</a>
+                    <li class="heading-item -depth-3"><a class="hlink link-setwebhook" href="#setwebhook">setWebhook</a>
                     </li>
                     <li class="heading-item -depth-3"><a class="hlink link-unbanchatmember" href="#unbanchatmember">unbanChatMember</a>
                     </li>
@@ -687,10 +687,10 @@ ns, current username of a user, group or channel, etc.).</p>
 </tbody>
 </table>
 <p><sub><a href="https://core.telegram.org/bots/api#leavechat">See Telegram api docs</a></sub></p>
-<h3 id="removewebhook">removeWebHook</h3>
-<p>Removes webhook. Shortcut for <code>setWebHook(&apos;&apos;)</code></p>
-<p><code>telegram.removeWebHook() =&gt; Promise</code></p>
-<p><sub><a href="https://core.telegram.org/bots/api#removewebhook">See Telegram api docs</a></sub></p>
+<h3 id="deletewebhook">deleteWebhook</h3>
+<p>Removes webhook integration.</p>
+<p><code>telegram.deleteWebhook() =&gt; Promise</code></p>
+<p><sub><a href="https://core.telegram.org/bots/api#deletewebhook">See Telegram api docs</a></sub></p>
 <h3 id="sendaudio">sendAudio</h3>
 <p>Sends audio.</p>
 <p><code>telegram.sendAudio(chatId, audio, extra) =&gt; Promise</code></p>
@@ -1059,9 +1059,9 @@ ns, current username of a user, group or channel, etc.).</p>
 </tr>
 </tbody>
 </table>
-<h3 id="setwebhook">setWebHook</h3>
+<h3 id="setwebhook">setWebhook</h3>
 <p>Specifies an url to receive incoming updates via an outgoing webhook.</p>
-<p><code>telegram.setWebHook(url, [cert]) =&gt; Promise</code></p>
+<p><code>telegram.setWebhook(url, [cert], [maxConnections], [allowedUpdates]) =&gt; Promise</code></p>
 <table>
 <thead>
 <tr>
@@ -1080,6 +1080,16 @@ ns, current username of a user, group or channel, etc.).</p>
 <td>[cert]</td>
 <td><code>File</code></td>
 <td>SSL public certificate</td>
+</tr>
+<tr>
+<td>[maxConnections]</td>
+<td><code>number</code></td>
+<td>User id</td>
+</tr>
+<tr>
+<td>[allowedUpdates]</td>
+<td><code>string[]</code></td>
+<td>List the types of updates you want your bot to receive</td>
 </tr>
 </tbody>
 </table>

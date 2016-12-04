@@ -44,11 +44,11 @@
                     </li>
                     <li class="heading-item -depth-3"><a class="hlink link-startpolling" href="#startpolling">startPolling</a>
                     </li>
-                    <li class="heading-item -depth-3"><a class="hlink link-startwebhook" href="#startwebhook">startWebHook</a>
+                    <li class="heading-item -depth-3"><a class="hlink link-startwebhook" href="#startwebhook">startWebhook</a>
                     </li>
                     <li class="heading-item -depth-3"><a class="hlink link-stop" href="#stop">stop</a>
                     </li>
-                    <li class="heading-item -depth-3"><a class="hlink link-webhookcallback" href="#webhookcallback">webHookCallback</a>
+                    <li class="heading-item -depth-3"><a class="hlink link-webhookcallback" href="#webhookcallback">webhookCallback</a>
                     </li>
                     <li class="heading-item -depth-3"><a class="hlink link-handleupdate" href="#handleupdate">handleUpdate</a>
                     </li>
@@ -257,7 +257,7 @@
 </table>
 <h3 id="startpolling">startPolling</h3>
 <p>Start poll updates.</p>
-<p><code>telegraf.startPolling(timeout, limit)</code></p>
+<p><code>telegraf.startPolling(timeout, limit, allowedUpdates)</code></p>
 <table>
 <thead>
 <tr>
@@ -280,11 +280,17 @@
 <td>100</td>
 <td>Limits the number of updates to be retrieved</td>
 </tr>
+<tr>
+<td>allowedUpdates</td>
+<td><code>string[]</code></td>
+<td>null</td>
+<td>List the types of updates you want your bot to receive</td>
+</tr>
 </tbody>
 </table>
-<h3 id="startwebhook">startWebHook</h3>
-<p>Start listening @ <code>https://host:port/webHookPath</code> for Telegram calls.</p>
-<p><code>telegraf.startWebHook(webHookPath, tlsOptions, port, [host])</code></p>
+<h3 id="startwebhook">startWebhook</h3>
+<p>Start listening @ <code>https://host:port/webhookPath</code> for Telegram calls.</p>
+<p><code>telegraf.startWebhook(webhookPath, tlsOptions, port, [host])</code></p>
 <table>
 <thead>
 <tr>
@@ -295,9 +301,9 @@
 </thead>
 <tbody>
 <tr>
-<td>webHookPath</td>
+<td>webhookPath</td>
 <td><code>string</code></td>
-<td>Webhook url path (see Telegraf.setWebHook)</td>
+<td>Webhook url path (see Telegraf.setWebhook)</td>
 </tr>
 <tr>
 <td>tlsOptions</td>
@@ -317,12 +323,12 @@
 </tbody>
 </table>
 <h3 id="stop">stop</h3>
-<p>Stop WebHook and polling</p>
+<p>Stop Webhook and polling</p>
 <p><code>telegraf.stop()</code></p>
-<h3 id="webhookcallback">webHookCallback</h3>
+<h3 id="webhookcallback">webhookCallback</h3>
 <p>Return a callback function suitable for the http[s].createServer() method to handle a request.
 You may also use this callback function to mount your telegraf app in a Koa/Connect/Express app.</p>
-<p><code>telegraf.webHookCallback(webHookPath) =&gt; Function</code></p>
+<p><code>telegraf.webhookCallback(webhookPath) =&gt; Function</code></p>
 <table>
 <thead>
 <tr>
@@ -333,16 +339,16 @@ You may also use this callback function to mount your telegraf app in a Koa/Conn
 </thead>
 <tbody>
 <tr>
-<td>webHookPath</td>
+<td>webhookPath</td>
 <td><code>string</code></td>
-<td>Webhook url path (see Telegraf.setWebHook)</td>
+<td>Webhook url path (see Telegraf.setWebhook)</td>
 </tr>
 </tbody>
 </table>
 <h3 id="handleupdate">handleUpdate</h3>
 <p>Handle raw Telegram update.
 In case you use centralized webhook server, queue, etc.</p>
-<p><code>telegraf.handleUpdate(rawUpdate, [webHookResponse])</code></p>
+<p><code>telegraf.handleUpdate(rawUpdate, [webhookResponse])</code></p>
 <table>
 <thead>
 <tr>
@@ -358,7 +364,7 @@ In case you use centralized webhook server, queue, etc.</p>
 <td>Telegram update payload</td>
 </tr>
 <tr>
-<td>[webHookResponse]</td>
+<td>[webhookResponse]</td>
 <td><code>object</code></td>
 <td>(Optional) <a href="https://nodejs.org/api/http.html#http_class_http_serverresponse">http.ServerResponse</a></td>
 </tr>

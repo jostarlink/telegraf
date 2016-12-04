@@ -170,7 +170,7 @@
                 "id": "startpolling"
               },
               {
-                "title": "startWebHook",
+                "title": "startWebhook",
                 "depth": 3,
                 "id": "startwebhook"
               },
@@ -180,7 +180,7 @@
                 "id": "stop"
               },
               {
-                "title": "webHookCallback",
+                "title": "webhookCallback",
                 "depth": 3,
                 "id": "webhookcallback"
               },
@@ -343,9 +343,9 @@
                 "id": "leavechat"
               },
               {
-                "title": "removeWebHook",
+                "title": "deleteWebhook",
                 "depth": 3,
-                "id": "removewebhook"
+                "id": "deletewebhook"
               },
               {
                 "title": "sendAudio",
@@ -408,7 +408,7 @@
                 "id": "sendvoice"
               },
               {
-                "title": "setWebHook",
+                "title": "setWebhook",
                 "depth": 3,
                 "id": "setwebhook"
               },
@@ -606,7 +606,7 @@
           "id": "startpolling"
         },
         {
-          "title": "startWebHook",
+          "title": "startWebhook",
           "depth": 3,
           "id": "startwebhook"
         },
@@ -616,7 +616,7 @@
           "id": "stop"
         },
         {
-          "title": "webHookCallback",
+          "title": "webhookCallback",
           "depth": 3,
           "id": "webhookcallback"
         },
@@ -779,9 +779,9 @@
           "id": "leavechat"
         },
         {
-          "title": "removeWebHook",
+          "title": "deleteWebhook",
           "depth": 3,
-          "id": "removewebhook"
+          "id": "deletewebhook"
         },
         {
           "title": "sendAudio",
@@ -844,7 +844,7 @@
           "id": "sendvoice"
         },
         {
-          "title": "setWebHook",
+          "title": "setWebhook",
           "depth": 3,
           "id": "setwebhook"
         },

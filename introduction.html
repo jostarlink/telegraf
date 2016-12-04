@@ -194,32 +194,32 @@ telegraf.on([<span class="pl-s">&apos;sticker&apos;</span>, <span class="pl-s">&
 }
 
 <span class="pl-c">// Set telegram webhook</span>
-app.telegram.setWebHook(<span class="pl-s">&apos;https://server.tld:8443/secret-path&apos;</span>, {
+app.telegram.setWebhook(<span class="pl-s">&apos;https://server.tld:8443/secret-path&apos;</span>, {
   <span class="hljs-attr">content</span>: <span class="pl-s">&apos;server-cert.pem&apos;</span>
 })
 
 <span class="pl-c">// Start https webhook</span>
-app.startWebHook(<span class="pl-s">&apos;/secret-path&apos;</span>, tlsOptions, <span class="hljs-number">8443</span>)
+app.startWebhook(<span class="pl-s">&apos;/secret-path&apos;</span>, tlsOptions, <span class="hljs-number">8443</span>)
 
 
 <span class="pl-c">// Http webhook, for nginx/heroku users.</span>
-app.startWebHook(<span class="pl-s">&apos;/secret-path&apos;</span>, <span class="pl-c1">null</span>, <span class="hljs-number">5000</span>)
+app.startWebhook(<span class="pl-s">&apos;/secret-path&apos;</span>, <span class="pl-c1">null</span>, <span class="hljs-number">5000</span>)
 
 
-<span class="pl-c">// Use webHookCallback() if you want to attach telegraf to existing http server</span>
+<span class="pl-c">// Use webhookCallback() if you want to attach telegraf to existing http server</span>
 <span class="pl-c1">require</span>(<span class="pl-s">&apos;http&apos;</span>)
-  .createServer(app.webHookCallback(<span class="pl-s">&apos;/secret-path&apos;</span>))
+  .createServer(app.webhookCallback(<span class="pl-s">&apos;/secret-path&apos;</span>))
   .listen(<span class="hljs-number">3000</span>)
 
 <span class="pl-c1">require</span>(<span class="pl-s">&apos;https&apos;</span>)
-  .createServer(tlsOptions, app.webHookCallback(<span class="pl-s">&apos;/secret-path&apos;</span>))
+  .createServer(tlsOptions, app.webhookCallback(<span class="pl-s">&apos;/secret-path&apos;</span>))
   .listen(<span class="hljs-number">8443</span>)
 
 <span class="pl-c">// Connect/Express.js integration</span>
 <span class="pl-k">const</span> express = <span class="pl-c1">require</span>(<span class="pl-s">&apos;express&apos;</span>)
 <span class="pl-k">const</span> expressApp = express()
 
-expressApp.use(app.webHookCallback(<span class="pl-s">&apos;/secret-path&apos;</span>))
+expressApp.use(app.webhookCallback(<span class="pl-s">&apos;/secret-path&apos;</span>))
 
 expressApp.get(<span class="pl-s">&apos;/&apos;</span>, (req, res) =&gt; {
   res.send(<span class="pl-s">&apos;Hello World!&apos;</span>)
