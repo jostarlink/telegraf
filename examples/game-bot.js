@@ -18,7 +18,7 @@ bot.command('foo', (ctx) => {
 
 bot.gameQuery((ctx) => {
   console.log('Game query:', ctx.callbackQuery.game_short_name)
-  return ctx.answerCallbackQuery(null, gameUrl)
+  return ctx.answerGameQuery(gameUrl)
 })
 
 bot.startPolling(60)
