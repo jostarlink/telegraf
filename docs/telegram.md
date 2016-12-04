@@ -29,15 +29,27 @@ Telegram options:
 
 Use this method to send answers to callback queries.
 
-`telegram.answerCallbackQuery(callbackQueryId, text, url, showAlert, cacheTime) => Promise`
+`telegram.answerCallbackQuery(callbackQueryId, text, showAlert, cacheTime) => Promise`
 
 | Param | Type | Description |
 | --- | --- | --- |
 | callbackQueryId | `string` | Query id |
 | [text] | `string` | Notification text |
-| [url] | `string` | Notification text |
 | [showAlert] | `bool` | Show alert instead of notification |
 | [cacheTime] | `number` | The maximum amount of time in seconds that the result of the callback query may be cached client-side. Telegram apps will support caching starting in version 3.14. Defaults to 0. |
+
+<sub>[See Telegram api docs](https://core.telegram.org/bots/api#answercallbackquery)</sub>
+
+### answerGameQuery
+
+Use this method to send answers to callback queries.
+
+`telegram.answerGameQuery(callbackQueryId, url) => Promise`
+
+| Param | Type | Description |
+| --- | --- | --- |
+| callbackQueryId | `string` | Query id |
+| url | `string` | Game url |
 
 <sub>[See Telegram api docs](https://core.telegram.org/bots/api#answercallbackquery)</sub>
 
