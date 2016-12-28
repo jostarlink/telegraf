@@ -115,10 +115,11 @@
 </table>
 <p>Telegraf options:</p>
 <pre><code class="lang-js">{
-  <span class="hljs-attr">telegram</span>: {      <span class="pl-c">// Telegram options</span>
-    agent: <span class="pl-c1">null</span>    <span class="pl-c">// https.Agent instance, allows custom proxy, certificate, keep alive, etc.</span>
+  <span class="hljs-attr">telegram</span>: {           <span class="pl-c">// Telegram options</span>
+    agent: <span class="pl-c1">null</span>,        <span class="pl-c">// https.Agent instance, allows custom proxy, certificate, keep alive, etc.</span>
+    webhookReply: <span class="pl-c1">true</span>  <span class="pl-c">// Reply via webhook</span>
   },
-  <span class="hljs-attr">username</span>: <span class="pl-s">&apos;&apos;</span>     <span class="pl-c">// Bot username (optional)  </span>
+  <span class="hljs-attr">username</span>: <span class="pl-s">&apos;&apos;</span>          <span class="pl-c">// Bot username (optional)  </span>
 }
 </code></pre>
 <h3 id="use">use</h3>

@@ -243,6 +243,11 @@
                 "id": "constructor"
               },
               {
+                "title": "webhookReply",
+                "depth": 3,
+                "id": "webhookreply"
+              },
+              {
                 "title": "answerCallbackQuery",
                 "depth": 3,
                 "id": "answercallbackquery"
@@ -677,6 +682,11 @@
           "title": "Constructor",
           "depth": 3,
           "id": "constructor"
+        },
+        {
+          "title": "webhookReply",
+          "depth": 3,
+          "id": "webhookreply"
         },
         {
           "title": "answerCallbackQuery",

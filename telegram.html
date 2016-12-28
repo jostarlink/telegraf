@@ -32,6 +32,8 @@
                   <ul class="headings heading-list">
                     <li class="heading-item -depth-3"><a class="hlink link-constructor" href="#constructor">Constructor</a>
                     </li>
+                    <li class="heading-item -depth-3"><a class="hlink link-webhookreply" href="#webhookreply">webhookReply</a>
+                    </li>
                     <li class="heading-item -depth-3"><a class="hlink link-answercallbackquery" href="#answercallbackquery">answerCallbackQuery</a>
                     </li>
                     <li class="heading-item -depth-3"><a class="hlink link-answerinlinequery" href="#answerinlinequery">answerInlineQuery</a>
@@ -147,9 +149,13 @@
 </table>
 <p>Telegram options:</p>
 <pre><code class="lang-js">{
-  <span class="hljs-attr">agent</span>: <span class="pl-c1">null</span> <span class="pl-c">// https.Agent instance, allows custom proxy, certificate, keep alive, etc.</span>
+  <span class="hljs-attr">agent</span>: <span class="pl-c1">null</span>,        <span class="pl-c">// https.Agent instance, allows custom proxy, certificate, keep alive, etc.</span>
+  webhookReply: <span class="pl-c1">true</span>  <span class="pl-c">// Reply via webhook</span>
 }
 </code></pre>
+<h3 id="webhookreply">webhookReply</h3>
+<p>Use this property to control <code>reple via webhook</code> feature.</p>
+<p><code>telegram.webhookReply = [bool]</code></p>
 <h3 id="answercallbackquery">answerCallbackQuery</h3>
 <p>Use this method to send answers to callback queries.</p>
 <p><code>telegram.answerCallbackQuery(callbackQueryId, text, url, showAlert, cacheTime) =&gt; Promise</code></p>
