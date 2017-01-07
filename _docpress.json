@@ -893,6 +893,7 @@
     "docs/telegram.md": "telegram.html",
     "docs/extra.md": "extra.html",
     "docs/docs.css": "docs.css",
+    "docs/header.png": "header.png",
     "docs/telegraf.png": "telegraf.png"
   }
 }
