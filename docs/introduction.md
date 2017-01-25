@@ -33,7 +33,7 @@ app.on('text', (ctx) => ctx.reply('Hello World'))
 
 #### Cascading with async functions
 
-You might need Babel fot following example or `node >=v.7.x` with harmony flags.
+You might need Babel(or `node >=v.7.x` with harmony flags) for running following example.
 
 ```js
 app.use(async (ctx, next) => {
@@ -56,7 +56,6 @@ app.use(async (ctx, next) => {
 - [Powerfull bot stats via Mixpanel](https://github.com/telegraf/telegraf-mixpanel)
 - [statsd integration](https://github.com/telegraf/telegraf-statsd)
 - [and more...](https://www.npmjs.com/search?q=telegraf-)
-
 
 ## Error handling
 
